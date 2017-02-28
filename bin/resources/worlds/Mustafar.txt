@@ -1,0 +1,16 @@
+SHIP
+-5
+5
+10
+1
+../bin/resources/objects/SpaceTaxi.txt
+
+
+PLANET
+500
+0
+0
+300
+../bin/resources/objects/Musta.txt
+
+END
