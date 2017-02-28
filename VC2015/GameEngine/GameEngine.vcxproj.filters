@@ -4,10 +4,228 @@
     <Filter Include="src">
       <UniqueIdentifier>{86376c58-23a3-4ed9-bd32-eb27c722d043}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Application">
+      <UniqueIdentifier>{b98194ba-e6c5-420d-b64c-d9874791dcf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine">
+      <UniqueIdentifier>{2076432b-409f-4f5c-bf10-5b812dd61da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics">
+      <UniqueIdentifier>{f5388f3c-f114-4241-9901-3200bac202dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Logic">
+      <UniqueIdentifier>{54bf3077-8b1d-4853-97c2-07c8a15ca68c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Math">
+      <UniqueIdentifier>{28250959-2abf-402e-a1f3-04487f4fabc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\World">
+      <UniqueIdentifier>{de9de7b4-24ba-45ba-ab2c-0a6f7580aa8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform">
+      <UniqueIdentifier>{b1ce5371-93e9-4a4b-ad94-7d88ce8d407a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\Win">
+      <UniqueIdentifier>{15db12a6-257e-4128-9b53-e186b5d3149d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics\Managment">
+      <UniqueIdentifier>{bb20bfef-2008-4c89-b668-2462601fc519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics\Model">
+      <UniqueIdentifier>{752da64b-8722-40a6-ac6e-aaf3cfc2704b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics\Shaders">
+      <UniqueIdentifier>{536ee48b-4cfa-4792-8b3d-1ab829e84d5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics\Texture">
+      <UniqueIdentifier>{7f7906c4-3f36-42b0-8705-f835d918b37d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Logic\Controllers">
+      <UniqueIdentifier>{4e65e9ff-082b-4693-afd6-93a13f5db197}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Logic\Controllers\Players">
+      <UniqueIdentifier>{60df27fb-9845-43a9-abcf-db96c6f9bc17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Objects">
+      <UniqueIdentifier>{cfda2291-6cc4-46f8-b83d-c12953a153e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Objects\MacroObjects">
+      <UniqueIdentifier>{7ea740a2-c199-4db3-ab90-e626d7496e19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Objects\MicroObjects">
+      <UniqueIdentifier>{3535c95c-1b8e-46a4-97b0-f8d748950616}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Engine\World\WorldCreator.cpp">
+      <Filter>src\Engine\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\World\World.cpp">
+      <Filter>src\Engine\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Objects\AbstractObject.cpp">
+      <Filter>src\Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Objects\ObjectFactory.cpp">
+      <Filter>src\Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Objects\ObjectManager.cpp">
+      <Filter>src\Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Objects\MacroObjects\MacroObject.cpp">
+      <Filter>src\Engine\Objects\MacroObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Objects\MacroObjects\Planet.cpp">
+      <Filter>src\Engine\Objects\MacroObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Objects\MicroObjects\MicroObject.cpp">
+      <Filter>src\Engine\Objects\MicroObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Objects\MicroObjects\Ship.cpp">
+      <Filter>src\Engine\Objects\MicroObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Math\Camera.cpp">
+      <Filter>src\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Math\math_3d.cpp">
+      <Filter>src\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Math\Pipeline.cpp">
+      <Filter>src\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Logic\Controllers\Players\Player.cpp">
+      <Filter>src\Engine\Logic\Controllers\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Logic\Controllers\Controller.cpp">
+      <Filter>src\Engine\Logic\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Management\ModelManager.cpp">
+      <Filter>src\Engine\Graphics\Managment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Management\ShaderProgManager.cpp">
+      <Filter>src\Engine\Graphics\Managment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Management\TextureManager.cpp">
+      <Filter>src\Engine\Graphics\Managment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Model\Mesh.cpp">
+      <Filter>src\Engine\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Model\Model.cpp">
+      <Filter>src\Engine\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Model\ModelParser.cpp">
+      <Filter>src\Engine\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Texture\PngLoader.cpp">
+      <Filter>src\Engine\Graphics\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Shaders\ShaderManager.cpp">
+      <Filter>src\Engine\Graphics\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Engine\Graphics\Shaders\ShaderProg.cpp">
+      <Filter>src\Engine\Graphics\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Platform\Win\Platform.cpp">
+      <Filter>src\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Application\Application.cpp">
+      <Filter>src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Application\Manager.cpp">
+      <Filter>src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Application\Window.cpp">
+      <Filter>src\Application</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Include.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\World\WorldCreator.h">
+      <Filter>src\Engine\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\World\World.h">
+      <Filter>src\Engine\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Objects\AbstractObject.h">
+      <Filter>src\Engine\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Objects\ObjectFactory.h">
+      <Filter>src\Engine\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Objects\ObjectManager.h">
+      <Filter>src\Engine\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Objects\MacroObjects\MacroObject.h">
+      <Filter>src\Engine\Objects\MacroObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Objects\MacroObjects\Planet.h">
+      <Filter>src\Engine\Objects\MacroObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Objects\MicroObjects\MicroObject.h">
+      <Filter>src\Engine\Objects\MicroObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Objects\MicroObjects\Ship.h">
+      <Filter>src\Engine\Objects\MicroObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Math\Camera.h">
+      <Filter>src\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Math\math_3d.h">
+      <Filter>src\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Math\Pipeline.h">
+      <Filter>src\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Logic\Controllers\Players\Player.h">
+      <Filter>src\Engine\Logic\Controllers\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Logic\Controllers\Controller.h">
+      <Filter>src\Engine\Logic\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Management\ModelManager.h">
+      <Filter>src\Engine\Graphics\Managment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Management\ShaderProgManager.h">
+      <Filter>src\Engine\Graphics\Managment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Management\TextureManager.h">
+      <Filter>src\Engine\Graphics\Managment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Model\Mesh.h">
+      <Filter>src\Engine\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Model\Model.h">
+      <Filter>src\Engine\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Model\ModelParser.h">
+      <Filter>src\Engine\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Texture\PngLoader.h">
+      <Filter>src\Engine\Graphics\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Shaders\ShaderManager.h">
+      <Filter>src\Engine\Graphics\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Engine\Graphics\Shaders\ShaderProg.h">
+      <Filter>src\Engine\Graphics\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Platform\Win\Platform.h">
+      <Filter>src\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Application\Application.h">
+      <Filter>src\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Application\Manager.h">
+      <Filter>src\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Application\Window.h">
+      <Filter>src\Application</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
