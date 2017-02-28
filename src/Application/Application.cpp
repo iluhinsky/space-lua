@@ -35,7 +35,7 @@ void Application::Init()
 	_player       = new Player;
 	_world        = new World;
 
-	_world->Load("../../bin/resources/worlds/Mustafar.txt");
+	_world->Load("../bin/resources/worlds/Mustafar.txt");
 
 	_world->BindController (_player);
 }
