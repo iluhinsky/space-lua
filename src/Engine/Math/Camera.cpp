@@ -4,8 +4,8 @@
 Camera::Camera()
 {
 	m_pos    = glm::vec3(0.0f, 0.0f, 0.0f);
-	m_target = glm::vec3(0.0f, 0.0f, 1.0f);
-	m_up     = glm::vec3(0.0f, 1.0f, 0.0f);
+	m_target = glm::vec3(1.0f, 0.0f, 0.0f);
+	m_up     = glm::vec3(0.0f, 0.0f, 1.0f);
 
 	Init();
 }
@@ -27,27 +27,30 @@ Camera::Camera(const glm::vec3& Pos, const glm::vec3& Target, const glm::vec3& U
 
 void Camera::Init()
 {
-	glm::vec3 HTarget(m_target.x, 0.0, m_target.z);
+	glm::vec3 HTarget(m_target.x, m_target.y, 0.0);
 	HTarget = glm::normalize(HTarget);
 
-	if (HTarget.z >= 0.0f)
+	if (HTarget.y >= 0.0f)
 	{
-		if (HTarget.x >= 0.0f) m_AngleH = 360.0f - (float)ToDegree(asin(HTarget.z));
-		else                   m_AngleH = 180.0f + (float)ToDegree(asin(HTarget.z));
+		if (HTarget.x >= 0.0f) m_AngleH = 360.0f - (float)ToDegree(asin(HTarget.y));
+		else                   m_AngleH = 180.0f + (float)ToDegree(asin(HTarget.y));
 	}
 	else
 	{
-		if (HTarget.x >= 0.0f) m_AngleH = (float)ToDegree(asin(-HTarget.z));
-		else                   m_AngleH = 90.0f + (float)ToDegree(asin(-HTarget.z));
+		if (HTarget.x >= 0.0f) m_AngleH =         (float)ToDegree(asin(-HTarget.y));
+		else                   m_AngleH = 90.0f + (float)ToDegree(asin(-HTarget.y));
 	}
 
-	m_AngleV = -(float)ToDegree(asin(m_target.y));
+	m_AngleV = -(float)ToDegree(asin(m_target.z));
 }
 
 
 void Camera::Update()
 {
-	const glm::vec3 Vaxis(0.0f, 1.0f, 0.0f);
+	const glm::vec3 Vaxis(0.0f, 0.0f, 1.0f);
+
+	if      (m_AngleV >  90.0f) m_AngleV =  90.0f;
+	else if (m_AngleV < -90.0f) m_AngleV = -90.0f;
 
 	// Rotate the view vector by the horizontal angle around the vertical axis
 	glm::vec3 View(1.0f, 0.0f, 0.0f);
