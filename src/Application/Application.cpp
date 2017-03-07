@@ -67,7 +67,7 @@ void Application::KeyboardFunc()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) StopLoop();
 
-	for (std::vector<sf::Keyboard::Key>::iterator it = _keys.begin(); it != _keys.end(); ++it) 
+	for (auto it = _keys.begin(); it != _keys.end(); ++it) 
 		if (sf::Keyboard::isKeyPressed(*it)) _player->OnKeyboard(*it);
 }
 
