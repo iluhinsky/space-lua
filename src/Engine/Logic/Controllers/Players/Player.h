@@ -19,7 +19,6 @@ public:
 	void UpdateCamera();
 
 private:
-	virtual void BindCamera(AbstractObject* object);
 
 	Camera* _camera;
 
