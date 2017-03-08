@@ -41,15 +41,16 @@
     <ClInclude Include="..\src\Engine\Math\Camera.h" />
     <ClInclude Include="..\src\Engine\Math\math_3d.h" />
     <ClInclude Include="..\src\Engine\Math\Pipeline.h" />
-    <ClInclude Include="..\src\Engine\Objects\AbstractObject.h" />
-    <ClInclude Include="..\src\Engine\Objects\MacroObjects\MacroObject.h" />
-    <ClInclude Include="..\src\Engine\Objects\MacroObjects\Planet.h" />
-    <ClInclude Include="..\src\Engine\Objects\MicroObjects\MicroObject.h" />
-    <ClInclude Include="..\src\Engine\Objects\MicroObjects\Ship.h" />
-    <ClInclude Include="..\src\Engine\Objects\ObjectFactory.h" />
-    <ClInclude Include="..\src\Engine\Objects\ObjectManager.h" />
+    <ClInclude Include="..\src\Engine\Objects\GameObject.h" />
+    <ClInclude Include="..\src\Engine\Physics\CollisionObject.h" />
     <ClInclude Include="..\src\Engine\World\World.h" />
     <ClInclude Include="..\src\Engine\World\WorldCreator.h" />
+    <ClInclude Include="..\src\Game\Ship\Blocks\Block.h" />
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockFactory.h" />
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockMain.h" />
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockShield.h" />
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockTypes.h" />
+    <ClInclude Include="..\src\Game\Ship\Ship.h" />
     <ClInclude Include="..\src\Include.h" />
     <ClInclude Include="..\src\Platform\Win\Platform.h" />
   </ItemGroup>
@@ -76,15 +77,15 @@
     <ClCompile Include="..\src\Engine\Math\Camera.cpp" />
     <ClCompile Include="..\src\Engine\Math\math_3d.cpp" />
     <ClCompile Include="..\src\Engine\Math\Pipeline.cpp" />
-    <ClCompile Include="..\src\Engine\Objects\AbstractObject.cpp" />
-    <ClCompile Include="..\src\Engine\Objects\MacroObjects\MacroObject.cpp" />
-    <ClCompile Include="..\src\Engine\Objects\MacroObjects\Planet.cpp" />
-    <ClCompile Include="..\src\Engine\Objects\MicroObjects\MicroObject.cpp" />
-    <ClCompile Include="..\src\Engine\Objects\MicroObjects\Ship.cpp" />
-    <ClCompile Include="..\src\Engine\Objects\ObjectFactory.cpp" />
-    <ClCompile Include="..\src\Engine\Objects\ObjectManager.cpp" />
+    <ClCompile Include="..\src\Engine\Objects\GameObject.cpp" />
+    <ClCompile Include="..\src\Engine\Physics\CollisionObject.cpp" />
     <ClCompile Include="..\src\Engine\World\World.cpp" />
     <ClCompile Include="..\src\Engine\World\WorldCreator.cpp" />
+    <ClCompile Include="..\src\Game\Ship\Blocks\Block.cpp" />
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockFactory.cpp" />
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockMain.cpp" />
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockShield.cpp" />
+    <ClCompile Include="..\src\Game\Ship\Ship.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Platform\Win\Platform.cpp" />
   </ItemGroup>

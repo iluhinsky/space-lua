@@ -49,17 +49,23 @@
     <Filter Include="src\Engine\Logic\Controllers\Players">
       <UniqueIdentifier>{8981c792-61f6-4beb-a21c-248fea2b1b61}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Engine\Objects\MacroObjects">
-      <UniqueIdentifier>{51f42764-1954-4732-9593-62ca2630ab8f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Engine\Objects\MicroObjects">
-      <UniqueIdentifier>{24699c2f-ec1b-41f8-9b24-6d0bd3350209}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Engine\Graphics\GraphicsObject">
       <UniqueIdentifier>{675b4f91-21c7-45d2-957c-cd5a010539bf}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Engine\Graphics\Particles">
       <UniqueIdentifier>{afbfa428-b2a8-428b-b3d1-8f05ea027e26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Physics">
+      <UniqueIdentifier>{03f01457-3e02-4e77-ad00-9b58192d464f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game">
+      <UniqueIdentifier>{e694b13f-618b-4d2b-91b9-eff9090ed0e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\Ship">
+      <UniqueIdentifier>{04c41362-8edc-449a-89cb-57293684664f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\Ship\Blocks">
+      <UniqueIdentifier>{b050d21e-0728-494d-8cb5-2fcf7f5e0abb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -120,27 +126,6 @@
     <ClInclude Include="..\src\Engine\Logic\Controllers\Players\Player.h">
       <Filter>src\Engine\Logic\Controllers\Players</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Engine\Objects\AbstractObject.h">
-      <Filter>src\Engine\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Engine\Objects\ObjectFactory.h">
-      <Filter>src\Engine\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Engine\Objects\ObjectManager.h">
-      <Filter>src\Engine\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Engine\Objects\MacroObjects\MacroObject.h">
-      <Filter>src\Engine\Objects\MacroObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Engine\Objects\MacroObjects\Planet.h">
-      <Filter>src\Engine\Objects\MacroObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Engine\Objects\MicroObjects\MicroObject.h">
-      <Filter>src\Engine\Objects\MicroObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Engine\Objects\MicroObjects\Ship.h">
-      <Filter>src\Engine\Objects\MicroObjects</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Engine\World\World.h">
       <Filter>src\Engine\World</Filter>
     </ClInclude>
@@ -161,6 +146,30 @@
     </ClInclude>
     <ClInclude Include="..\src\Engine\Graphics\Particles\ParticleSystem.h">
       <Filter>src\Engine\Graphics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Physics\CollisionObject.h">
+      <Filter>src\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Objects\GameObject.h">
+      <Filter>src\Engine\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\Block.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockMain.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockShield.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockTypes.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Ship.h">
+      <Filter>src\Game\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockFactory.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -221,27 +230,6 @@
     <ClCompile Include="..\src\Engine\Logic\Controllers\Players\Player.cpp">
       <Filter>src\Engine\Logic\Controllers\Players</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Engine\Objects\AbstractObject.cpp">
-      <Filter>src\Engine\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Engine\Objects\ObjectFactory.cpp">
-      <Filter>src\Engine\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Engine\Objects\ObjectManager.cpp">
-      <Filter>src\Engine\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Engine\Objects\MacroObjects\MacroObject.cpp">
-      <Filter>src\Engine\Objects\MacroObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Engine\Objects\MacroObjects\Planet.cpp">
-      <Filter>src\Engine\Objects\MacroObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Engine\Objects\MicroObjects\MicroObject.cpp">
-      <Filter>src\Engine\Objects\MicroObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Engine\Objects\MicroObjects\Ship.cpp">
-      <Filter>src\Engine\Objects\MicroObjects</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Engine\World\World.cpp">
       <Filter>src\Engine\World</Filter>
     </ClCompile>
@@ -262,6 +250,27 @@
     </ClCompile>
     <ClCompile Include="..\src\Engine\Graphics\Particles\ParticleSystem.cpp">
       <Filter>src\Engine\Graphics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Physics\CollisionObject.cpp">
+      <Filter>src\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Objects\GameObject.cpp">
+      <Filter>src\Engine\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\Block.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockMain.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockShield.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Ship.cpp">
+      <Filter>src\Game\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockFactory.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
