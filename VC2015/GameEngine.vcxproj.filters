@@ -58,6 +58,9 @@
     <Filter Include="src\Engine\Graphics\GraphicsObject">
       <UniqueIdentifier>{675b4f91-21c7-45d2-957c-cd5a010539bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Engine\Graphics\Particles">
+      <UniqueIdentifier>{afbfa428-b2a8-428b-b3d1-8f05ea027e26}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Include.h">
@@ -153,6 +156,12 @@
     <ClInclude Include="..\src\Engine\Graphics\GraphicsObjectManager.h">
       <Filter>src\Engine\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Particles\Particle.h">
+      <Filter>src\Engine\Graphics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Particles\ParticleSystem.h">
+      <Filter>src\Engine\Graphics\Particles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -247,6 +256,12 @@
     </ClCompile>
     <ClCompile Include="..\src\Engine\Graphics\GraphicsObjectManager.cpp">
       <Filter>src\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Particles\Particle.cpp">
+      <Filter>src\Engine\Graphics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Particles\ParticleSystem.cpp">
+      <Filter>src\Engine\Graphics\Particles</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
