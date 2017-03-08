@@ -13,6 +13,8 @@ public:
 private:
 	GraphicsObject* LoadGraphicsObject(GraphicsObjectInfo assetNames);
 
+	GraphicsObjectFactory factory;
+
 	std::unordered_map <GraphicsObjectInfo, GraphicsObject*> _graphicsObjectMap;
 };
 

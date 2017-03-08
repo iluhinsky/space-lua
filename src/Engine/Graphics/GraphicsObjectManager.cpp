@@ -29,5 +29,5 @@ GraphicsObject* GraphicsObjectManager::Get(GraphicsObjectInfo assetNames)
 
 GraphicsObject* GraphicsObjectManager::LoadGraphicsObject(GraphicsObjectInfo assetNames)
 {
-
+	return factory.CreateObject(assetNames);
 }
