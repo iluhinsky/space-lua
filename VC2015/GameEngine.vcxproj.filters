@@ -55,6 +55,9 @@
     <Filter Include="src\Engine\Objects\MicroObjects">
       <UniqueIdentifier>{24699c2f-ec1b-41f8-9b24-6d0bd3350209}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Engine\Graphics\GraphicsObject">
+      <UniqueIdentifier>{675b4f91-21c7-45d2-957c-cd5a010539bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Include.h">
@@ -141,6 +144,15 @@
     <ClInclude Include="..\src\Engine\World\WorldCreator.h">
       <Filter>src\Engine\World</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObject.h">
+      <Filter>src\Engine\Graphics\GraphicsObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObjectFactory.h">
+      <Filter>src\Engine\Graphics\GraphicsObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\GraphicsObjectManager.h">
+      <Filter>src\Engine\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -226,6 +238,15 @@
     </ClCompile>
     <ClCompile Include="..\src\Engine\World\WorldCreator.cpp">
       <Filter>src\Engine\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObject.cpp">
+      <Filter>src\Engine\Graphics\GraphicsObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObjectFactory.cpp">
+      <Filter>src\Engine\Graphics\GraphicsObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\GraphicsObjectManager.cpp">
+      <Filter>src\Engine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
