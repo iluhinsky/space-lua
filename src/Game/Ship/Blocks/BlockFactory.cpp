@@ -23,38 +23,51 @@ void ObjectDataBase::Fill(std::string name)
 	; //! WTF!&!&!&
 
 	std::string pathToDB = "../bin/resources/DB/" + name;
-
 	FILE* file = fopen(pathToDB.c_str(), "r");
+	assert(file);
 
 	char string[30] = {};
-	float n;
-	float rate;
+	float n = 0.0f;
+	float rate = 0.0f;
 
 	fscanf(file, "%s", string);
 
-	while (strcmp(string, "END") != 0)
-	{
+	while (strcmp(string, "END") != 0 && !feof(file))
+	{	
 		BlockType blockType = GetTypeOf(string);
+
 		Block* newBlock = nullptr;
 
-
-		float hits = 0;
-		float mass = 0.1;
-
+		float hits = 0.0f;
+		float mass = 0.1f;
 		fscanf(file, ": hits: %f mass: %f", &hits, &mass);
-		
-		newBlock->hits_ = hits;
-		newBlock->mass_ = mass;
 
-		
+		GraphicsObjectInfo assetNames = {};
+		char model[30] = {};
+		char texture[30] = {};
+		char vertexShader[30] = {};
+		char fragmentShader[30] = {};
+		fscanf(file, "model: %s texture: %s vertexShader: %s fragmentShader: %s", model, texture, vertexShader, fragmentShader);
+		assetNames.modelName_ = model;
+		assetNames.textureName_ = texture;
+		assetNames.shaderNames_._vertexShaderName = vertexShader;
+		assetNames.shaderNames_._fragmentShaderName = fragmentShader;
+
+		manager_.LoadGraphicsObject(assetNames); // private function
 
 		switch (blockType)
 		{
+		case blockTypeMain:
+			newBlock = new BlockMain;
+
+			break;
+
 		case blockTypeShield:
 			newBlock = new BlockShield;
 
-			fscanf(file, "| shieldPowerMax: %f recoveryRate: %f", &n, &rate);
+			fscanf(file, "shieldPowerMax: %f recoveryRate: %f", &n, &rate);
 			
+			// why don't we initialize newBlock->name_ and newBlock->shieldPower ?
 			((BlockShield*)newBlock)->shieldPowerMax_ = n;
 			((BlockShield*)newBlock)->recoveryRate_   = rate;
 
@@ -64,7 +77,12 @@ void ObjectDataBase::Fill(std::string name)
 			break;
 		}
 
+		newBlock->hits_ = hits;
+		newBlock->mass_ = mass;
+
 		db_[blockType] = newBlock;
+
+		fscanf(file, "%s", string);
 	}
 
 	fclose(file);

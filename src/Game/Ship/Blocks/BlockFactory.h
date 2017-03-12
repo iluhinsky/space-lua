@@ -3,8 +3,7 @@
 #include "Block.h"
 #include "BlockMain.h"
 #include "BlockShield.h"
-
-#include "..\..\..\Engine\Graphics\GraphicsObject\GraphicsObjectFactory.h"
+#include "..\..\..\Engine\Graphics\GraphicsObjectManager.h"
 
 
 struct BlockInfo 
@@ -28,6 +27,8 @@ public:
 private:
 	std::unordered_map<BlockType, Block*> db_;
 	std::unordered_map<std::string, BlockType> dictionary_;
+
+	GraphicsObjectManager manager_;
 };
 
 
