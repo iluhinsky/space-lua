@@ -1,15 +1,25 @@
 #pragma once
 
-
 #include "..\..\Include.h"
 #include "Blocks\Block.h"
+#include "ShipController.h"
+
 
 class Ship
 {
+	friend class ShipFactory;
+
 public:
 	Ship();
 	~Ship();
 
+	void Draw(Camera* camera);
+
 private:
-	std::vector<Block> blocks_;
+	std::string shipName_;
+	glm::vec3 coord_;
+
+	std::vector<Block*> blocks_;
+
+	ShipController controller_;
 };

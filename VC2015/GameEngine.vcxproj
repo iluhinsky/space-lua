@@ -43,14 +43,16 @@
     <ClInclude Include="..\src\Engine\Math\Pipeline.h" />
     <ClInclude Include="..\src\Engine\Objects\GameObject.h" />
     <ClInclude Include="..\src\Engine\Physics\CollisionObject.h" />
-    <ClInclude Include="..\src\Engine\World\World.h" />
-    <ClInclude Include="..\src\Engine\World\WorldCreator.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\Block.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockFactory.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockMain.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockShield.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockTypes.h" />
     <ClInclude Include="..\src\Game\Ship\Ship.h" />
+    <ClInclude Include="..\src\Game\Ship\ShipController.h" />
+    <ClInclude Include="..\src\Game\Ship\ShipFactory.h" />
+    <ClInclude Include="..\src\Game\World\World.h" />
+    <ClInclude Include="..\src\Game\World\WorldLoader.h" />
     <ClInclude Include="..\src\Include.h" />
     <ClInclude Include="..\src\Platform\Win\Platform.h" />
   </ItemGroup>
@@ -79,13 +81,15 @@
     <ClCompile Include="..\src\Engine\Math\Pipeline.cpp" />
     <ClCompile Include="..\src\Engine\Objects\GameObject.cpp" />
     <ClCompile Include="..\src\Engine\Physics\CollisionObject.cpp" />
-    <ClCompile Include="..\src\Engine\World\World.cpp" />
-    <ClCompile Include="..\src\Engine\World\WorldCreator.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\Block.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockFactory.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockMain.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockShield.cpp" />
     <ClCompile Include="..\src\Game\Ship\Ship.cpp" />
+    <ClCompile Include="..\src\Game\Ship\ShipController.cpp" />
+    <ClCompile Include="..\src\Game\Ship\ShipFactory.cpp" />
+    <ClCompile Include="..\src\Game\World\World.cpp" />
+    <ClCompile Include="..\src\Game\World\WorldLoader.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Platform\Win\Platform.cpp" />
   </ItemGroup>

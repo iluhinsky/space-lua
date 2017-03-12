@@ -40,9 +40,6 @@
     <Filter Include="src\Engine\Objects">
       <UniqueIdentifier>{6e6ffcda-7b59-4316-823e-a01430117723}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Engine\World">
-      <UniqueIdentifier>{3f8faf72-7384-41ac-97e2-8409d9a68745}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Engine\Logic\Controllers">
       <UniqueIdentifier>{e564c7ff-843b-4750-b6fb-88c89e87f002}</UniqueIdentifier>
     </Filter>
@@ -66,6 +63,9 @@
     </Filter>
     <Filter Include="src\Game\Ship\Blocks">
       <UniqueIdentifier>{b050d21e-0728-494d-8cb5-2fcf7f5e0abb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\World">
+      <UniqueIdentifier>{d39e1e7b-1901-4c0f-819a-4f39bc8cc7da}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -126,12 +126,6 @@
     <ClInclude Include="..\src\Engine\Logic\Controllers\Players\Player.h">
       <Filter>src\Engine\Logic\Controllers\Players</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Engine\World\World.h">
-      <Filter>src\Engine\World</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Engine\World\WorldCreator.h">
-      <Filter>src\Engine\World</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObject.h">
       <Filter>src\Engine\Graphics\GraphicsObject</Filter>
     </ClInclude>
@@ -170,6 +164,18 @@
     </ClInclude>
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockFactory.h">
       <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\ShipController.h">
+      <Filter>src\Game\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\World\World.h">
+      <Filter>src\Game\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\World\WorldLoader.h">
+      <Filter>src\Game\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\ShipFactory.h">
+      <Filter>src\Game\Ship</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -230,12 +236,6 @@
     <ClCompile Include="..\src\Engine\Logic\Controllers\Players\Player.cpp">
       <Filter>src\Engine\Logic\Controllers\Players</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Engine\World\World.cpp">
-      <Filter>src\Engine\World</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Engine\World\WorldCreator.cpp">
-      <Filter>src\Engine\World</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObject.cpp">
       <Filter>src\Engine\Graphics\GraphicsObject</Filter>
     </ClCompile>
@@ -271,6 +271,18 @@
     </ClCompile>
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockFactory.cpp">
       <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\ShipController.cpp">
+      <Filter>src\Game\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\World\World.cpp">
+      <Filter>src\Game\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\World\WorldLoader.cpp">
+      <Filter>src\Game\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\ShipFactory.cpp">
+      <Filter>src\Game\Ship</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

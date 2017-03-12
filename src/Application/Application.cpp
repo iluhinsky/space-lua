@@ -1,6 +1,6 @@
 #include "Application.h"
 
-#include "../Engine/World/World.h"
+#include "../Game/World/World.h"
 
 Application* Application::_instance = nullptr;
 
@@ -35,9 +35,8 @@ void Application::Init()
 	_player       = new Player;
 	_world        = new World;
 
-	_world->Load("../bin/resources/worlds/Mustafar.txt");
-
-	_world->BindController (_player);
+	_world->Init();
+	_world->Load("Mustafar.txt");
 }
 
 
