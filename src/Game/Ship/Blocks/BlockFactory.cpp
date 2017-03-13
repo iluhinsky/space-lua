@@ -2,7 +2,7 @@
 
 #include "BlockMain.h"
 #include "BlockShield.h"
-#define _CRT_SECURE_NO_WARNINGS
+//#define _CRT_SECURE_NO_WARNINGS
 
 ObjectDataBase::ObjectDataBase()
 {
@@ -40,7 +40,6 @@ void ObjectDataBase::Fill(std::string name)
 		float hits = 0.0f;
 		float mass = 0.0f;
 		fscanf(file, " hits: %f mass: %f", &hits, &mass);
-	//printf("hits = %f  mass = %f\n", hits, mass);
 
 		GraphicsObjectInfo assetNames = {};
 		char model[30] = {};
@@ -48,12 +47,10 @@ void ObjectDataBase::Fill(std::string name)
 		char vertexShader[30] = {};
 		char fragmentShader[30] = {};
 		fscanf(file, " model: %s texture: %s vertexShader: %s fragmentShader: %s", model, texture, vertexShader, fragmentShader);
-	//printf("model = '%s' texture = '%s' vS = '%s' fS = '%s'\n", model, texture, vertexShader, fragmentShader);
 		assetNames.modelName_ = model;
 		assetNames.textureName_ = texture;
 		assetNames.shaderNames_._vertexShaderName = vertexShader;
 		assetNames.shaderNames_._fragmentShaderName = fragmentShader;
-	//std::cout << "mN_ = " << assetNames.modelName_ << "\n";
 
 		manager_.Get(assetNames);
 
@@ -65,6 +62,7 @@ void ObjectDataBase::Fill(std::string name)
 			break;
 
 		case blockTypeShield:
+
 			newBlock = new BlockShield;
 
 			fscanf(file, " shieldPowerMax: %f recoveryRate: %f", &n, &rate);
@@ -84,11 +82,9 @@ void ObjectDataBase::Fill(std::string name)
 		db_[blockType] = newBlock;
 
 		fscanf(file, " %s", string);
-
 	}
 
 	fclose(file);
-
 }
 
 Block* ObjectDataBase::GetCopyOf(BlockType blockType)
