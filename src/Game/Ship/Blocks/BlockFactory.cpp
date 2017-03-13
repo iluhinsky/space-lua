@@ -2,7 +2,7 @@
 
 #include "BlockMain.h"
 #include "BlockShield.h"
-//#define _CRT_SECURE_NO_WARNINGS
+
 
 ObjectDataBase::ObjectDataBase()
 {

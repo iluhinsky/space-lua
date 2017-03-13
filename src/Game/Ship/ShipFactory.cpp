@@ -32,9 +32,10 @@ Ship* ShipFactory::GenerateShip(ShipInfo shipInfo)
 
 void ShipFactory::LoadConstruction(Ship* ship)
 {
-	std::string constrName = "../bin/resources/construction/" + ship->shipName_;
+	std::string constrName = "../bin/resources/construction/" + ship->shipName_ + ".txt";
 
 	FILE* file = fopen(constrName.c_str(), "r");
+	assert(file);
 
 	Block* newBlock = nullptr;
 
@@ -46,6 +47,8 @@ void ShipFactory::LoadConstruction(Ship* ship)
 
 		ship->blocks_.push_back(newBlock);
 	}
+
+	fclose(file);
 }
 
 void ShipFactory::LoadController(Ship* ship)
