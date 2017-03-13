@@ -2,10 +2,10 @@ blockTypeMain:
 hits: 30.0 mass: 0.1 
 model: cube.bwm
 texture: main.png
-vertexShader: block.glsl
-fragmentShader: block.glsl
+vertexShader: block_vertex.glsl 
+fragmentShader: block_fragment.glsl 
 
-BlockTypeShield:  
+BlockTypeShield: 
 hits: 10.0 mass: 0.2 
 model: cube.bwm
 texture: shield.png
