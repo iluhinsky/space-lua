@@ -41,7 +41,7 @@ void ShipFactory::LoadConstruction(Ship* ship)
 
 	while (true) // TODO: REMOVE THIS FCKN SHIT !!!!!!!
 	{
-		Block* newBlock = blockFactory_.GetBlock(file);
+		newBlock = blockFactory_.GetBlock(file);
 
 		if (newBlock == nullptr) break;
 

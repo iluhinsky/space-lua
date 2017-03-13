@@ -10,7 +10,11 @@ class BlockShield :
 
 public:
 	BlockShield();
+	BlockShield(const BlockShield& block);
+
 	~BlockShield();
+
+	virtual Block* Clone() const;
 
 private:
 	std::string name_;

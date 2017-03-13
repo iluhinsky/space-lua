@@ -5,6 +5,10 @@ class BlockMain :
 {
 public:
 	BlockMain();
+	BlockMain(const BlockMain& block);
+
 	~BlockMain();
+
+	virtual Block* Clone() const;
 };
 

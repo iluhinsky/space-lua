@@ -11,11 +11,9 @@ public:
 	GameObject();
 	~GameObject();
 
-	void Draw(Camera* camera);
+	virtual void Draw(Camera* camera, glm::vec3 coords) const = 0;
 
-private:
+protected:
 	GraphicsObject*  graphicsAsset_;
-
-	glm::vec3 coordinates_;
 };
 

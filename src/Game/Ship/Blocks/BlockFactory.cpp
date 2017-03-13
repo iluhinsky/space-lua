@@ -21,13 +21,22 @@ void ObjectDataBase::Fill(std::string name)
 	#include "BlockTypes.h"
 	#undef BLOCKTYPE	
 
-	std::string pathToDB = "../bin/resources/DB/" + name;
-	FILE* file = fopen(pathToDB.c_str(), "r");
-	assert(file);
+	char model[30]          = {};
+	char texture[30]        = {};
+	char vertexShader[30]   = {};
+	char fragmentShader[30] = {};
+	float hits = 0.0f;
+	float mass = 0.0f;
 
 	char string[30] = {};
 	float n = 0.0f;
 	float rate = 0.0f;
+
+	GraphicsObjectInfo assetNames = {};
+
+	std::string pathToDB = "../bin/resources/DB/" + name;
+	FILE* file = fopen(pathToDB.c_str(), "r");
+	assert(file);
 
 	fscanf(file, "%s", string);
 
@@ -37,37 +46,28 @@ void ObjectDataBase::Fill(std::string name)
 
 		Block* newBlock = nullptr;
 
-		float hits = 0.0f;
-		float mass = 0.0f;
 		fscanf(file, " hits: %f mass: %f", &hits, &mass);
 
-		GraphicsObjectInfo assetNames = {};
-		char model[30] = {};
-		char texture[30] = {};
-		char vertexShader[30] = {};
-		char fragmentShader[30] = {};
 		fscanf(file, " model: %s texture: %s vertexShader: %s fragmentShader: %s", model, texture, vertexShader, fragmentShader);
-		assetNames.modelName_ = model;
+		assetNames.modelName_   = model;
 		assetNames.textureName_ = texture;
-		assetNames.shaderNames_._vertexShaderName = vertexShader;
+		assetNames.shaderNames_._vertexShaderName   = vertexShader;
 		assetNames.shaderNames_._fragmentShaderName = fragmentShader;
-
-		manager_.Get(assetNames);
 
 		switch (blockType)
 		{
-		case blockTypeMain:
+		case BlockTypeMain:
 			newBlock = new BlockMain;
-
 			break;
 
-		case blockTypeShield:
+		case BlockTypeShield:
 
 			newBlock = new BlockShield;
 
 			fscanf(file, " shieldPowerMax: %f recoveryRate: %f", &n, &rate);
 			
 			((BlockShield*)newBlock)->shieldPowerMax_ = n;
+			((BlockShield*)newBlock)->shieldPower_    = n;
 			((BlockShield*)newBlock)->recoveryRate_   = rate;
 
 			break;
@@ -76,8 +76,11 @@ void ObjectDataBase::Fill(std::string name)
 			break;
 		}
 
+		newBlock->blockType_ = blockType;
 		newBlock->hits_ = hits;
 		newBlock->mass_ = mass;
+
+		newBlock->graphicsAsset_ = manager_.Get(assetNames);
 
 		db_[blockType] = newBlock;
 
@@ -89,9 +92,7 @@ void ObjectDataBase::Fill(std::string name)
 
 Block* ObjectDataBase::GetCopyOf(BlockType blockType)
 {
-	Block* block = db_[blockType];
-
-	return block;
+	return db_[blockType]->Clone();
 }
 
 
@@ -121,8 +122,6 @@ Block* BlockFactory::GetBlock(FILE* file)
 {
 	Block* newBlock = nullptr;
 
-	BlockShield* newBlockShield = nullptr;
-
 	char blockTypeName[30] = {};
 
 	fscanf(file, "%s", blockTypeName);
@@ -132,13 +131,17 @@ Block* BlockFactory::GetBlock(FILE* file)
 		BlockType blockType = dataBase_.GetTypeOf(blockTypeName);
 		newBlock            = dataBase_.GetCopyOf(blockType);
 
+		fscanf(file, " (%f, %f, %f)", 
+			&(newBlock->relatedCoords_.x),
+			&(newBlock->relatedCoords_.y),
+			&(newBlock->relatedCoords_.z));
+
 		switch (blockType)
 		{
-		case blockTypeShield:
-			fscanf(file, "| %s", blockTypeName);
+		case BlockTypeShield:
+			fscanf(file, "%s", blockTypeName);
 
-			newBlockShield = (BlockShield*) newBlock;
-			newBlockShield->name_ = blockTypeName;
+			((BlockShield*) newBlock)->name_ = blockTypeName;
 			break;
 
 		default:

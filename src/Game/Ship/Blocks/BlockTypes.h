@@ -1,2 +1,2 @@
-BLOCKTYPE(blockTypeMain)
-BLOCKTYPE(blockTypeShield)
+BLOCKTYPE(BlockTypeMain)
+BLOCKTYPE(BlockTypeShield)

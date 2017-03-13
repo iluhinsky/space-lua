@@ -1,16 +1,16 @@
-blockTypeMain 
+BlockTypeMain 
 hits: 30.0 mass: 0.1 
-model: cube.bwm 
-texture: main.png 
+model: cube.bwm
+texture: main.png
 vertexShader: block_vertex.glsl 
 fragmentShader: block_fragment.glsl 
 
-blockTypeShield 
+BlockTypeShield 
 hits: 10.0 mass: 0.2 
-model: cube.bwm 
-texture: shield.png 
-vertexShader: block_vertex.glsl 
-fragmentShader: block_fragment.glsl 
+model: cube.bwm
+texture: shield.png
+vertexShader: block_vertex.glsl
+fragmentShader: block_fragment.glsl
 shieldPowerMax: 20 
-recoveryRate: 0.25 
+recoveryRate: 0.25
 END

@@ -24,8 +24,13 @@ public:
 	Block();
 	~Block();
 
-private:
-	BlockType blockTypes_;
+	virtual void Draw(Camera* camera, glm::vec3 coords_) const;
+	virtual Block* Clone() const = 0; //TODO: Remove this 
+
+protected:
+	glm::vec3 relatedCoords_;
+
+	BlockType blockType_;
 	
 	float hits_;
 	float mass_;

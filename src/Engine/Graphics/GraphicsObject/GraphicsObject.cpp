@@ -2,7 +2,9 @@
 
 #include "../../../Application/Application.h"
 
-GraphicsObject::GraphicsObject()
+GraphicsObject::GraphicsObject():
+	t(0),
+	scale_(1)
 {
 }
 

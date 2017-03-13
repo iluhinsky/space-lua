@@ -37,9 +37,10 @@ void WorldLoader::Load(std::string worldName)
 
 		shipInfo.name_ = string;
 		
-		fscanf(file, " (%f, %f, %f)", &(shipInfo.coord_.x),
-		                             &(shipInfo.coord_.y),
-		                             &(shipInfo.coord_.z));
+		fscanf(file, " (%f, %f, %f)", 
+			&(shipInfo.coord_.x),
+			&(shipInfo.coord_.y),
+			&(shipInfo.coord_.z));
 
 		Ship* ship = shipFactory_.GenerateShip(shipInfo);
 

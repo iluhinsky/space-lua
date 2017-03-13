@@ -25,8 +25,8 @@ public:
 	BlockType GetTypeOf(std::string blockTypeName);
 
 private:
-	std::unordered_map<BlockType, Block*> db_;
-	std::unordered_map<std::string, BlockType> dictionary_;
+	std::map<BlockType, Block*> db_;
+	std::map<std::string, BlockType> dictionary_;
 
 	GraphicsObjectManager manager_;
 };
