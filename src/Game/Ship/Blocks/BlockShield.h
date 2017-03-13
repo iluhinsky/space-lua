@@ -15,8 +15,8 @@ public:
 private:
 	std::string name_;
 
-	int shieldPower_;
-	int shieldPowerMax_;
-	int recoveryRate_;
+	float shieldPower_;
+	float shieldPowerMax_;
+	float recoveryRate_;
 };
 

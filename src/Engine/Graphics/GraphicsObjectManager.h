@@ -15,6 +15,6 @@ private:
 
 	GraphicsObjectFactory factory;
 
-	std::unordered_map <GraphicsObjectInfo, GraphicsObject*> _graphicsObjectMap;
+	std::map <GraphicsObjectInfo, GraphicsObject*> _graphicsObjectMap;
 };
 

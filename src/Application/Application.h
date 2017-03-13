@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Window.h"
-#include "Manager.h"
+//#include "Manager.h"
 
 #include "../Engine/Logic/Controllers/Players/Player.h"
 
@@ -24,8 +24,6 @@ public:
 	static Application* _instance;
 
 	void Init();
-
-	Manager* _manager;
 
 private:
 	virtual void DisplayFunc();

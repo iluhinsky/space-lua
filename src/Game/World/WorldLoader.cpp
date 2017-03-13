@@ -19,7 +19,7 @@ void WorldLoader::Init()
 }
 
 
-World* WorldLoader::Load(std::string worldName)
+void WorldLoader::Load(std::string worldName)
 {
 	std::string pathToWorld = "../bin/resources/worlds/";
 

@@ -1,6 +1,19 @@
 #include "GraphicsObjectFactory.h"
 
 
+
+bool operator< (const GraphicsObjectInfo& left, const GraphicsObjectInfo& right) {
+	if (left.modelName_   < right.modelName_) return true;
+	if (left.modelName_   > right.modelName_) return false;
+
+	if (left.textureName_ < right.textureName_) return true;
+	if (left.textureName_ > right.textureName_) return false;
+
+	if (left.shaderNames_ < right.shaderNames_) return true;
+	return false;
+}
+
+
 GraphicsObjectFactory::GraphicsObjectFactory()
 {
 }

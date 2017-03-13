@@ -12,7 +12,7 @@ public:
 
 	void Init();
 
-	World* Load(std::string worldName);
+	void Load(std::string worldName);
 
 private:
 	std::vector<Ship*>* ships_;

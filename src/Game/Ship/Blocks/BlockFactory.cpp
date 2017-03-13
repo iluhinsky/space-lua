@@ -16,7 +16,7 @@ ObjectDataBase::~ObjectDataBase()
 
 void ObjectDataBase::Fill(std::string name)
 {
-	#define BLOCKYPE(TypeOfBlock) dictionary[#TypeOfBlock] = TypeOfBlock;
+	#define BLOCKTYPE(TypeOfBlock) dictionary_[#TypeOfBlock] = TypeOfBlock;
 	#include "BlockTypes.h"
 	#undef BLOCKTYPE	
 
@@ -53,7 +53,7 @@ void ObjectDataBase::Fill(std::string name)
 		assetNames.shaderNames_._vertexShaderName = vertexShader;
 		assetNames.shaderNames_._fragmentShaderName = fragmentShader;
 
-		manager_.LoadGraphicsObject(assetNames); // private function
+		manager_.Get(assetNames);
 
 		switch (blockType)
 		{
@@ -90,7 +90,9 @@ void ObjectDataBase::Fill(std::string name)
 
 Block* ObjectDataBase::GetCopyOf(BlockType blockType)
 {
+	Block* block = db_[blockType];
 
+	return block;
 }
 
 

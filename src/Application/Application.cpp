@@ -13,7 +13,6 @@ Application::~Application()
 {
 	delete _world;
 	delete _player;
-	delete _manager;
 }
 
 void Application::Init()
@@ -31,7 +30,6 @@ void Application::Init()
 
 	_currentState = Game;
 
-	_manager      = new Manager;
 	_player       = new Player;
 	_world        = new World;
 

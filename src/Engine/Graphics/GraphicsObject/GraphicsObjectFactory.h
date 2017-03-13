@@ -10,6 +10,8 @@ struct GraphicsObjectInfo
 	ShaderNames shaderNames_;
 };
 
+bool operator< (const GraphicsObjectInfo& left, const GraphicsObjectInfo& right);
+
 class GraphicsObjectFactory
 {
 public:

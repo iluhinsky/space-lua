@@ -1,7 +1,6 @@
 #include "GraphicsObjectManager.h"
 
 
-
 GraphicsObjectManager::GraphicsObjectManager()
 {
 }
