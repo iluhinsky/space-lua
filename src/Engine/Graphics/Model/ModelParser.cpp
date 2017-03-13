@@ -30,13 +30,13 @@ ModelParser::~ModelParser()
 	delete[] _meshes;
 }
 
-Model* ModelParser::GetModel(const char ModelPath[])
+Model* ModelParser::GetModel(std::string modelName)
 {
-	assert(ModelPath);
-
 	Model* newModel = new Model;
 
-	FILE* modelFile = fopen(ModelPath, "rb");
+	std::string modelPath = "../bin/resources/models/" + modelName;
+
+	FILE* modelFile = fopen(modelPath.c_str(), "rb");
 	assert(modelFile);
 
 
@@ -62,7 +62,7 @@ Model* ModelParser::GetModel(const char ModelPath[])
 	SetBufferAttributes (_meshes, newModel);
 	SetMeshVBO          (_meshes, newModel);
 
-	printf("Model '%s' is successful parsed.\n", ModelPath);
+	printf("Model '%s' is successful parsed.\n", modelPath);
 
 	return newModel;
 }

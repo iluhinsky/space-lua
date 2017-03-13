@@ -41,7 +41,7 @@ public:
 	ModelParser();
 	~ModelParser();
 
-	Model* GetModel(const char modelPath[]);
+	Model* GetModel(std::string modelName);
 
 private:
 	bool ParseMesh      (FILE* modelFile, MeshInfo*  mesh     );

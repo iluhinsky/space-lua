@@ -1,13 +1,15 @@
 #include "PngLoader.h"
 
 
-PngLoader::PngLoader(const char* aFileName)
+PngLoader::PngLoader(std::string aFileName)
 	:
 	mData_(0),
 	mWidth_(0),
 	mHeight_(0)
 {
-	FILE* file = fopen(aFileName, "rb");
+	std::string filePath = "../bin/resources/textures/" + aFileName;
+
+	FILE* file = fopen(filePath.c_str(), "rb");
 	assert(file);
 	Load_(file);
 	fclose(file);

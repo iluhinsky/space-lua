@@ -6,7 +6,7 @@
 class PngLoader
 {
 public:
-	PngLoader(const char* aFileName);
+	PngLoader(std::string aFileName);
 	~PngLoader();
 
 	unsigned	GetTexture();

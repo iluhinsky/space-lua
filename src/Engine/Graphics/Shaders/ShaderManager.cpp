@@ -10,7 +10,7 @@ ShaderManager::ShaderManager(GLenum shaderType)
 
 ShaderManager::~ShaderManager()
 {
-	for (std::map<std::string, GLuint>::iterator it = _shaderMap.begin(); it != _shaderMap.end(); ++it)
+	for (auto it = _shaderMap.begin(); it != _shaderMap.end(); ++it)
 		glDeleteShader (it->second);
 }
 
@@ -36,7 +36,9 @@ char* ShaderManager::ReadShaderFromFile(std::string path)
 {
 	int fileLength = 0;
 
-	FILE* in = fopen(path.c_str(), "r");
+	std::string filePath = "../bin/resources/shaders/" + path;
+
+	FILE* in = fopen(filePath.c_str(), "r");
 
 	fseek(in, 0, SEEK_END);
 	fileLength = ftell(in);

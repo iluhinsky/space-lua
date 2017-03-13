@@ -20,8 +20,6 @@ void ObjectDataBase::Fill(std::string name)
 	#include "BlockTypes.h"
 	#undef BLOCKTYPE	
 
-	; //! WTF!&!&!&
-
 	std::string pathToDB = "../bin/resources/DB/" + name;
 	FILE* file = fopen(pathToDB.c_str(), "r");
 	assert(file);
