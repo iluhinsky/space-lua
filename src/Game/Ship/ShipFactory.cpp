@@ -53,5 +53,5 @@ void ShipFactory::LoadConstruction(Ship* ship)
 
 void ShipFactory::LoadController(Ship* ship)
 {
-
+	
 }

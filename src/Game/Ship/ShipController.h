@@ -1,8 +1,14 @@
 #pragma once
+
+class Ship;
+
 class ShipController
 {
 public:
-	ShipController();
+	ShipController(Ship* ship);
 	~ShipController();
+
+private:
+	Ship* ship_;
 };
 

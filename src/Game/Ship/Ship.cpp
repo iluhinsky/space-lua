@@ -1,9 +1,9 @@
 #include "Ship.h"
 
 
-Ship::Ship()
+Ship::Ship() : controller_(this)
 {
-
+	
 }
 
 
