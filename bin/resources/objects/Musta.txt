@@ -1,0 +1,5 @@
+../bin/resources/models/planet.bwm   
+../bin/resources/models/planet.png
+
+../bin/resources/shaders/Planet_VS.glsl
+../bin/resources/shaders/Planet_FS.glsl

@@ -1,0 +1,2 @@
+BLOCKTYPE(BlockTypeMain)
+BLOCKTYPE(BlockTypeShield)

@@ -1,11 +1,13 @@
-#include <iostream>
-
+#include "Application\Application.h"
 
 int main()
 {
-	std::cout << "Hello, world!\n";
+	Application* application = new Application;
 
+	application->Init();
+	application->MainLoop();
 
-	system("pause");
+	delete application;
+
 	return 0;
 }
