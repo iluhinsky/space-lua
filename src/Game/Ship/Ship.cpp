@@ -1,4 +1,5 @@
 #include "Ship.h"
+#include "Blocks/BlockShield.h"
 
 
 Ship::Ship() : controller_(this)

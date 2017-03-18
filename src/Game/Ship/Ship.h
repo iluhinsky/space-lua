@@ -8,6 +8,7 @@
 class Ship
 {
 	friend class ShipFactory;
+	friend class ShipController;
 
 public:
 	Ship();

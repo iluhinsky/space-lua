@@ -24,6 +24,8 @@ public:
 	Block();
 	~Block();
 
+	BlockType GetType();
+
 	virtual void Draw(Camera* camera, glm::vec3 coords_) const;
 	virtual Block* Clone() const = 0; //TODO: Remove this 
 
