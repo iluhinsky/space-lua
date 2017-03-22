@@ -1,4 +1,4 @@
-../bin/resources/models/Fighter1.bwm 
+../bin/resources/models/room1.fbx 
 ../bin/resources/models/Fighter1.png
 
 ../bin/resources/shaders/Fighter_VS.glsl
