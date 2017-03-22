@@ -27,13 +27,13 @@ protected:
 	virtual void KeyboardFunc()                     = 0;
 	virtual void PassiveMotionFunc(int x, int y)    = 0;
 
-	sf::Window*  _window;
-	Platform*    _platform;
+	sf::Window*  window_;
+	Platform*    platform_;
 
-	std::vector<sf::Keyboard::Key> _keys;
+	std::vector<sf::Keyboard::Key> keys_;
 
-	sf::Vector2i _prevMousePos;
+	sf::Vector2i prevMousePos_;
 
 private:
-	bool        _isLoopRunning;
+	bool        isLoopRunning_;
 };

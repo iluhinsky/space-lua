@@ -11,6 +11,7 @@
 #include <io.h>
 #include <assert.h>
 
+#include <SFML\System\Clock.hpp>
 #include <SFML/Window.hpp>
 #include <GL/glew.h>
 #include <SFML/OpenGL.hpp>

@@ -5,8 +5,8 @@ Window::Window()
 
 Window::~Window()
 {
-	delete _window;
-	delete _platform;
+	delete window_;
+	delete platform_;
 }
 
 bool Window::InitWindow(sf::Vector2u size, std::string title)
@@ -19,12 +19,12 @@ bool Window::InitWindow(sf::Vector2u size, std::string title)
 	settings.majorVersion      = 3;
 	settings.minorVersion      = 0;
 
-	if ((_window = new sf::Window(sf::VideoMode(size.x, size.y), title, sf::Style::Default, settings)) == nullptr)
+	if ((window_ = new sf::Window(sf::VideoMode(size.x, size.y), title, sf::Style::Default, settings)) == nullptr)
 		return false;
 
-	_window   -> setVerticalSyncEnabled(true);
+	window_ -> setVerticalSyncEnabled(true);
 
-	_platform = new Platform;
+	platform_ = new Platform;
 
 	GLenum res = glewInit();
 	if (res != GLEW_OK) {
@@ -35,7 +35,7 @@ bool Window::InitWindow(sf::Vector2u size, std::string title)
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glEnable(GL_DEPTH_TEST);
 
-	_keys = {
+	keys_ = {
 		sf::Keyboard::A,
 		sf::Keyboard::D,
 		sf::Keyboard::W,
@@ -47,7 +47,7 @@ bool Window::InitWindow(sf::Vector2u size, std::string title)
 	sf::Vector2u windowSize = GetWindowSize();
 
 	SetCursor(windowSize.x / 2, windowSize.y / 2);
-	_prevMousePos = sf::Mouse::getPosition();
+	prevMousePos_ = sf::Mouse::getPosition();
 
 	return true;
 }
@@ -56,11 +56,11 @@ void Window::MainLoop()
 {
 	sf::Event event;
 
-	_isLoopRunning = true;
+	isLoopRunning_ = true;
 
-	while (_isLoopRunning)
+	while (isLoopRunning_)
 	{
-		while (_window->pollEvent(event))
+		while (window_->pollEvent(event))
 		{
 			switch (event.type)
 			{
@@ -90,33 +90,33 @@ void Window::MainLoop()
 
 void Window::StopLoop()
 {
-	_isLoopRunning = false;
+	isLoopRunning_ = false;
 }
 
 sf::Vector2u Window::GetWindowSize()
 {
-	return _window->getSize();
+	return window_->getSize();
 }
 
 void Window::SetCursor(int x, int y)
 {
 	sf::Vector2i position(x, y);
 
-	sf::Mouse::setPosition(position, *_window);
+	sf::Mouse::setPosition(position, *window_);
 }
 
 void Window::ClipCursorInWindow()
 {
-	sf::Vector2i position   = _window->getPosition();
-	sf::Vector2u windowSize = _window->getSize();
+	sf::Vector2i position   = window_->getPosition();
+	sf::Vector2u windowSize = window_->getSize();
 
 	int borderSize = 50;
 
-	_platform->PlatformClipCursor(position.x + borderSize, position.y + borderSize,
+	platform_->PlatformClipCursor(position.x + borderSize, position.y + borderSize,
 		position.x + windowSize.x - borderSize, position.y + windowSize.y - borderSize);
 }
 
 void Window::ShowCursor(bool state)
 {
-	_window->setMouseCursorVisible(state);
+	window_->setMouseCursorVisible(state);
 }

@@ -2,7 +2,7 @@
 
 #include "../Game/World/World.h"
 
-Application* Application::_instance = nullptr;
+Application* Application::instance_ = nullptr;
 
 
 Application::Application()
@@ -11,13 +11,13 @@ Application::Application()
 
 Application::~Application() 
 {
-	delete _world;
-	delete _player;
+	delete world_;
+	delete player_;
 }
 
 void Application::Init()
 {
-	_instance = this;
+	instance_ = this;
 
 	if (!InitWindow(sf::Vector2u(800, 600), "Out of Space"))
 	{
@@ -28,25 +28,31 @@ void Application::Init()
 	ClipCursorInWindow();
 	ShowCursor(false);
 
-	_currentState = Game;
+	clocks_.restart();
 
-	_player       = new Player;
-	_world        = new World;
+	currentState_ = Game;
 
-	_world->Init();
-	_world->Load("Mustafar.txt");
+	player_       = new Player;
+	world_        = new World;
+
+	world_->Init();
+	world_->Load("Mustafar.txt");
 }
 
+sf::Time Application::getTime() const
+{
+	return clocks_.getElapsedTime();
+}
 
 void Application::DisplayFunc()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	_player->UpdateCamera();
+	player_->UpdateCamera();
 
-	_world->Draw(_player->GetCamera());
+	world_->Draw(player_->GetCamera());
 
-	_window->display();
+	window_->display();
 }
 
 
@@ -64,23 +70,23 @@ void Application::KeyboardFunc()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) StopLoop();
 
-	for (auto it = _keys.begin(); it != _keys.end(); ++it) 
-		if (sf::Keyboard::isKeyPressed(*it)) _player->OnKeyboard(*it);
+	for (auto it = keys_.begin(); it != keys_.end(); ++it)
+		if (sf::Keyboard::isKeyPressed(*it)) player_->OnKeyboard(*it);
 }
 
 void Application::PassiveMotionFunc(int x, int y)
 {
-	if      (_currentState == Game) GameMouseFunc (x, y);
-	else if (_currentState == Menu) MenuMouseFunc (x, y);
+	if      (currentState_ == Game) GameMouseFunc (x, y);
+	else if (currentState_ == Menu) MenuMouseFunc (x, y);
 }
 
 void Application::GameMouseFunc(int x, int y)
 {
-	const int DeltaX = x - _prevMousePos.x;
-	const int DeltaY = y - _prevMousePos.y;
+	const int DeltaX = x - prevMousePos_.x;
+	const int DeltaY = y - prevMousePos_.y;
 
-	_prevMousePos.x = x;
-	_prevMousePos.y = y;
+	prevMousePos_.x = x;
+	prevMousePos_.y = y;
 
 	sf::Vector2u windowSize = GetWindowSize();
 
@@ -97,7 +103,7 @@ void Application::GameMouseFunc(int x, int y)
 		SetCursor(x, y);
 	}
 
-	_player->OnMouseMove(DeltaX, DeltaY);
+	player_->OnMouseMove(DeltaX, DeltaY);
 }
 
 void Application::MenuMouseFunc(int x, int y)
