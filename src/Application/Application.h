@@ -13,7 +13,7 @@ enum AppState
 
 class World;
 
-#define APPLICATION	Application::_instance
+#define APPLICATION	Application::instance_
 
 class Application : public Window
 {
@@ -21,9 +21,11 @@ public:
 	Application();
 	virtual ~Application();
 
-	static Application* _instance;
+	static Application* instance_;
 
 	void Init();
+
+	sf::Time getTime() const;
 
 private:
 	virtual void DisplayFunc();
@@ -35,7 +37,9 @@ private:
 	void GameMouseFunc(int x, int y);
 	void MenuMouseFunc(int x, int y);
 
-	World*        _world;
-	Player*       _player;
-	AppState      _currentState;
+	sf::Clock     clocks_;
+
+	World*        world_;
+	Player*       player_;
+	AppState      currentState_;
 };
