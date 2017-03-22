@@ -51,7 +51,5 @@ private:
 	bool ModelParser::SetMeshVBO(char* data, int dataCount, Model* model);
 
 	int _meshCount = 0;
-
-	Assimp::Importer Importer;
 };
 

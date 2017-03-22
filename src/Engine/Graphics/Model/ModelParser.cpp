@@ -1,13 +1,5 @@
 #include "ModelParser.h"
 
-
-//It is absolutly safety class, nice-working;
-
-const int VERTEX_ATTR_TYPE = 1;
-const int NORMAL_ATTR_TYPE = 2;
-const int UVTEX_ATTR_TYPE  = 3;
-
-
 ModelParser::ModelParser()
 {
 }
@@ -21,19 +13,22 @@ ModelParser::~ModelParser()
 Model* ModelParser::GetModel(std::string modelName)
 {
 	Model* newModel = new Model;
-
 	std::string modelPath = "../bin/resources/models/" + modelName;
 
-	const aiScene *scene = Importer.ReadFile("C:/Users/Ganzz/Source/Repos/GameEngine/bin/resources/models/room1.3ds", aiProcessPreset_TargetRealtime_Fast);
-	printf("%s", Importer.GetErrorString());
+	Assimp::Importer Importer;
+	const aiScene *scene = Importer.ReadFile(modelPath, aiProcessPreset_TargetRealtime_Fast);
 	
-	aiMesh *mesh = scene->mMeshes[0]; 
+	if (nullptr == scene)
+	{
+		printf("IMPORTER ERROR: %s\n", Importer.GetErrorString());
+	}
+	
+	aiMesh *mesh = scene -> mMeshes[0]; 
 	newModel->_amountMesh = 1;
 
 	int numVerts = 3 * mesh -> mNumFaces;
 
 	float* data = (float*) calloc(sizeof(float), numVerts * (3 + 2 + 3));
-
 
 	for (int i = 0; i < mesh->mNumFaces; i++)
 	{
@@ -68,46 +63,6 @@ Model* ModelParser::GetModel(std::string modelName)
 	return newModel;
 
 }
-
-/*
-Model* ModelParser::GetModel(std::string modelName)
-{
-	Model* newModel = new Model;
-
-	std::string modelPath = "../bin/resources/models/" + modelName;
-
-	FILE* modelFile = fopen(modelPath.c_str(), "rb");
-	assert(modelFile);
-
-
-	int sizeOfTextureName = 0;
-	fread(&sizeOfTextureName, sizeof(int), 1, modelFile);
-
-	char* TextureName = new char[sizeOfTextureName + 1];             
-	fread(TextureName, sizeof(char), sizeOfTextureName, modelFile);  
-
-	fread(&(newModel->_amountMesh), sizeof(int), 1, modelFile);
-	_meshCount = newModel->_amountMesh;
-
-	_meshes           = new MeshInfo[newModel->_amountMesh];
-	newModel->_meshes = new Mesh    [newModel->_amountMesh];
-
-	for (int i = 0; i < newModel->_amountMesh; i++)
-	{
-		ParseMesh(modelFile, &_meshes[i]);
-	};
-
-	fclose(modelFile);
-
-	SetBufferAttributes (_meshes, newModel);
-	SetMeshVBO          (_meshes, newModel);
-
-	printf("Model '%s' is successful parsed.\n", modelPath);
-
-	return newModel;
-}
-
-*/
 
 bool ModelParser::SetMeshVBO(char* data, int dataCount, Model* model)
 {
