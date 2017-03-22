@@ -3,6 +3,10 @@
 #include "../../../Include.h"
 #include "Model.h"
 
+#include <assimp/Importer.hpp>      
+#include <assimp/scene.h>       
+#include <assimp/postprocess.h> 
+
 
 struct Attribute
 {
@@ -44,14 +48,8 @@ public:
 	Model* GetModel(std::string modelName);
 
 private:
-	bool ParseMesh      (FILE* modelFile, MeshInfo*  mesh     );
-	bool ParseAttribute (FILE* modelFile, Attribute* attribute);
-	bool ParseInfluence (FILE* modelFile, Influence* influence);
+	bool ModelParser::SetMeshVBO(char* data, int dataCount, Model* model);
 
-	bool SetBufferAttributes (MeshInfo* meshes, Model* model);
-	bool SetMeshVBO          (MeshInfo* meshes, Model* model);
-
-	MeshInfo*			_meshes    = 0;
-	int				    _meshCount = 0;
+	int _meshCount = 0;
 };
 
