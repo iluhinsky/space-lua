@@ -13,6 +13,7 @@ class Ship :
 {
 	friend class ShipFactory;
 
+	friend class Application; //! remove
 public:
 	Ship();
 	~Ship();

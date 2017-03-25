@@ -3,20 +3,13 @@
 
 void Pipeline::CalculateMatrices()
 {
-	glm::mat4 ScaleTrans, RotateTrans, TranslationTrans, 
-		RotateTransPhi, RotateTransTheta, RotateTransCsi;
+	glm::mat4 ScaleTrans, TranslationTrans;
 
 	ScaleTrans       = glm::scale     (glm::mat4(1.0f), m_scale);
 
-	RotateTransPhi   = glm::rotate    (glm::mat4(1.0f), m_rotateInfo.x, glm::vec3(0.0f, 0.0f, 1.0f));
-	RotateTransTheta = glm::rotate    (glm::mat4(1.0f), m_rotateInfo.y, glm::vec3(1.0f, 0.0f, 0.0f));
-	RotateTransCsi   = glm::rotate    (glm::mat4(1.0f), m_rotateInfo.z, glm::vec3(0.0f, 0.0f, 1.0f));
-
-	RotateTrans      = RotateTransCsi * RotateTransTheta * RotateTransPhi;
-
 	TranslationTrans = glm::translate (glm::mat4(1.0f), m_worldPos);
 
-	_ModelMatrix     = TranslationTrans * RotateTrans * ScaleTrans;
+	_ModelMatrix     = TranslationTrans * _RotateMatrix * ScaleTrans;
 
 	_ViewMatrix      = glm::lookAt    (m_camera.Pos, m_camera.Pos + m_camera.Target, m_camera.Up);
 

@@ -15,16 +15,11 @@ Block::~Block()
 void Block::Draw(Camera* camera, btTransform& transform_) const
 {
 	//! TODO: Correct drawing
+	glm::vec3 globalCoord = toGLM(transform_.getOrigin());
+	glm::mat4 rotation    = toGLM(transform_.getBasis());
 
-	btVector3 globalCoord = transform_.getOrigin();
-
-	float x = globalCoord.getX();
-	float y = globalCoord.getY();
-	float z = globalCoord.getZ();;
-
-	glm::vec3 newCoord = glm::vec3(x, y, z);
-
-	graphicsAsset_->Draw(camera, newCoord + relatedCoords_);
+	graphicsAsset_->Draw(camera, glm::vec4(globalCoord, 1.0f) + 
+		glm::vec4(relatedCoords_, 1.0f) * rotation, rotation);
 }
 
 float Block::GetMass()

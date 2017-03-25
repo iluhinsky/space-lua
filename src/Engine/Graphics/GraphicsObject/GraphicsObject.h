@@ -14,11 +14,11 @@ public:
 	GraphicsObject();
 	~GraphicsObject();
 
-	void Draw(Camera* camera, glm::vec3& worldPos);
+	void Draw(Camera* camera, glm::vec4& worldPos, glm::mat4& rotation);
 
 private:
-	void SetUniforms(Camera* camera, glm::vec3& worldPos);
-	void SetTranslation(Pipeline* p, Camera* camera, glm::vec3& worldPos);
+	void SetUniforms(Camera* camera, glm::vec4& worldPos, glm::mat4& rotation);
+	void SetTranslation(Pipeline* p, Camera* camera, glm::vec4& worldPos);
 
 	float t; // temp
 	float       scale_;

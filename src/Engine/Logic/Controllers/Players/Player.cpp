@@ -6,7 +6,7 @@ Player::Player()
 {
 	_camera = new Camera();
 
-	_cameraPos = glm::vec3(-10.0f, 0.0f, 5.0f);
+	_cameraPos = glm::vec3(-20.0f, 0.0f, 5.0f);
 }
 
 Player::~Player()

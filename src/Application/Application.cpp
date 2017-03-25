@@ -43,6 +43,8 @@ void Application::Init()
 	world_->Load("Mustafar.txt");
 
 	clocks_.restart();
+
+	//world_->ships_[0]->body_->applyCentralImpulse(btVector3(0.05f, 0.0f, 0.0f));
 }
 
 sf::Time Application::getTime() const

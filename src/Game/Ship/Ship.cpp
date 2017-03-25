@@ -16,8 +16,10 @@ Ship::~Ship()
 
 void Ship::Draw(Camera* camera)
 {
+	transform_ = body_->getWorldTransform() * principalTransformInverse_;
+
 	for (auto block : blocks_)
-		block->Draw(camera, principalTransform_);
+		block->Draw(camera, transform_);
 }
 
 void Ship::InitRigidBody()

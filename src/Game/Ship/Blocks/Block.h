@@ -4,6 +4,7 @@
 
 #include "..\..\..\Engine\Graphics\GraphicsObject\GraphicsObject.h"
 #include "..\..\..\Engine\Math\Camera.h"
+#include "..\..\..\Engine\Math\math_3d.h"
 
 
 enum BlockType

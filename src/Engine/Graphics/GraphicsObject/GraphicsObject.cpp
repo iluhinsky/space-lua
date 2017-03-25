@@ -14,11 +14,11 @@ GraphicsObject::~GraphicsObject()
 }
 
 
-void GraphicsObject::Draw(Camera* camera, glm::vec3& worldPos)
+void GraphicsObject::Draw(Camera* camera, glm::vec4& worldPos, glm::mat4& rotation)
 {
 	shaderProg_->Use();
 
-	SetUniforms(camera, worldPos);
+	SetUniforms(camera, worldPos, rotation);
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
@@ -44,7 +44,7 @@ void GraphicsObject::Draw(Camera* camera, glm::vec3& worldPos)
 }
 
 
-void GraphicsObject::SetUniforms(Camera* camera, glm::vec3& worldPos)
+void GraphicsObject::SetUniforms(Camera* camera, glm::vec4& worldPos, glm::mat4& rotation)
 {
 	sf::Vector2u size = APPLICATION->GetWindowSize();
 
@@ -53,6 +53,7 @@ void GraphicsObject::SetUniforms(Camera* camera, glm::vec3& worldPos)
 	SetTranslation(&p, camera, worldPos);
 
 	p.SetPerspectiveProj(60.0f, size.x, size.y, 1.0f, 10000.0f);
+	p.Rotate(rotation);
 
 	t += 0.01f;
 
@@ -70,7 +71,7 @@ void GraphicsObject::SetUniforms(Camera* camera, glm::vec3& worldPos)
 	shaderProg_->UniformVector3D (shaderProg_->GetUniformLocation(  "eyePos"), camera->GetPos());
 }
 
-void GraphicsObject::SetTranslation(Pipeline* p, Camera* camera, glm::vec3& worldPos)
+void GraphicsObject::SetTranslation(Pipeline* p, Camera* camera, glm::vec4& worldPos)
 {
 	p->WorldPos(worldPos.x, worldPos.y, worldPos.z);
 	p->SetCamera(camera->GetPos(), camera->GetTarget(), camera->GetUp());
