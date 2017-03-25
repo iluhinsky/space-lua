@@ -41,8 +41,8 @@
     <ClInclude Include="..\src\Engine\Math\Camera.h" />
     <ClInclude Include="..\src\Engine\Math\math_3d.h" />
     <ClInclude Include="..\src\Engine\Math\Pipeline.h" />
-    <ClInclude Include="..\src\Engine\Objects\GameObject.h" />
     <ClInclude Include="..\src\Engine\Physics\CollisionObject.h" />
+    <ClInclude Include="..\src\Engine\Physics\PhysicsWorld.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\Block.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockFactory.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockMain.h" />
@@ -79,8 +79,8 @@
     <ClCompile Include="..\src\Engine\Math\Camera.cpp" />
     <ClCompile Include="..\src\Engine\Math\math_3d.cpp" />
     <ClCompile Include="..\src\Engine\Math\Pipeline.cpp" />
-    <ClCompile Include="..\src\Engine\Objects\GameObject.cpp" />
     <ClCompile Include="..\src\Engine\Physics\CollisionObject.cpp" />
+    <ClCompile Include="..\src\Engine\Physics\PhysicsWorld.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\Block.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockFactory.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockMain.cpp" />
@@ -175,7 +175,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\3rdparty\win32\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>assimp.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-network-d.lib;sfml-audio-d.lib;opengl32.lib;glew32.lib;glew32s.lib;glu32.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;ConvexDecomposition.lib;LinearMath.lib;assimp.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-network-d.lib;sfml-audio-d.lib;opengl32.lib;glew32.lib;glew32s.lib;glu32.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

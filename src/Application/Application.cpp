@@ -13,6 +13,7 @@ Application::~Application()
 {
 	delete world_;
 	delete player_;
+	delete physicsWorld_;
 }
 
 void Application::Init()
@@ -32,11 +33,16 @@ void Application::Init()
 
 	currentState_ = Game;
 
+	physicsWorld_ = new PhysicsWorld;
 	player_       = new Player;
 	world_        = new World;
 
+	physicsWorld_->Init();
+
 	world_->Init();
 	world_->Load("Mustafar.txt");
+
+	clocks_.restart();
 }
 
 sf::Time Application::getTime() const
@@ -44,9 +50,13 @@ sf::Time Application::getTime() const
 	return clocks_.getElapsedTime();
 }
 
-void Application::DisplayFunc()
+void Application::MainFunc()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	sf::Time dt = UpdateAndCountTime();
+
+	physicsWorld_->proc(dt.asMilliseconds());
 
 	player_->UpdateCamera();
 
@@ -109,4 +119,19 @@ void Application::GameMouseFunc(int x, int y)
 void Application::MenuMouseFunc(int x, int y)
 {
 
+}
+
+PhysicsWorld* Application::GetPhysicsWorld()
+{
+	return physicsWorld_;
+}
+
+sf::Time Application::UpdateAndCountTime()
+{
+	sf::Time newTime = clocks_.getElapsedTime();
+	sf::Time dt      = newTime - prevFrameTime_;
+	
+	prevFrameTime_ = newTime;
+
+	return dt;
 }

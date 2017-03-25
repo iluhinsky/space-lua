@@ -21,7 +21,7 @@ public:
 	void ClipCursorInWindow();
 
 protected:
-	virtual void DisplayFunc(void)                  = 0;
+	virtual void MainFunc(void)                     = 0;
 	virtual void ReshapeFunc(int width, int height) = 0;
 	virtual void CloseFunction()                    = 0;
 	virtual void KeyboardFunc()                     = 0;

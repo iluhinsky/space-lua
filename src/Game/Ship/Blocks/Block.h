@@ -1,6 +1,10 @@
 #pragma once
 
-#include "..\..\..\Engine\Objects\GameObject.h"
+#include <btBulletDynamicsCommon.h>
+
+#include "..\..\..\Engine\Graphics\GraphicsObject\GraphicsObject.h"
+#include "..\..\..\Engine\Math\Camera.h"
+
 
 enum BlockType
 {
@@ -12,10 +16,7 @@ enum BlockType
 };
 
 
-
-
-class Block :
-	public GameObject
+class Block
 {
 	friend class BlockFactory;
 	friend class ObjectDataBase;
@@ -24,8 +25,11 @@ public:
 	Block();
 	~Block();
 
-	virtual void Draw(Camera* camera, glm::vec3 coords_) const;
+	void Draw(Camera* camera, btTransform& transform) const;
 	virtual Block* Clone() const = 0; //TODO: Remove this 
+
+	float     GetMass();
+	glm::vec3 GetRelatedCoords();
 
 protected:
 	glm::vec3 relatedCoords_;
@@ -34,5 +38,7 @@ protected:
 	
 	float hits_;
 	float mass_;
+
+	GraphicsObject* graphicsAsset_;
 };
 

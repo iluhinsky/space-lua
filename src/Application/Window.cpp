@@ -84,7 +84,7 @@ void Window::MainLoop()
 
 		KeyboardFunc();
 
-		DisplayFunc();
+		MainFunc();
 	}
 }
 
