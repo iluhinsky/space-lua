@@ -12,7 +12,9 @@ ShipController::ShipController(Ship* ship)
 
 	luaState_ = luaL_newstate();
 	luaL_openlibs(luaState_);
-	shipsDataBase_[luaState_] = ship;
+
+	luaThread_ = lua_newthread(luaState_);
+	shipsDataBase_[luaThread_] = ship;
 }
 
 
@@ -22,12 +24,12 @@ ShipController::~ShipController()
 }
 
 
-void ShipController::SwitchShield(const std::string& blockName, const bool mode, const float time, lua_State* luaState)
+void ShipController::SwitchShield(const std::string& blockName, const bool mode, const float time, lua_State* luaThread)
 {
 	assert(time >= 0.0);
-	assert(luaState);
+	assert(luaThread);
 
-	Ship* ship = shipsDataBase_[luaState];
+	Ship* ship = shipsDataBase_[luaThread];
 	assert(ship);
 
 	Block* currentBlock = NULL;
@@ -45,6 +47,15 @@ void ShipController::SwitchShield(const std::string& blockName, const bool mode,
 		}
 	}
 
-	std::cout << "There are no appropriate shields for switching\n";
+	std::cout << "There are no appropriate shields for switching" << " ('" << blockName << "') " << std::endl; // for testing
 }
 
+
+void ShipController::CatchLuaHook(lua_State* luaThread, lua_Debug* luaDebug)
+{
+	assert(luaThread);
+	assert(luaDebug);
+
+	std::cout << "LUA HOOK " << std::endl;
+	lua_yield(luaThread, 0);
+}

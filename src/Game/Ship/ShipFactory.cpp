@@ -62,10 +62,15 @@ void ShipFactory::LoadController(Ship* ship)
 
 	std::string scriptName = "../bin/resources/scripts/" + ship->shipName_ + ".lua";
 //	std::cout << "C++: scriptName = '" << scriptName << "'\n";
+	luaL_loadfile(ship->controller_.luaThread_, scriptName.c_str());
+//	if we use lua_sethook, we should call lua_resume(l, NULL, 0) while updating shipController
+	lua_sethook(ship->controller_.luaThread_, ShipController::CatchLuaHook, LUA_MASKCOUNT, INSTRUCTION_LIMIT);
 
-	luabridge::getGlobalNamespace(ship->controller_.luaState_).addFunction("SwitchShield", &ShipController::SwitchShield);
+	luabridge::getGlobalNamespace(ship->controller_.luaThread_).addFunction("SwitchShield", &ShipController::SwitchShield);
 //	register other functions here
 
 //	we need to update controller of a ship ?
-	luaL_dofile(ship->controller_.luaState_, scriptName.c_str());
+//	luaL_dofile(ship->controller_.luaState_, scriptName.c_str());
+	lua_resume(ship->controller_.luaThread_, NULL, 0); // for testing
+	lua_resume(ship->controller_.luaThread_, NULL, 0); // for testing
 }

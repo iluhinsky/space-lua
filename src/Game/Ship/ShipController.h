@@ -9,25 +9,27 @@ extern "C"
 }
 #include <lua/LuaBridge.h>
 
+#define INSTRUCTION_LIMIT 30
 
-//class ShipFactory;
+
 class Ship;
 
 class ShipController
 {
-//	friend void ShipFactory::LoadController(Ship* ship);   // in this function access is needed
-	friend class ShipFactory;   // TODO: think is it possible to remove it
+	friend class ShipFactory;
 
 public:
 	ShipController(Ship* ship);
 	~ShipController();
 
-	static void SwitchShield(const std::string& blockName, const bool mode, const float time, lua_State* luaState);
+	static void CatchLuaHook(lua_State* luaThread, lua_Debug* luaDebug);
+	static void SwitchShield(const std::string& blockName, const bool mode, const float time, lua_State* luaThread);
 
 private:
-	static std::map<lua_State*, Ship*> shipsDataBase_; // maybe we should use unordered_map for speed ?
+	static std::map<lua_State*, Ship*> shipsDataBase_;
 
 	Ship* ship_;
 	lua_State* luaState_;
+	lua_State* luaThread_;
 };
 
