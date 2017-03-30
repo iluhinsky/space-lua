@@ -44,7 +44,7 @@ void Application::Init()
 
 	clocks_.restart();
 
-	//world_->ships_[0]->body_->applyCentralImpulse(btVector3(0.05f, 0.0f, 0.0f));
+	world_->ships_[0]->body_->applyCentralImpulse(btVector3(0.0f, 0.5f, 0.0f));
 }
 
 sf::Time Application::getTime() const
