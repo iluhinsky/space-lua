@@ -21,10 +21,10 @@ void PhysicsWorld::Init()
 
 	dynamicsWorld_ = new btDiscreteDynamicsWorld(dispatcher_, overlappingPairCache_, solver_, collisionConfiguration_);
 
-	boxShape_    = new btBoxShape(btVector3(btScalar(1.04f), btScalar(1.04f), btScalar(1.04f))); //Size of block
+	boxShape_    = new btBoxShape(btVector3(btScalar(1.0f), btScalar(1.0f), btScalar(1.0f))); //Size of block
 	sphereShape_ = new btSphereShape(0.2f); // Bullet radius
 
-	dynamicsWorld_->setGravity(btVector3(0.0f, 0.0f, 0.0f));
+	dynamicsWorld_->setGravity(btVector3(btScalar(0.0f), btScalar(0.0f), btScalar(0.0f)));
 }
 
 void PhysicsWorld::Destroy()
