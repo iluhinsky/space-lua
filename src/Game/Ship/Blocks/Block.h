@@ -28,7 +28,7 @@ public:
 
 	BlockType GetType();
 
-	void Draw(Camera* camera, btTransform& transform) const;
+	void Draw(Camera* camera, glm::vec4& globalCoord, glm::mat4& rotation) const;
 	virtual Block* Clone() const = 0; //TODO: Remove this
 
 	float     GetMass();
