@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Ship.h"
-#include "Blocks\BlockFactory.h"
+#include "Blocks/BlockFactory.h"
 
 
 struct ShipInfo
@@ -9,6 +9,7 @@ struct ShipInfo
 	std::string name_;
 	glm::vec3 coord_;
 };
+
 
 class ShipFactory
 {

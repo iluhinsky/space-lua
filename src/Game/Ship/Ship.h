@@ -12,6 +12,7 @@ class Ship :
 	public CollisionObject
 {
 	friend class ShipFactory;
+	friend class ShipController;
 
 	friend class Application; //! remove
 public:

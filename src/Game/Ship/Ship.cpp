@@ -1,10 +1,11 @@
 #include "Ship.h"
+#include "Blocks/BlockShield.h"
 
 #include "..\..\Application\Application.h"
 
-Ship::Ship()
+Ship::Ship() : controller_(this)
 {
-
+	
 }
 
 

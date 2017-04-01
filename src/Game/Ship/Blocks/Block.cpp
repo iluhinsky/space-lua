@@ -11,6 +11,11 @@ Block::~Block()
 {
 }
 
+BlockType Block::GetType()
+{
+	return blockType_;
+}
+
 
 void Block::Draw(Camera* camera, btTransform& transform_) const
 {

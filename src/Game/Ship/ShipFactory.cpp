@@ -1,7 +1,7 @@
 #include "ShipFactory.h"
+#include "ShipController.h"
 
 #include <btBulletDynamicsCommon.h>
-
 
 ShipFactory::ShipFactory()
 {
@@ -44,6 +44,8 @@ Ship* ShipFactory::GenerateShip(ShipInfo shipInfo)
 
 void ShipFactory::LoadConstruction(Ship* ship)
 {
+	assert(ship);
+
 	std::string constrName = "../bin/resources/construction/" + ship->shipName_ + ".txt";
 
 	FILE* file = fopen(constrName.c_str(), "r");
@@ -55,7 +57,10 @@ void ShipFactory::LoadConstruction(Ship* ship)
 	{
 		newBlock = blockFactory_.GetBlock(file);
 
-		if (newBlock == nullptr) break;
+		if (newBlock == nullptr)
+		{
+			break;
+		}
 
 		ship->blocks_.push_back(newBlock);
 	}
@@ -65,5 +70,19 @@ void ShipFactory::LoadConstruction(Ship* ship)
 
 void ShipFactory::LoadController(Ship* ship)
 {
+	assert(ship);
 
+	std::string scriptName = "../bin/resources/scripts/" + ship->shipName_ + ".lua";
+//	std::cout << "C++: scriptName = '" << scriptName << "'\n";
+	luaL_loadfile(ship->controller_.luaThread_, scriptName.c_str());
+//	if we use lua_sethook, we should call lua_resume(l, NULL, 0) while updating shipController
+	lua_sethook(ship->controller_.luaThread_, ShipController::CatchLuaHook, LUA_MASKCOUNT, INSTRUCTION_LIMIT);
+
+	luabridge::getGlobalNamespace(ship->controller_.luaThread_).addFunction("SwitchShield", &ShipController::SwitchShield);
+//	register other functions here
+
+//	we need to update controller of a ship ?
+//	luaL_dofile(ship->controller_.luaState_, scriptName.c_str());
+	lua_resume(ship->controller_.luaThread_, NULL, 0); // for testing
+	lua_resume(ship->controller_.luaThread_, NULL, 0); // for testing
 }
