@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Window.h"
+#include "..\Engine\Physics\PhysicsWorld.h"
 //#include "Manager.h"
 
 #include "../Engine/Logic/Controllers/Players/Player.h"
@@ -15,6 +16,9 @@ class World;
 
 #define APPLICATION	Application::instance_
 
+#define PHYSICSWORLD Application::instance_->GetPhysicsWorld()
+
+
 class Application : public Window
 {
 public:
@@ -26,9 +30,10 @@ public:
 	void Init();
 
 	sf::Time getTime() const;
+	PhysicsWorld* GetPhysicsWorld();
 
 private:
-	virtual void DisplayFunc();
+	virtual void MainFunc();
 	virtual void ReshapeFunc(int width, int height);
 	virtual void CloseFunction();
 	virtual void KeyboardFunc();
@@ -38,8 +43,12 @@ private:
 	void MenuMouseFunc(int x, int y);
 
 	sf::Clock     clocks_;
+	sf::Time      prevFrameTime_;
+
+	sf::Time UpdateAndCountTime();
 
 	World*        world_;
 	Player*       player_;
 	AppState      currentState_;
+	PhysicsWorld* physicsWorld_;
 };

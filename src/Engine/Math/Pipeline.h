@@ -5,11 +5,12 @@
 class Pipeline
 {
 public:
-	Pipeline()
+	Pipeline() :
+		_RotateMatrix(glm::mat4(1.0f))
 	{
-		m_scale      = glm::vec3 (1.0f, 1.0f, 1.0f);
-		m_worldPos   = glm::vec3 (0.0f, 0.0f, 0.0f);
-		m_rotateInfo = glm::vec3 (0.0f, 0.0f, 0.0f);
+		m_scale       = glm::vec3 (1.0f, 1.0f, 1.0f);
+		m_worldPos    = glm::vec3 (0.0f, 0.0f, 0.0f);
+		m_rotateInfo  = glm::vec3 (0.0f, 0.0f, 0.0f);
 	}
 
 	void Scale(float ScaleX, float ScaleY, float ScaleZ)
@@ -26,11 +27,9 @@ public:
 		m_worldPos.z = z;
 	}
 
-	void Rotate(float phiAngle, float thetaAngle, float csiAngle)
+	void Rotate(glm::mat4& RotateMatrix)
 	{
-		m_rotateInfo.x = phiAngle;
-		m_rotateInfo.y = thetaAngle;
-		m_rotateInfo.z = csiAngle;
+		_RotateMatrix = RotateMatrix;
 	}
 
 	void SetPerspectiveProj(float FOV, float Width, float Height, float zNear, float zFar)
@@ -73,6 +72,9 @@ private:
 		glm::vec3 Target;
 		glm::vec3 Up;
 	} m_camera;
+
+
+	glm::mat4 _RotateMatrix;
 
 	glm::mat4 _ModelMatrix, _ViewMatrix, _ProjMatrix;
 };

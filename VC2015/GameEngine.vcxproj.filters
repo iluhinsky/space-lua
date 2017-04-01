@@ -37,9 +37,6 @@
     <Filter Include="src\Engine\Math">
       <UniqueIdentifier>{6a012691-b484-4ce9-adc4-e39a19f30a7e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Engine\Objects">
-      <UniqueIdentifier>{6e6ffcda-7b59-4316-823e-a01430117723}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Engine\Logic\Controllers">
       <UniqueIdentifier>{e564c7ff-843b-4750-b6fb-88c89e87f002}</UniqueIdentifier>
     </Filter>
@@ -144,9 +141,6 @@
     <ClInclude Include="..\src\Engine\Physics\CollisionObject.h">
       <Filter>src\Engine\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Engine\Objects\GameObject.h">
-      <Filter>src\Engine\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Game\Ship\Blocks\Block.h">
       <Filter>src\Game\Ship\Blocks</Filter>
     </ClInclude>
@@ -176,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Game\Ship\ShipFactory.h">
       <Filter>src\Game\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Physics\PhysicsWorld.h">
+      <Filter>src\Engine\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -254,9 +251,6 @@
     <ClCompile Include="..\src\Engine\Physics\CollisionObject.cpp">
       <Filter>src\Engine\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Engine\Objects\GameObject.cpp">
-      <Filter>src\Engine\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Game\Ship\Blocks\Block.cpp">
       <Filter>src\Game\Ship\Blocks</Filter>
     </ClCompile>
@@ -283,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Game\Ship\ShipFactory.cpp">
       <Filter>src\Game\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Physics\PhysicsWorld.cpp">
+      <Filter>src\Engine\Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

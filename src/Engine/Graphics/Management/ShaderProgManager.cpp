@@ -52,6 +52,7 @@ ShaderProg* ShaderProgManager::LoadShaderProg(ShaderNames names)
 	GLuint vertexShader   = _vertexShaderManager  ->Get(names._vertexShaderName  );
 	GLuint fragmentShader = _fragmentShaderManager->Get(names._fragmentShaderName);
 
+	//! TODO: Deattach and delete shaders
 	glAttachShader(shaderProgram, vertexShader  );
 	glAttachShader(shaderProgram, fragmentShader);
 

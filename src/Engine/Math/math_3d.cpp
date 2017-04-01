@@ -1,36 +1,26 @@
 #include "math_3d.h"
 
-EulerAngles ToEulerAngles(glm::vec3 target, glm::vec3 up)
+glm::vec3 toGLM(btVector3& vector)
 {
-	EulerAngles angles;
+	float x = vector.getX();
+	float y = vector.getY();
+	float z = vector.getZ();;
 
+	return glm::vec3(x, y, z);
+}
 
-	target = glm::normalize(target);
-	up     = glm::normalize(up);
+glm::vec4 toVec4(glm::vec3& vector)
+{
+	return glm::vec4(vector, 1.0f);
+}
 
-	printf("target = %f %f %f\n", target.x, target.y, target.z);
-	printf("up = %f %f %f\n", up.x, up.y, up.z);
-	
-	angles._theta = abs(acos (up.z));
-	
-	if (up.y > 0) angles._theta *= -1;
-	
+glm::mat4 toGLM(btMatrix3x3& matrix)
+{
+	glm::mat4 GLM_matrix(1.0f);
 
-	if (up.z == 1 || up.z == -1)
-	{
-		angles._phi = 0;
-		angles._csi = 0;// acos(target.x);
-	}
-	else
-	{
-		angles._phi = asin(glm::clamp(abs(up.x / sin(angles._theta)), 0.0f + 0.00001f, 1.0f - 0.00001f));
-		angles._csi = -1*asin(glm::clamp(abs(target.z / sin(angles._theta)), 0.0f + 0.00001f, 1.0f - 0.00001f));
-	}
-	if (target.z < 0) angles._csi *= -1;
-	if (target.z < 0) angles._phi *= -1;
+	GLM_matrix[0][0] = matrix[0][0]; GLM_matrix[0][1] = matrix[0][1]; GLM_matrix[0][2] = matrix[0][2];
+	GLM_matrix[1][0] = matrix[1][0]; GLM_matrix[1][1] = matrix[1][1]; GLM_matrix[1][2] = matrix[1][2];
+	GLM_matrix[2][0] = matrix[2][0]; GLM_matrix[2][1] = matrix[2][1]; GLM_matrix[2][2] = matrix[2][2];
 
-	printf("theta = %f\n", angles._theta);
-	printf("phi = %f\n", angles._phi);
-	printf("csi = %f\n", angles._csi);
-	return angles;
+	return GLM_matrix;
 }

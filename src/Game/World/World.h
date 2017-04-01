@@ -9,6 +9,8 @@ class World
 {
 	friend class WorldLoader;
 
+	friend class Application; //! remove
+
 public:
 	World();
 	~World();
