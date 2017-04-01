@@ -72,9 +72,6 @@
     <ClInclude Include="..\src\Application\Application.h">
       <Filter>src\Application</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Application\Manager.h">
-      <Filter>src\Application</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Application\Window.h">
       <Filter>src\Application</Filter>
     </ClInclude>
@@ -174,15 +171,15 @@
     <ClInclude Include="..\src\Engine\Physics\PhysicsWorld.h">
       <Filter>src\Engine\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\GraphicsWorld.h">
+      <Filter>src\Engine\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Application\Application.cpp">
-      <Filter>src\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Application\Manager.cpp">
       <Filter>src\Application</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Application\Window.cpp">
@@ -280,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Engine\Physics\PhysicsWorld.cpp">
       <Filter>src\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\GraphicsWorld.cpp">
+      <Filter>src\Engine\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

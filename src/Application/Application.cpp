@@ -11,16 +11,19 @@ Application::Application()
 
 Application::~Application() 
 {
+	physicsWorld_->Destroy();
+
 	delete world_;
 	delete player_;
 	delete physicsWorld_;
+	delete graphicsWorld_;
 }
 
 void Application::Init()
 {
 	instance_ = this;
 
-	if (!InitWindow(sf::Vector2u(800, 600), "Out of Space"))
+	if (!InitWindow(sf::Vector2u(800, 600), "Space LUA"))
 	{
 		fprintf(stderr, "Error: Can't open window\n");
 		exit(-1);
@@ -29,22 +32,22 @@ void Application::Init()
 	ClipCursorInWindow();
 	ShowCursor(false);
 
-	clocks_.restart();
-
 	currentState_ = Game;
 
-	physicsWorld_ = new PhysicsWorld;
-	player_       = new Player;
-	world_        = new World;
+	graphicsWorld_ = new GraphicsWorld;
+	physicsWorld_  = new PhysicsWorld;
+	player_        = new Player;
+	world_         = new World;
 
-	physicsWorld_->Init();
+	graphicsWorld_->Init();
+	physicsWorld_ ->Init();
 
 	world_->Init();
 	world_->Load("Mustafar.txt");
 
 	clocks_.restart();
 
-	world_->ships_[0]->body_->applyCentralImpulse(btVector3(0.0f, 1.5f, 0.0f));
+	world_->ships_[0]->body_->applyCentralImpulse(btVector3(0.0f, 3.5f, 0.0f)); //! remove
 }
 
 sf::Time Application::getTime() const
@@ -82,14 +85,23 @@ void Application::KeyboardFunc()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) StopLoop();
 
-	for (auto it = keys_.begin(); it != keys_.end(); ++it)
-		if (sf::Keyboard::isKeyPressed(*it)) player_->OnKeyboard(*it);
+	for (auto key : keys_)
+		if (sf::Keyboard::isKeyPressed(key)) player_->OnKeyboard(key);
 }
 
 void Application::PassiveMotionFunc(int x, int y)
 {
-	if      (currentState_ == Game) GameMouseFunc (x, y);
-	else if (currentState_ == Menu) MenuMouseFunc (x, y);
+	switch (currentState_)
+	{
+	case Game:
+		GameMouseFunc(x, y);
+		break;
+	case Menu:
+		MenuMouseFunc(x, y);
+		break;
+	default:
+		break;
+	}
 }
 
 void Application::GameMouseFunc(int x, int y)
@@ -126,6 +138,11 @@ void Application::MenuMouseFunc(int x, int y)
 PhysicsWorld* Application::GetPhysicsWorld()
 {
 	return physicsWorld_;
+}
+
+GraphicsWorld* Application::GetGraphicsWorld()
+{
+	return graphicsWorld_;
 }
 
 sf::Time Application::UpdateAndCountTime()

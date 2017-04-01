@@ -17,16 +17,9 @@ BlockType Block::GetType()
 }
 
 
-void Block::Draw(Camera* camera, btTransform& transform_) const
+void Block::Draw(Camera* camera, glm::vec4& globalCoord, glm::mat4& rotation) const
 {
-	//! TODO: Simplify drawing
-	glm::vec3 globalCoord = toGLM(transform_.getOrigin());
-	glm::mat4 rotation = toGLM(transform_.getBasis());
-
-	glm::mat4 rotation_inv = glm::inverse(rotation);
-
-	graphicsAsset_->Draw(camera, glm::vec4(globalCoord, 1.0f) + 
-		rotation_inv * glm::vec4(relatedCoords_, 1.0f), rotation_inv);
+	graphicsAsset_->Draw(camera, globalCoord + rotation * glm::vec4(relatedCoords_, 1.0f), rotation);
 }
 
 float Block::GetMass()

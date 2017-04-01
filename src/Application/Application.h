@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Window.h"
+#include "..\Engine\Graphics\GraphicsWorld.h"
 #include "..\Engine\Physics\PhysicsWorld.h"
 //#include "Manager.h"
 
@@ -16,7 +17,8 @@ class World;
 
 #define APPLICATION	Application::instance_
 
-#define PHYSICSWORLD Application::instance_->GetPhysicsWorld()
+#define PHYSICSWORLD  Application::instance_->GetPhysicsWorld()
+#define GRAPHICSWORLD Application::instance_->GetGraphicsWorld()
 
 
 class Application : public Window
@@ -30,7 +32,8 @@ public:
 	void Init();
 
 	sf::Time getTime() const;
-	PhysicsWorld* GetPhysicsWorld();
+	PhysicsWorld*  GetPhysicsWorld();
+	GraphicsWorld* GetGraphicsWorld();
 
 private:
 	virtual void MainFunc();
@@ -47,8 +50,9 @@ private:
 
 	sf::Time UpdateAndCountTime();
 
-	World*        world_;
-	Player*       player_;
-	AppState      currentState_;
-	PhysicsWorld* physicsWorld_;
+	World*         world_;
+	Player*        player_;
+	AppState       currentState_;
+	PhysicsWorld*  physicsWorld_;
+	GraphicsWorld* graphicsWorld_;
 };

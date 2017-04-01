@@ -20,11 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Application\Application.h" />
-    <ClInclude Include="..\src\Application\Manager.h" />
     <ClInclude Include="..\src\Application\Window.h" />
     <ClInclude Include="..\src\Engine\Graphics\GraphicsObjectManager.h" />
     <ClInclude Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObject.h" />
     <ClInclude Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObjectFactory.h" />
+    <ClInclude Include="..\src\Engine\Graphics\GraphicsWorld.h" />
     <ClInclude Include="..\src\Engine\Graphics\Management\ModelManager.h" />
     <ClInclude Include="..\src\Engine\Graphics\Management\ShaderProgManager.h" />
     <ClInclude Include="..\src\Engine\Graphics\Management\TextureManager.h" />
@@ -58,11 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Application\Application.cpp" />
-    <ClCompile Include="..\src\Application\Manager.cpp" />
     <ClCompile Include="..\src\Application\Window.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\GraphicsObjectManager.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObject.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObjectFactory.cpp" />
+    <ClCompile Include="..\src\Engine\Graphics\GraphicsWorld.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\Management\ModelManager.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\Management\ShaderProgManager.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\Management\TextureManager.cpp" />

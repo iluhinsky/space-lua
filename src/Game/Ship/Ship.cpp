@@ -19,8 +19,13 @@ void Ship::Draw(Camera* camera)
 {
 	transform_ = body_->getWorldTransform() * principalTransformInverse_;
 
+	glm::vec4 globalCoord = glm::vec4 (toGLM(transform_.getOrigin()), 1.0f);
+	glm::mat4 rotation    = toGLM(transform_.getBasis());
+
+	glm::mat4 rotation_inv = glm::inverse(rotation);
+
 	for (auto block : blocks_)
-		block->Draw(camera, transform_);
+		block->Draw(camera, globalCoord, rotation_inv);
 }
 
 void Ship::InitRigidBody()
