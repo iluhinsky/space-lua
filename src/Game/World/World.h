@@ -20,6 +20,9 @@ public:
 
 	void Draw(Camera* camera);
 
+	void RunLUA();
+	void ExecuteLogic();
+
 private:
 	std::vector <Ship*> ships_;
 

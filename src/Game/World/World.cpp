@@ -26,6 +26,18 @@ void World::Load(std::string worldName)
 
 void World::Draw(Camera* camera)
 {
-	for (auto it = ships_.begin(); it != ships_.end(); ++it)
-		(*it)->Draw(camera);
+	for (auto ship : ships_)
+		ship->Draw(camera);
+}
+
+void World::RunLUA()
+{
+	for (auto ship : ships_)
+		ship->RunLUA();
+}
+
+void World::ExecuteLogic()
+{
+	for (auto ship : ships_)
+		ship->ExecuteLogic();
 }

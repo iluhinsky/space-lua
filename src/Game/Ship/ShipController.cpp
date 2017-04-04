@@ -59,3 +59,8 @@ void ShipController::CatchLuaHook(lua_State* luaThread, lua_Debug* luaDebug)
 	std::cout << "LUA HOOK " << std::endl;
 	lua_yield(luaThread, 0);
 }
+
+void ShipController::Run()
+{
+
+}

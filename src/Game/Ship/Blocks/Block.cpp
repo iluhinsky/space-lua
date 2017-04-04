@@ -31,3 +31,18 @@ glm::vec3 Block::GetRelatedCoords()
 {
 	return relatedCoords_;
 }
+
+void Block::ExecuteCommand()
+{
+	(this->*Command_)();
+}
+
+void Block::SetStandartCommand()
+{
+	(this->Command_) = &Block:: DoNothing;
+}
+
+void Block::DoNothing()
+{
+	//Do nothing
+}

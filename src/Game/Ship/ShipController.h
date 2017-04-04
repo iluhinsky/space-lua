@@ -25,6 +25,8 @@ public:
 	static void CatchLuaHook(lua_State* luaThread, lua_Debug* luaDebug);
 	static void SwitchShield(const std::string& blockName, const bool mode, const float time, lua_State* luaThread);
 
+	void Run();
+
 private:
 	static std::map<lua_State*, Ship*> shipsDataBase_;
 

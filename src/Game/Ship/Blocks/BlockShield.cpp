@@ -47,3 +47,27 @@ Block* BlockShield::Clone() const
 {
 	return new BlockShield(*this);
 }
+
+void BlockShield::SetComand(BlockShieldCommand command)
+{
+	switch (command)
+	{
+	case EnableShieldCommand:
+		(this->Command_) = (void (Block::*)()) &BlockShield::EnableShield;
+		break;
+	case DisableShieldCommand:
+		(this->Command_) = (void (Block::*)()) &BlockShield::DisableShield;
+		break;
+	default:
+		break;
+	}
+}
+
+void BlockShield::EnableShield()
+{
+	isWorking_ = true;
+}
+void BlockShield::DisableShield()
+{
+	isWorking_ = false;
+}

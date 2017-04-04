@@ -24,6 +24,9 @@ public:
 	virtual void InitRigidBody();
 	void UpdateRigidBody();
 
+	void RunLUA();
+	void ExecuteLogic();
+
 private:
 	void ConstructShape(btScalar& mass, btVector3& inertia);
 

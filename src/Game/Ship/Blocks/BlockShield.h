@@ -1,6 +1,12 @@
 #pragma once
 #include "Block.h"
 
+enum BlockShieldCommand
+{
+	EnableShieldCommand  = 0,
+	DisableShieldCommand = 1
+};
+
 
 class BlockShield :
 	public Block
@@ -18,7 +24,12 @@ public:
 	void Switch(const bool mode, const float time = 0.0f);
 	virtual Block* Clone() const;
 
+	void SetComand(BlockShieldCommand command);
+
 private:
+	void EnableShield();
+	void DisableShield();
+
 	std::string name_;
 
 	bool isWorking_;
