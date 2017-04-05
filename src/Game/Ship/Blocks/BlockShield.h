@@ -23,12 +23,12 @@ public:
 	const std::string& GetName();
 	virtual Block* Clone() const;
 
-	void EnableShield();
-	void DisableShield();
-
 	void SetComand(BlockShieldCommand command);
 
 private:
+	void EnableShield();
+	void DisableShield();
+
 	std::string name_;
 
 	bool isWorking_;
