@@ -21,6 +21,7 @@ void ShaderProg::Use()
 int  ShaderProg::GetUniformLocation(const char* name)
 {
 	int location = glGetUniformLocation(_shaderProgram, name);
+	
 	assert(location != -1);
 	return location;
 }
@@ -58,4 +59,9 @@ void ShaderProg::UniformVector3D  (GLuint location, float x, float y, float z)
 void ShaderProg::UniformVector4D  (GLuint location, float x, float y, float z, float w)
 {
 	glUniform4f(location, x, y, z, w);
+}
+
+void ShaderProg::Detach()
+{
+	glDetachShader(_shaderProgram, _shaderProgram);
 }

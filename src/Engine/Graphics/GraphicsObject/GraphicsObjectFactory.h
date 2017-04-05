@@ -21,7 +21,7 @@ public:
 	GraphicsObject* CreateObject(GraphicsObjectInfo assetNames);
 
 private:
-	ShaderProgManager shaderManager_;
+	//ShaderProgManager shaderManager_;
 	TextureManager	  textureManager_;
 	ModelManager	  modelManager_;
 };

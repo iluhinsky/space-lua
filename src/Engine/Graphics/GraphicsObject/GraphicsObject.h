@@ -20,7 +20,6 @@ private:
 	void SetUniforms(Camera* camera, glm::vec4& worldPos, glm::mat4& rotation);
 	void SetTranslation(Pipeline* p, Camera* camera, glm::vec4& worldPos);
 
-	float t; // temp
 	float       scale_;
 
 	Model*      model_;

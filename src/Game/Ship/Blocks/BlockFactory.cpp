@@ -3,6 +3,8 @@
 #include "BlockMain.h"
 #include "BlockShield.h"
 
+#include "../../../Application/Application.h"
+
 
 ObjectDataBase::ObjectDataBase()
 {
@@ -80,7 +82,7 @@ void ObjectDataBase::Fill(std::string name)
 		newBlock->hits_ = hits;
 		newBlock->mass_ = mass;
 
-		newBlock->graphicsAsset_ = manager_.Get(assetNames);
+		newBlock->graphicsAsset_ = APPLICATION->GetGraphicsWorld()->GetManager()->Get(assetNames);
 
 		db_[blockType] = newBlock;
 

@@ -33,6 +33,7 @@
     <ClInclude Include="..\src\Engine\Graphics\Model\ModelParser.h" />
     <ClInclude Include="..\src\Engine\Graphics\Particles\Particle.h" />
     <ClInclude Include="..\src\Engine\Graphics\Particles\ParticleSystem.h" />
+    <ClInclude Include="..\src\Engine\Graphics\Particles\ParticleSystemFactory.h" />
     <ClInclude Include="..\src\Engine\Graphics\Shaders\ShaderManager.h" />
     <ClInclude Include="..\src\Engine\Graphics\Shaders\ShaderProg.h" />
     <ClInclude Include="..\src\Engine\Graphics\Texture\PngLoader.h" />
@@ -71,6 +72,7 @@
     <ClCompile Include="..\src\Engine\Graphics\Model\ModelParser.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\Particles\Particle.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\Particles\ParticleSystem.cpp" />
+    <ClCompile Include="..\src\Engine\Graphics\Particles\ParticleSystemFactory.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\Shaders\ShaderManager.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\Shaders\ShaderProg.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\Texture\PngLoader.cpp" />

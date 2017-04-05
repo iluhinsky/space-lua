@@ -66,6 +66,7 @@ void Application::MainFunc()
 	player_->UpdateCamera();
 
 	world_->Draw(player_->GetCamera());
+	graphicsWorld_->GetParticleSystem()->Draw(player_->GetCamera()); //todo: make it better
 
 	window_->display();
 }

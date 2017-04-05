@@ -12,8 +12,10 @@ public:
 	void Init();
 
 	ParticleSystem* GetParticleSystem();
+	GraphicsObjectManager* GetManager();
 
 private:
-	ParticleSystem* particleSystem_;
+	ParticleSystem*			particleSystem_;
+	GraphicsObjectManager*	manager_;
 };
 

@@ -10,6 +10,7 @@ public:
 	~ShaderProg();
 
 	void Use();
+	void Detach();
 
 	int GetUniformLocation(const char* Name);
 

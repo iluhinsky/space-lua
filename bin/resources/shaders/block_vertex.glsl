@@ -6,7 +6,7 @@ layout (location = 2) in vec3 Normal;
 
 uniform mat4 gWVP;  
 uniform mat4 gWV;
-uniform mat3 gWN;
+uniform mat3 gWN; 
 
 uniform vec3	  lightPos;
 uniform vec3	  eyePos;
