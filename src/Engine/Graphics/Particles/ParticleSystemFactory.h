@@ -8,9 +8,10 @@ struct ParticleSystemInfo
 
 	ShaderNames shaderNames_;
 
-	int		numberOfParticles_; 
-	float	lifeTime_; 
-	float	initialSpeed_;
+	int			numberOfParticles_; 
+	int			flowPerSecond_;
+	float		lifeTime_; 
+	glm::vec3	initialSpeed_;
 };
 
 class ParticleSystemFactory
@@ -19,7 +20,7 @@ public:
 	ParticleSystemFactory();
 	~ParticleSystemFactory();
 
-	ParticleSystem* CreateParticleSystem(ParticleSystemInfo assets);
+	ParticleSystem* CreateParticleSystem(glm::vec3 position, ParticleSystemInfo assets);
 
 private:
 

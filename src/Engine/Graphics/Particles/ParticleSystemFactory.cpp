@@ -11,9 +11,9 @@ ParticleSystemFactory::~ParticleSystemFactory()
 
 }
 
-ParticleSystem* ParticleSystemFactory::CreateParticleSystem(ParticleSystemInfo assets)
+ParticleSystem* ParticleSystemFactory::CreateParticleSystem(glm::vec3 position, ParticleSystemInfo assets)
 {
-	ParticleSystem* particleSystem = new ParticleSystem(assets.numberOfParticles_, assets.lifeTime_, assets.initialSpeed_);
+	ParticleSystem* particleSystem = new ParticleSystem(position, assets.numberOfParticles_, assets.flowPerSecond_, assets.lifeTime_, assets.initialSpeed_);
 	
 	particleSystem->model_		= modelManager_.Get	 (assets.modelName_);
 	particleSystem->texture_	= textureManager_.Get(assets.textureName_);

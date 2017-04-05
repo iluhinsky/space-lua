@@ -22,16 +22,19 @@ void GraphicsWorld::Init()
 
 	//For first design
 
-	assets.initialSpeed_		= 1.0f; 
-	assets.lifeTime_			= 1.0f;
-	assets.numberOfParticles_	= 1;
+	assets.initialSpeed_ = glm::vec3{1, 1, 0};
+	assets.lifeTime_			= 5.0f;
+	assets.numberOfParticles_	= 500;
+	assets.flowPerSecond_		= 50;
 	
 	assets.modelName_	= "particle.3ds";
 	assets.textureName_ = "face.png";
 	assets.shaderNames_ = ShaderNames{"particle_vertex.glsl", "particle_fragment.glsl" };
 	
+	glm::vec3 position = glm::vec3{1, 1, -3};
+
 	ParticleSystemFactory factory = ParticleSystemFactory();
-	particleSystem_ = factory.CreateParticleSystem(assets);
+	particleSystem_ = factory.CreateParticleSystem(position, assets);
 }
 
 ParticleSystem* GraphicsWorld::GetParticleSystem()
