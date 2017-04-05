@@ -6,6 +6,9 @@ bool operator< (const ShaderNames& left, const ShaderNames& right) {
 	if (left._vertexShaderName  > right._vertexShaderName) return false;
 
 	if (left._fragmentShaderName < right._fragmentShaderName) return true;
+	if (left._fragmentShaderName > right._fragmentShaderName) return false;
+
+	if (left._geometryShaderName < right._geometryShaderName) return true;
 	return false;
 }
 
@@ -13,6 +16,7 @@ ShaderProgManager::ShaderProgManager()
 {
 	_vertexShaderManager   = new ShaderManager (GL_VERTEX_SHADER);
 	_fragmentShaderManager = new ShaderManager (GL_FRAGMENT_SHADER);
+	_geometryShaderManager = new ShaderManager (GL_GEOMETRY_SHADER);
 }
 
 
@@ -20,6 +24,7 @@ ShaderProgManager::~ShaderProgManager()
 {
 	delete _vertexShaderManager;
 	delete _fragmentShaderManager;
+	delete _geometryShaderManager;
 
 	for (std::map<ShaderNames, ShaderProg*>::iterator it = _shaderProgMap.begin(); it != _shaderProgMap.end(); ++it)
 		delete it->second;
@@ -51,7 +56,12 @@ ShaderProg* ShaderProgManager::LoadShaderProg(ShaderNames names)
 
 	GLuint vertexShader   = _vertexShaderManager  ->Get(names._vertexShaderName  );
 	GLuint fragmentShader = _fragmentShaderManager->Get(names._fragmentShaderName);
-
+	
+	if (names._geometryShaderName != "")
+	{
+		GLuint geometryShader = _geometryShaderManager->Get(names._geometryShaderName);
+		glAttachShader(shaderProgram, geometryShader);
+	}
 	//! TODO: Deattach and delete shaders
 	glAttachShader(shaderProgram, vertexShader  );
 	glAttachShader(shaderProgram, fragmentShader);
@@ -77,6 +87,7 @@ ShaderProg* ShaderProgManager::LoadShaderProg(ShaderNames names)
 
 	printf("Vertex   shader %s and\n"      , names._vertexShaderName.  c_str());
 	printf("Fragment shader %s is linked\n", names._fragmentShaderName.c_str());
+	printf("Geometry shader %s is linked\n", names._geometryShaderName.c_str());
 
 	return new ShaderProg(shaderProgram);
 }

@@ -27,6 +27,7 @@ void ObjectDataBase::Fill(std::string name)
 	char texture[30]        = {};
 	char vertexShader[30]   = {};
 	char fragmentShader[30] = {};
+	char geometryShader[30] = {};
 	float hits = 0.0f;
 	float mass = 0.0f;
 
@@ -50,11 +51,14 @@ void ObjectDataBase::Fill(std::string name)
 
 		fscanf(file, " hits: %f mass: %f", &hits, &mass);
 
-		fscanf(file, " model: %s texture: %s vertexShader: %s fragmentShader: %s", model, texture, vertexShader, fragmentShader);
+		fscanf(file, " model: %s texture: %s vertexShader: %s fragmentShader: %s geometryShader: %s", model, texture, vertexShader, fragmentShader, geometryShader);
 		assetNames.modelName_   = model;
 		assetNames.textureName_ = texture;
 		assetNames.shaderNames_._vertexShaderName   = vertexShader;
 		assetNames.shaderNames_._fragmentShaderName = fragmentShader;
+		assetNames.shaderNames_._geometryShaderName = geometryShader;
+
+		
 
 		switch (blockType)
 		{

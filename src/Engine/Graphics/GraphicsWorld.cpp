@@ -29,7 +29,7 @@ void GraphicsWorld::Init()
 	
 	assets.modelName_	= "particle.3ds";
 	assets.textureName_ = "face.png";
-	assets.shaderNames_ = ShaderNames{"particle_vertex.glsl", "particle_fragment.glsl" };
+	assets.shaderNames_ = ShaderNames{"particle_vertex.glsl", "particle_fragment.glsl", ""};
 	
 	glm::vec3 position = glm::vec3{1, 1, -3};
 
