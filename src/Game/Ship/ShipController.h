@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include <SFML/Graphics.hpp>
 
 extern "C"
 {
@@ -9,7 +10,7 @@ extern "C"
 }
 #include <lua/LuaBridge.h>
 
-#define INSTRUCTION_LIMIT 30
+#define INSTRUCTION_LIMIT 20
 
 
 class Ship;
@@ -22,8 +23,11 @@ public:
 	ShipController(Ship* ship);
 	~ShipController();
 
+	static float GetTime(lua_State* luaThread);
 	static void CatchLuaHook(lua_State* luaThread, lua_Debug* luaDebug);
-	static void SwitchShield(const std::string& blockName, const bool mode, const float time, lua_State* luaThread);
+	static void SwitchShield(const std::string& blockName, const bool mode, lua_State* luaThread);
+	static void EnableShield(const std::string& blockName, lua_State* luaThread);
+	static void DisableShield(const std::string& blockName, lua_State* luaThread);
 
 	void Run();
 

@@ -21,15 +21,14 @@ public:
 	~BlockShield();
 
 	const std::string& GetName();
-	void Switch(const bool mode, const float time = 0.0f);
 	virtual Block* Clone() const;
+
+	void EnableShield();
+	void DisableShield();
 
 	void SetComand(BlockShieldCommand command);
 
 private:
-	void EnableShield();
-	void DisableShield();
-
 	std::string name_;
 
 	bool isWorking_;
