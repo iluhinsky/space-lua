@@ -23,7 +23,7 @@ void ParticleSystem::Draw(Camera* camera)
 {
 	shaderProg_->Use();
 
-	SetUniforms(camera, glm::vec4{ 1, 1, 1, 1 });
+	SetUniforms(camera, glm::vec4{ 1, 1, -3, 1 });
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
@@ -49,7 +49,7 @@ void ParticleSystem::Draw(Camera* camera)
 }
 
 void ParticleSystem::SetUniforms(Camera* camera, glm::vec4& worldPos)
-{	
+{
 	sf::Vector2u size = APPLICATION->GetWindowSize();
 
 	Pipeline p;
@@ -58,20 +58,33 @@ void ParticleSystem::SetUniforms(Camera* camera, glm::vec4& worldPos)
 
 	p.SetPerspectiveProj(60.0f, size.x, size.y, 1.0f, 10000.0f);
 
-	float time = APPLICATION->getTime().asSeconds();
+	p.Rotate(glm::mat4{ 0, 0, 1, 0,
+						0, 1, 0, 0,
+					   -1, 0, 0, 0,
+						0, 0, 0, 1 }
+	);
+
+
+	glm::mat4 rotation = glm::mat4{ 1, 0, 0, 0,
+						0, 0, -1, 0,
+					    0, 1, 0, 0,
+						0, 0, 0, 1 };
+	
 
 	p.CalculateMatrices();
 
+
 	glm::mat4 ModelViewMatrix = p.GetViewMatrix() * p.GetModelMatrix();
-	glm::mat4 MVPMatrix = p.GetProjMatrix() * ModelViewMatrix;
+
+
+	glm::mat4 MVPMatrix = p.GetProjMatrix() *  ModelViewMatrix;
 	
 	shaderProg_->UniformMatrix4x4(shaderProg_->GetUniformLocation("gWVP"), MVPMatrix);
 	shaderProg_->UniformMatrix4x4(shaderProg_->GetUniformLocation("gWV"), ModelViewMatrix);
 
 	shaderProg_->UniformInt(shaderProg_->GetUniformLocation("texture"), 0);
 	shaderProg_->UniformFloat(shaderProg_->GetUniformLocation("scale"), scale_);
-	shaderProg_->UniformVector3D(shaderProg_->GetUniformLocation("lightPos"), 1000.0 * cos(time), 1000.0 * sin(time), 0.0f);
-	shaderProg_->UniformVector3D(shaderProg_->GetUniformLocation("eyePos"), camera->GetPos());
+	//shaderProg_->UniformVector3D(shaderProg_->GetUniformLocation("eyePos"), camera->GetPos());
 }
 
 void ParticleSystem::SetTranslation(Pipeline* p, Camera* camera, glm::vec4& worldPos)

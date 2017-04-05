@@ -28,7 +28,7 @@ void GraphicsWorld::Init()
 	
 	assets.modelName_	= "particle.3ds";
 	assets.textureName_ = "face.png";
-	assets.shaderNames_ = ShaderNames{"block_vertex.glsl", "block_fragment.glsl" };
+	assets.shaderNames_ = ShaderNames{"particle_vertex.glsl", "particle_fragment.glsl" };
 	
 	ParticleSystemFactory factory = ParticleSystemFactory();
 	particleSystem_ = factory.CreateParticleSystem(assets);
