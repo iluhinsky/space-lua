@@ -11,9 +11,11 @@ public:
 	~GraphicsWorld();
 	void Init();
 
-	ParticleSystem* GetParticleSystem();
+	ParticleSystem*        GetParticleSystem();
+	GraphicsObjectManager* GetManager();
 
 private:
-	ParticleSystem* particleSystem_;
+	ParticleSystem*        particleSystem_;
+	GraphicsObjectManager* manager_;
 };
 

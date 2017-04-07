@@ -43,6 +43,7 @@
     <ClInclude Include="..\src\Engine\Math\Pipeline.h" />
     <ClInclude Include="..\src\Engine\Physics\CollisionObject.h" />
     <ClInclude Include="..\src\Engine\Physics\PhysicsWorld.h" />
+    <ClInclude Include="..\src\Game\CollisionObjectTypes.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\Block.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockFactory.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockMain.h" />
@@ -51,6 +52,7 @@
     <ClInclude Include="..\src\Game\Ship\Ship.h" />
     <ClInclude Include="..\src\Game\Ship\ShipController.h" />
     <ClInclude Include="..\src\Game\Ship\ShipFactory.h" />
+    <ClInclude Include="..\src\Game\World\Effects\Bullet.h" />
     <ClInclude Include="..\src\Game\World\World.h" />
     <ClInclude Include="..\src\Game\World\WorldLoader.h" />
     <ClInclude Include="..\src\Include.h" />
@@ -88,6 +90,7 @@
     <ClCompile Include="..\src\Game\Ship\Ship.cpp" />
     <ClCompile Include="..\src\Game\Ship\ShipController.cpp" />
     <ClCompile Include="..\src\Game\Ship\ShipFactory.cpp" />
+    <ClCompile Include="..\src\Game\World\Effects\Bullet.cpp" />
     <ClCompile Include="..\src\Game\World\World.cpp" />
     <ClCompile Include="..\src\Game\World\WorldLoader.cpp" />
     <ClCompile Include="..\src\main.cpp" />

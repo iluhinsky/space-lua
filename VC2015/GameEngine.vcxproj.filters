@@ -64,6 +64,9 @@
     <Filter Include="src\Game\World">
       <UniqueIdentifier>{d39e1e7b-1901-4c0f-819a-4f39bc8cc7da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Game\World\Effects">
+      <UniqueIdentifier>{0381a6b9-78a0-4d95-beef-aefd4d1616f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Include.h">
@@ -174,6 +177,12 @@
     <ClInclude Include="..\src\Engine\Graphics\GraphicsWorld.h">
       <Filter>src\Engine\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Game\CollisionObjectTypes.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\World\Effects\Bullet.h">
+      <Filter>src\Game\World\Effects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -280,6 +289,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Engine\Graphics\GraphicsWorld.cpp">
       <Filter>src\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\World\Effects\Bullet.cpp">
+      <Filter>src\Game\World\Effects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

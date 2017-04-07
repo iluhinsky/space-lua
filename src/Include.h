@@ -10,6 +10,8 @@
 #include <unordered_map>
 #include <io.h>
 #include <assert.h>
+#include <memory>
+#include <algorithm>
 
 #include <SFML\System\Clock.hpp>
 #include <SFML/Window.hpp>

@@ -14,6 +14,8 @@ public:
 	GraphicsObject();
 	~GraphicsObject();
 
+	void SetScale(float scale);
+
 	void Draw(Camera* camera, glm::vec4& worldPos, glm::mat4& rotation);
 
 private:

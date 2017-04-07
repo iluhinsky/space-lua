@@ -2,6 +2,7 @@
 
 #include "../../Engine/Math/Camera.h"
 #include "../Ship/Ship.h"
+#include "Effects\Bullet.h"
 #include "WorldLoader.h"
 
 
@@ -20,8 +21,13 @@ public:
 
 	void Draw(Camera* camera);
 
+	void CreateBullet(glm::vec3 velocity, glm::vec3 startingPosition);
+
+	void ClearUnexisingBullets();
+
 private:
-	std::vector <Ship*> ships_;
+	std::vector <Ship*>                   ships_;
+	std::list   <std::shared_ptr<Bullet>> bullets_;
 
 	WorldLoader* worldLoader_;
 };

@@ -1,6 +1,6 @@
 #include "Player.h"
 
-const static float StepScale = 0.1f;
+const static float StepScale = 0.3f;
 
 Player::Player()
 {

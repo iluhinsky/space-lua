@@ -13,6 +13,11 @@ GraphicsObject::~GraphicsObject()
 {
 }
 
+void GraphicsObject::SetScale(float scale)
+{
+	scale_ = scale;
+}
+
 
 void GraphicsObject::Draw(Camera* camera, glm::vec4& worldPos, glm::mat4& rotation)
 {
