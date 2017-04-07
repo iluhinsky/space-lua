@@ -20,6 +20,7 @@ public:
 	void Load(std::string worldName);
 
 	void Draw(Camera* camera);
+	void ReduceTime(int dt);
 
 	void CreateBullet(glm::vec3 velocity, glm::vec3 startingPosition);
 

@@ -14,6 +14,7 @@ public:
 	virtual void InitRigidBody();
 
 	bool isExist();
+	void ReduceTime(int dt);
 
 	void Draw(Camera* camera);
 

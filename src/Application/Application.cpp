@@ -65,6 +65,9 @@ void Application::MainFunc()
 
 	sf::Time dt = UpdateAndCountTime();
 
+	world_->ReduceTime(dt.asMilliseconds());
+	world_->ClearUnexisingBullets();
+
 	physicsWorld_->proc(dt.asMilliseconds());
 
 	player_->UpdateCamera();

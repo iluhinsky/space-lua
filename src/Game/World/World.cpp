@@ -23,6 +23,11 @@ void World::Load(std::string worldName)
 	worldLoader_->Load(worldName);
 }
 
+void World::ReduceTime(int dt)
+{
+	for (auto bullet : bullets_)
+		bullet->ReduceTime(dt);
+}
 
 void World::Draw(Camera* camera)
 {

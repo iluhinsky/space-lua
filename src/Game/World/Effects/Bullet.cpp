@@ -2,8 +2,9 @@
 
 #include "..\..\..\Application\Application.h"
 
-const int       BULLET_MASS = 1.0f;
+const int       BULLET_MASS    = 1.0f;
 const btVector3 BULLET_INERTIA = btVector3(1.0f, 1.0f, 1.0f);
+const int       BULLET_TIME    = 10000;
 
 
 Bullet::Bullet(glm::vec3 velocity, glm::vec3 startingPosition)
@@ -29,6 +30,8 @@ Bullet::Bullet(glm::vec3 velocity, glm::vec3 startingPosition)
 	InitRigidBody();
 
 	body_->applyCentralImpulse(vel);
+
+	remainingTime_ = BULLET_TIME;
 }
 
 Bullet::~Bullet()
@@ -54,8 +57,13 @@ void Bullet::InitRigidBody()
 
 bool Bullet::isExist()
 {
-	return (isExist_ ||
+	return (isExist_ &&
 		remainingTime_ > 0.0f);
+}
+
+void Bullet::ReduceTime(int dt)
+{
+	remainingTime_ -= dt;
 }
 
 void Bullet::Draw(Camera* camera)
