@@ -102,7 +102,7 @@ void ShipController::Run()
 {
 	if (luaThread_ == NULL)
 	{
-		std::cout << "LUA script: nothing to do (there are no comands in the stack)." << std::endl;
+//		std::cout << "LUA script: nothing to do (there are no comands in the stack)." << std::endl;
 		return;
 	}
 
@@ -116,10 +116,12 @@ void ShipController::Run()
 		//! there is no chunks in the lua stack! We must not call lua_resume after this point
 		luaThread_ = NULL;
 		break;
+
 	case LUA_YIELD:
 		//! lua script has too many instructions! (maybe everything is OK?)
 		//std::cout << "LUA script has too many instructions!" << std::endl;
 		break;
+
 	default:
 		//! handling errors connected with lua script
 		std::cout << "LUA ERROR! lua_resume returned " << luaStatus << std::endl;

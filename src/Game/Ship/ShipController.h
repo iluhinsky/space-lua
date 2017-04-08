@@ -10,7 +10,7 @@ extern "C"
 }
 #include <lua/LuaBridge.h>
 
-#define INSTRUCTION_LIMIT 20
+#define INSTRUCTION_LIMIT 1000
 
 
 class Ship;

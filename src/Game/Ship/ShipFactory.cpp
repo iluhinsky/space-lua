@@ -77,27 +77,33 @@ void ShipFactory::LoadController(Ship* ship)
 	std::string scriptName = "../bin/resources/scripts/" + ship->shipName_ + ".lua";
 //	std::cout << "C++: scriptName = '" << scriptName << "'\n";
 
-	char errorMessage[200] = {};
-	int error = luaL_loadfile(ship->controller_.luaThread_, scriptName.c_str(), NULL, errorMessage);
-	switch (error)
+	lua_State* luaThread = ship->controller_.luaThread_;
+	assert(luaThread);
+
+	int errorCode = luaL_loadfile(luaThread, scriptName.c_str());
+
+	switch (errorCode)
 	{
 	case LUA_OK:
-//		std::cout << "LUA script loaded." << std::endl;
+		std::cout << "LUA script successfully loaded." << std::endl;
 		break;
+
 	case LUA_ERRSYNTAX:
-		std::cout << "LUA compilation error. " << errorMessage << std::endl;
+		std::cout << "LUA compilation error. " << lua_tostring(luaThread, -1) << std::endl;
+		lua_pop(luaThread, 1);
 		break;
+
 	default:
-		std::cout << "ERROR. Problems with loading LUA script. Code of error is equal to " << error << std::endl;
+		std::cout << "ERROR. Problems with loading LUA script. Error's code is " << errorCode << std::endl;
 	}
 
 //	if we use lua_sethook, we should call lua_resume(l, NULL, 0) while updating shipController
-	lua_sethook(ship->controller_.luaThread_, ShipController::CatchLuaHook, LUA_MASKCOUNT, INSTRUCTION_LIMIT);
+	lua_sethook(luaThread, ShipController::CatchLuaHook, LUA_MASKCOUNT, INSTRUCTION_LIMIT);
 
-	luabridge::getGlobalNamespace(ship->controller_.luaThread_).addFunction("GetTime",       &ShipController::GetTime);
-	luabridge::getGlobalNamespace(ship->controller_.luaThread_).addFunction("SwitchShield",  &ShipController::SwitchShield);
-	luabridge::getGlobalNamespace(ship->controller_.luaThread_).addFunction("EnableShield",  &ShipController::EnableShield);
-	luabridge::getGlobalNamespace(ship->controller_.luaThread_).addFunction("DisableShield", &ShipController::DisableShield);
-//	register other functions here
+	luabridge::getGlobalNamespace(ship->controller_.luaThread_)
+		.addFunction("GetTime",       &ShipController::GetTime)
+		.addFunction("SwitchShield", &ShipController::SwitchShield)
+		.addFunction("EnableShield", &ShipController::EnableShield)
+		.addFunction("DisableShield", &ShipController::DisableShield);
 
 }

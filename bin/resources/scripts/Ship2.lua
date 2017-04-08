@@ -2,10 +2,10 @@ print("LUA START: Ship2")
 
 
 currentTime = 0.0
-while true do
+--while true do
 	--print("currentTime =", GetTime())
 	currentTime = GetTime()
-end
+--end
 
 print("LUA FINISH: Ship2")
 

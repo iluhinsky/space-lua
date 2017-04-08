@@ -6,7 +6,7 @@ currentTime = 0.0
 timeForNextSwitch = 10.0
 isShieldWorking = false
 
-while true do
+--while true do
 --	print("currentTime =", GetTime())
 	currentTime = GetTime()
 	if currentTime > timeForNextSwitch then
@@ -20,7 +20,7 @@ while true do
 			isShieldWorking = true
 		end
 	end
-end
+--end
 
 print("LUA FINISH: Ship1")
 
