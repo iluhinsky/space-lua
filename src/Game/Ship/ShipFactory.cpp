@@ -85,25 +85,32 @@ void ShipFactory::LoadController(Ship* ship)
 	switch (errorCode)
 	{
 	case LUA_OK:
-		std::cout << "LUA script successfully loaded." << std::endl;
+//		std::cout << "LUA script was successfully loaded." << std::endl;
 		break;
 
 	case LUA_ERRSYNTAX:
-		std::cout << "LUA compilation error. " << lua_tostring(luaThread, -1) << std::endl;
+		std::cout << "LUA COMPILATION ERROR. " << lua_tostring(luaThread, -1) << std::endl;
 		lua_pop(luaThread, 1);
 		break;
 
 	default:
-		std::cout << "ERROR. Problems with loading LUA script. Error's code is " << errorCode << std::endl;
+		std::cout << "LUA ERROR. Problems with loading LUA script. Error's code is " << errorCode << std::endl;
 	}
 
-//	if we use lua_sethook, we should call lua_resume(l, NULL, 0) while updating shipController
+	if (errorCode != LUA_OK || lua_gettop(luaThread) != 1)
+	{
+		std::cout << "LUA ERROR. Stack is incorrect. It will be empty." << std::endl;
+		lua_settop(luaThread, 0);
+		return;
+	}
+
+
 	lua_sethook(luaThread, ShipController::CatchLuaHook, LUA_MASKCOUNT, INSTRUCTION_LIMIT);
 
 	luabridge::getGlobalNamespace(ship->controller_.luaThread_)
 		.addFunction("GetTime",       &ShipController::GetTime)
-		.addFunction("SwitchShield", &ShipController::SwitchShield)
-		.addFunction("EnableShield", &ShipController::EnableShield)
+		.addFunction("SwitchShield",  &ShipController::SwitchShield)
+		.addFunction("EnableShield",  &ShipController::EnableShield)
 		.addFunction("DisableShield", &ShipController::DisableShield);
 
 }

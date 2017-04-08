@@ -37,5 +37,6 @@ private:
 	Ship* ship_;
 	lua_State* luaState_;
 	lua_State* luaThread_;
+	bool isLuaScriptNormal_;
 };
 

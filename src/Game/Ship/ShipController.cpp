@@ -16,6 +16,8 @@ ShipController::ShipController(Ship* ship)
 
 	luaThread_ = lua_newthread(luaState_);
 	shipsDataBase_[luaThread_] = ship;
+
+	isLuaScriptNormal_ = true;
 }
 
 
@@ -100,34 +102,34 @@ void ShipController::CatchLuaHook(lua_State* luaThread, lua_Debug* luaDebug)
 
 void ShipController::Run()
 {
-	if (luaThread_ == NULL)
+	if (!isLuaScriptNormal_)
 	{
-//		std::cout << "LUA script: nothing to do (there are no comands in the stack)." << std::endl;
 		return;
 	}
 
-	int luaStatus = LUA_OK;
-	luaStatus = lua_resume(luaThread_, NULL, 0);
-//	std::cout << "luaStatus = " << luaStatus << std::endl;
+	lua_pushvalue(luaThread_, -1);
+	int luaStatus = lua_resume(luaThread_, NULL, 0);
 
 	switch (luaStatus)
 	{
 	case LUA_OK:
-		//! there is no chunks in the lua stack! We must not call lua_resume after this point
-		luaThread_ = NULL;
+		lua_sethook(luaThread_, ShipController::CatchLuaHook, 0, INSTRUCTION_LIMIT);
 		break;
 
 	case LUA_YIELD:
-		//! lua script has too many instructions! (maybe everything is OK?)
-		//std::cout << "LUA script has too many instructions!" << std::endl;
+		std::cout << "ERROR! There are too many instructions for " << shipsDataBase_[luaThread_]->shipName_ << ". ";
+		isLuaScriptNormal_ = false;
 		break;
 
 	default:
-		//! handling errors connected with lua script
-		std::cout << "LUA ERROR! lua_resume returned " << luaStatus << std::endl;
-		luaThread_ = NULL;
+		std::cout << "LUA RUNTIME ERROR! " << lua_tostring(luaThread_, -1) << std::endl;
+		isLuaScriptNormal_ = false;
 		break;
 	}
 
-//	for (int i = 0; i < 3e8; i++); // lol
+	if (lua_gettop(luaThread_) != 1 && luaStatus == LUA_OK)
+	{
+		std::cout << "Smth went wrong with lua stack (" << shipsDataBase_[luaThread_]->shipName_ << ").\n";
+		std::cout << "stack size = " << lua_gettop(luaThread_) << "\n\n";
+	}
 }

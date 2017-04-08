@@ -1,11 +1,19 @@
-print("LUA START: Ship2")
+--print("LUA START: Ship2")
 
+currentTime = GetTime()
 
-currentTime = 0.0
---while true do
-	--print("currentTime =", GetTime())
-	currentTime = GetTime()
---end
+if currentTime < 3.0 then
+	DisableShield("shield2")
+end
+if 3.0 < currentTime then
+	EnableShield("shield2")
+end
+if 8.0 < currentTime then
+--	DisableShield("shield2")
+end
+if 11.0 < currentTime then
+--	DisableShield("shield2")
+end
 
-print("LUA FINISH: Ship2")
+--print("LUA FINISH: Ship2")
 
