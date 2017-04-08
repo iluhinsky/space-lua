@@ -95,12 +95,14 @@ void ShipFactory::LoadController(Ship* ship)
 
 	default:
 		std::cout << "LUA ERROR. Problems with loading LUA script. Error's code is " << errorCode << std::endl;
+		break;
 	}
 
 	if (errorCode != LUA_OK || lua_gettop(luaThread) != 1)
 	{
 		std::cout << "LUA ERROR. Stack is incorrect. It will be empty." << std::endl;
 		lua_settop(luaThread, 0);
+		ship->controller_.isLuaScriptNormal_ = false;
 		return;
 	}
 

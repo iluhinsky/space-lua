@@ -117,19 +117,20 @@ void ShipController::Run()
 		break;
 
 	case LUA_YIELD:
-		std::cout << "ERROR! There are too many instructions for " << shipsDataBase_[luaThread_]->shipName_ << ". ";
+		std::cout << "ERROR! There are too many instructions for " << shipsDataBase_[luaThread_]->shipName_ << ".\n";
 		isLuaScriptNormal_ = false;
 		break;
 
 	default:
 		std::cout << "LUA RUNTIME ERROR! " << lua_tostring(luaThread_, -1) << std::endl;
+		lua_pop(luaThread_, 1);
 		isLuaScriptNormal_ = false;
 		break;
 	}
 
-	if (lua_gettop(luaThread_) != 1 && luaStatus == LUA_OK)
+	if (lua_gettop(luaThread_) != 1 || luaStatus != LUA_OK)
 	{
 		std::cout << "Smth went wrong with lua stack (" << shipsDataBase_[luaThread_]->shipName_ << ").\n";
-		std::cout << "stack size = " << lua_gettop(luaThread_) << "\n\n";
+		isLuaScriptNormal_ = false;
 	}
 }
