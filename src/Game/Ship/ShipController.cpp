@@ -117,7 +117,7 @@ void ShipController::Run()
 		break;
 
 	case LUA_YIELD:
-		std::cout << "ERROR! There are too many instructions for " << shipsDataBase_[luaThread_]->shipName_ << ".\n";
+		std::cout << "ERROR! There are too many instructions for " << shipsDataBase_[luaThread_]->shipName_ << ". The lua script will not work.\n";
 		isLuaScriptNormal_ = false;
 		break;
 
@@ -130,7 +130,8 @@ void ShipController::Run()
 
 	if (lua_gettop(luaThread_) != 1 || luaStatus != LUA_OK)
 	{
-		std::cout << "Smth went wrong with lua stack (" << shipsDataBase_[luaThread_]->shipName_ << ").\n";
+		std::cout << "Smth went wrong with lua stack (" << shipsDataBase_[luaThread_]->shipName_ << "). The lua script will not work.\n";
 		isLuaScriptNormal_ = false;
 	}
+
 }

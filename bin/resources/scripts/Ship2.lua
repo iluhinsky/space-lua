@@ -11,9 +11,6 @@ end
 if 8.0 < currentTime then
 --	DisableShield("shield2")
 end
-if 11.0 < currentTime then
---	DisableShield("shield2")
-end
 
 --print("LUA FINISH: Ship2")
 
