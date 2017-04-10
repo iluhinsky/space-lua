@@ -59,6 +59,9 @@ void Application::MainFunc()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	world_->RunLUA();
+	world_->ExecuteLogic();
+
 	sf::Time dt = UpdateAndCountTime();
 
 	physicsWorld_->proc(dt.asMilliseconds());

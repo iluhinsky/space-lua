@@ -63,6 +63,20 @@ void Ship::UpdateRigidBody()
 	PHYSICSWORLD->AddRigidBody(body_);
 }
 
+void Ship::RunLUA()
+{
+	for (auto block : blocks_)
+		block->SetStandartCommand();
+
+	controller_.Run();
+}
+
+void Ship::ExecuteLogic()
+{
+	for (auto block : blocks_)
+		block->ExecuteCommand();
+}
+
 void Ship::ConstructShape(btScalar& mass, btVector3& inertia)
 {
 	mass = 0.0f;

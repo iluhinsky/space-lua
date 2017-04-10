@@ -21,7 +21,7 @@ void ShipFactory::Init()
 Ship* ShipFactory::GenerateShip(ShipInfo shipInfo)
 {
 	Ship* ship = new Ship;
-
+	
 	ship->shipName_ = shipInfo.name_;
 
 	btQuaternion rotation(
@@ -41,6 +41,7 @@ Ship* ShipFactory::GenerateShip(ShipInfo shipInfo)
 
 	return ship;
 }
+
 
 void ShipFactory::LoadConstruction(Ship* ship)
 {
@@ -68,21 +69,49 @@ void ShipFactory::LoadConstruction(Ship* ship)
 	fclose(file);
 }
 
+
 void ShipFactory::LoadController(Ship* ship)
 {
 	assert(ship);
 
 	std::string scriptName = "../bin/resources/scripts/" + ship->shipName_ + ".lua";
 //	std::cout << "C++: scriptName = '" << scriptName << "'\n";
-	luaL_loadfile(ship->controller_.luaThread_, scriptName.c_str());
-//	if we use lua_sethook, we should call lua_resume(l, NULL, 0) while updating shipController
-	lua_sethook(ship->controller_.luaThread_, ShipController::CatchLuaHook, LUA_MASKCOUNT, INSTRUCTION_LIMIT);
 
-	luabridge::getGlobalNamespace(ship->controller_.luaThread_).addFunction("SwitchShield", &ShipController::SwitchShield);
-//	register other functions here
+	lua_State* luaThread = ship->controller_.luaThread_;
+	assert(luaThread);
 
-//	we need to update controller of a ship ?
-//	luaL_dofile(ship->controller_.luaState_, scriptName.c_str());
-	lua_resume(ship->controller_.luaThread_, NULL, 0); // for testing
-	lua_resume(ship->controller_.luaThread_, NULL, 0); // for testing
+	int errorCode = luaL_loadfile(luaThread, scriptName.c_str());
+
+	switch (errorCode)
+	{
+	case LUA_OK:
+//		std::cout << "LUA script was successfully loaded." << std::endl;
+		break;
+
+	case LUA_ERRSYNTAX:
+		std::cout << "LUA COMPILATION ERROR. " << lua_tostring(luaThread, -1) << std::endl;
+		lua_pop(luaThread, 1);
+		break;
+
+	default:
+		std::cout << "LUA ERROR. Problems with loading LUA script. Error's code is " << errorCode << std::endl;
+		break;
+	}
+
+	if (errorCode != LUA_OK || lua_gettop(luaThread) != 1)
+	{
+		std::cout << "LUA ERROR. Stack is incorrect. It will be empty." << std::endl;
+		lua_settop(luaThread, 0);
+		ship->controller_.isLuaScriptNormal_ = false;
+		return;
+	}
+
+
+	lua_sethook(luaThread, ShipController::CatchLuaHook, LUA_MASKCOUNT, INSTRUCTION_LIMIT);
+
+	luabridge::getGlobalNamespace(ship->controller_.luaThread_)
+		.addFunction("GetTime",       &ShipController::GetTime)
+		.addFunction("EnableShield",  &ShipController::EnableShield)
+		.addFunction("DisableShield", &ShipController::DisableShield);
+
 }

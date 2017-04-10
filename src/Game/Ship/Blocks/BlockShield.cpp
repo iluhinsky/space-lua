@@ -34,16 +34,35 @@ const std::string& BlockShield::GetName()
 	return name_;
 }
 
-void BlockShield::Switch(const bool mode, const float time)
-{
-	assert(time >= 0.0);
-
-	isWorking_ = mode; // mode == true means that shields should be switched on
-
-	//TODO work with time
-}
 
 Block* BlockShield::Clone() const
 {
 	return new BlockShield(*this);
+}
+
+void BlockShield::SetComand(BlockShieldCommand command)
+{
+	switch (command)
+	{
+	case EnableShieldCommand:
+		(this->Command_) = (void (Block::*)()) &BlockShield::EnableShield;
+		break;
+	case DisableShieldCommand:
+		(this->Command_) = (void (Block::*)()) &BlockShield::DisableShield;
+		break;
+	default:
+		break;
+	}
+}
+
+void BlockShield::EnableShield()
+{
+	if (!isWorking_) std::cout << "Enable Shield '" << name_ << "'. Now it is working.\n"; // for testing
+	isWorking_ = true;
+}
+
+void BlockShield::DisableShield()
+{
+	if (isWorking_) std::cout << "Disable Shield '" << name_ << "'. Now it isn't working.\n"; // for testing
+	isWorking_ = false;
 }

@@ -34,6 +34,11 @@ public:
 	float     GetMass();
 	glm::vec3 GetRelatedCoords();
 
+	void ExecuteCommand();
+
+	virtual void SetStandartCommand();
+	void DoNothing();
+
 protected:
 	glm::vec3 relatedCoords_;
 
@@ -43,4 +48,6 @@ protected:
 	float mass_;
 
 	GraphicsObject* graphicsAsset_;
+
+	void (Block:: *Command_) ();
 };

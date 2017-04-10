@@ -1,16 +1,26 @@
-print("LUA START")
---do
---local a = ShipController()
---print("LUA MIDDLE")
---a:SwitchShield("abc", 0, 0.0)
---end
+--print("LUA START: Ship1")
 
---i = 10000000
---while i > 0 do i = i - 1 end
+currentTime = GetTime()
 
-for i = 1, 100 do
-	SwitchShield("qwerty", 0, 0.0)
+if currentTime < 5.0 then
+	DisableShield("shield1")
+end
+if 5.0 < currentTime then
+	EnableShield("shield1")
+end
+if 10.0 < currentTime and currentTime < 15.0 then
+	DisableShield("shield1")
+end
+if 15.0 < currentTime then
+--	EnableShield("shield1")
 end
 
-SwitchShield("abc", 0, 0.0)
-print("LUA FINISH")
+--print("LUA FINISH: Ship1")
+
+
+
+
+
+
+
+
