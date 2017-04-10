@@ -1,6 +1,5 @@
 #include "ShipController.h"
 #include "Ship.h"
-#include "Blocks/BlockShield.h"
 #include "../../Application/Application.h"
 
 std::map<lua_State*, Ship*> ShipController::shipsDataBase_;
@@ -37,40 +36,24 @@ float ShipController::GetTime(lua_State* luaThread)
 }
 
 
-void ShipController::SwitchShield(const std::string& blockName, const bool mode, lua_State* luaThread)
+void ShipController::SwitchShield(const std::string& blockName, BlockShieldCommand command, lua_State* luaThread)
 {
 	assert(luaThread);
 
 	Ship* ship = shipsDataBase_[luaThread];
 	assert(ship);
 
-	Block* currentBlock = NULL;
-	const int blocksNum = ship->blocks_.size();
-
-	int i = 0;
-	for (i = 0; i < blocksNum; ++i)
+	auto it = std::find_if(ship->blocks_.begin(), ship->blocks_.end(), [blockName](Block* block)
 	{
-		currentBlock = ship->blocks_[i]; 
+		return block->GetType() == BlockTypeShield && 
+			!blockName.compare(((BlockShield*)block)->GetName());
+	});
 
-		if (currentBlock->GetType() == BlockTypeShield && !blockName.compare(((BlockShield*)currentBlock)->GetName()))
-		{
-			if (mode)
-			{
-				((BlockShield*)currentBlock)->SetComand(EnableShieldCommand);
-			}
-			else
-			{
-				((BlockShield*)currentBlock)->SetComand(DisableShieldCommand);
-			}
-
-			break;
-		}
-	}
-
-	if (i == blocksNum)
-	{
-		std::cout << "There are no appropriate shields for switching" << " ('" << blockName << "') " << std::endl; // for testing
-	}
+	if (it != ship->blocks_.end())
+		((BlockShield*)(*it))->SetComand(command);
+	else
+		std::cout << "There are no appropriate shields for switching" << 
+		" ('" << blockName << "') " << std::endl; // for testing
 }
 
 
@@ -78,7 +61,7 @@ void ShipController::EnableShield(const std::string& blockName, lua_State* luaTh
 {
 	assert(luaThread);
 
-	SwitchShield(blockName, true, luaThread);
+	SwitchShield(blockName, EnableShieldCommand, luaThread);
 }
 
 
@@ -86,7 +69,7 @@ void ShipController::DisableShield(const std::string& blockName, lua_State* luaT
 {
 	assert(luaThread);
 
-	SwitchShield(blockName, false, luaThread);
+	SwitchShield(blockName, DisableShieldCommand, luaThread);
 }
 
 

@@ -111,7 +111,6 @@ void ShipFactory::LoadController(Ship* ship)
 
 	luabridge::getGlobalNamespace(ship->controller_.luaThread_)
 		.addFunction("GetTime",       &ShipController::GetTime)
-		.addFunction("SwitchShield",  &ShipController::SwitchShield)
 		.addFunction("EnableShield",  &ShipController::EnableShield)
 		.addFunction("DisableShield", &ShipController::DisableShield);
 
