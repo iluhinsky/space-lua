@@ -20,6 +20,14 @@ BlockWeapon::~BlockWeapon()
 {
 }
 
+void BlockWeapon::ReduceTime(int dt)
+{
+	coolDownTime_ -= dt;
+
+	if (coolDownTime_ < 0)
+		coolDownTime_ = 0;
+}
+
 const std::string& BlockWeapon::GetName()
 {
 	return name_;
@@ -28,4 +36,12 @@ const std::string& BlockWeapon::GetName()
 Block* BlockWeapon::Clone() const
 {
 	return new BlockWeapon(*this);
+}
+
+void BlockWeapon::Shoot()
+{
+	if (coolDownTime_ > 0)
+		return;
+
+	// Shooting
 }

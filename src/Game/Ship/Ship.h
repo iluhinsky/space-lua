@@ -24,6 +24,8 @@ public:
 	virtual void InitRigidBody();
 	void UpdateRigidBody();
 
+	void ReduceTime(int dt);
+
 	void RunLUA();
 	void ExecuteLogic();
 

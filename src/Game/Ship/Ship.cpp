@@ -1,5 +1,6 @@
 #include "Ship.h"
 #include "Blocks/BlockShield.h"
+#include "Blocks\BlockWeapon.h"
 
 #include "..\..\Application\Application.h"
 
@@ -65,6 +66,13 @@ void Ship::UpdateRigidBody()
 	body_->updateInertiaTensor();
 
 	PHYSICSWORLD->AddRigidBody(body_);
+}
+
+void Ship::ReduceTime(int dt)
+{
+	for (auto block : blocks_)
+		if (block->GetType() == BlockTypeWeapon)
+			((BlockWeapon*)block)->ReduceTime(dt);
 }
 
 void Ship::RunLUA()

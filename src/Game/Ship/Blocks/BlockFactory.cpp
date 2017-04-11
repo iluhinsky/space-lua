@@ -146,10 +146,15 @@ Block* BlockFactory::GetBlock(FILE* file)
 		switch (blockType)
 		{
 		case BlockTypeShield:
-		case BlockTypeWeapon:
 			fscanf(file, "%s", blockTypeName);
 
 			((BlockShield*) newBlock)->name_ = blockTypeName;
+			break;
+
+		case BlockTypeWeapon:
+			fscanf(file, "%s", blockTypeName);
+
+			((BlockWeapon*)newBlock)->name_ = blockTypeName;
 			break;
 
 		default:
