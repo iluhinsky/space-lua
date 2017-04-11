@@ -15,6 +15,7 @@ public:
 
 	bool isExist();
 	void ReduceTime(int dt);
+	void hit();
 
 	void Draw(Camera* camera);
 

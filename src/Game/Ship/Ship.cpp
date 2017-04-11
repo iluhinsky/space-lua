@@ -81,6 +81,13 @@ void Ship::ExecuteLogic()
 		block->ExecuteCommand();
 }
 
+void Ship::hit(Bullet* bullet, btVector3* pointA, btVector3* pointB)
+{
+	std::cout << "Ship was hitten!" << std::endl;
+
+	bullet->hit();
+}
+
 void Ship::ConstructShape(btScalar& mass, btVector3& inertia)
 {
 	mass = 0.0f;

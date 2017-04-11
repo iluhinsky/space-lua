@@ -1,5 +1,35 @@
 #include "World.h"
 
+bool _ContactProcessedCallback(btManifoldPoint& cp, void* body0, void* body1)
+{
+	CollisionObject* p1 = (CollisionObject*)((btRigidBody*)body0)->getUserPointer();
+	CollisionObject* p2 = (CollisionObject*)((btRigidBody*)body1)->getUserPointer();
+
+	assert(p1 && p2);
+
+	if (p1->GetType() == CollidingShip && 
+		p2->GetType() == CollidingShip)
+		return false;
+
+	if (p1->GetType() == CollidingBullet && 
+		p2->GetType() == CollidingBullet)
+	{
+		((Bullet*)p1)->hit();
+		((Bullet*)p2)->hit();
+		return false;
+	}
+
+	btVector3 pointA = cp.getPositionWorldOnA();
+	btVector3 pointB = cp.getPositionWorldOnB();
+
+	if (p1->GetType() == CollidingShip)
+		((Ship*)p1)->hit((Bullet*)p2, &pointA, &pointB);
+	else
+		((Ship*)p2)->hit((Bullet*)p1, &pointB, &pointA);
+
+	return false;
+}
+
 World::World()
 {
 
@@ -15,6 +45,8 @@ void World::Init()
 {
 	worldLoader_ = new WorldLoader(&ships_);
 	worldLoader_->Init();
+
+	gContactProcessedCallback = _ContactProcessedCallback;
 }
 
 

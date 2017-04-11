@@ -6,7 +6,7 @@
 
 #include "Blocks\Block.h"
 #include "ShipController.h"
-
+#include "..\World\Effects\Bullet.h"
 
 class Ship : 
 	public CollisionObject
@@ -26,6 +26,8 @@ public:
 
 	void RunLUA();
 	void ExecuteLogic();
+
+	void hit(Bullet* bullet, btVector3* pointA, btVector3* pointB);
 
 private:
 	void ConstructShape(btScalar& mass, btVector3& inertia);

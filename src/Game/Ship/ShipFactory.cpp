@@ -23,7 +23,7 @@ Ship* ShipFactory::GenerateShip(ShipInfo shipInfo)
 	Ship* ship = new Ship;
 
 	ship->shipName_      = shipInfo.name_;
-	ship->CollisionType_ = CollidingShip;
+	ship->collisionType_ = CollidingShip;
 
 	btQuaternion rotation(
 		(rand() - RAND_MAX) / 2.0f,

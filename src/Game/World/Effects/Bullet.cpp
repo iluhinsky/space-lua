@@ -27,11 +27,12 @@ Bullet::Bullet(glm::vec3 velocity, glm::vec3 startingPosition)
 	graphicsAsset_ = APPLICATION->GetGraphicsWorld()->GetManager()->Get(bulletInfo);
 	graphicsAsset_->SetScale(0.005f);
 
-	isExist_ = true;
+	isExist_       = true;
+	collisionType_ = CollidingBullet;
 
 	InitRigidBody();
 
-	body_->applyCentralImpulse(vel);
+	body_->setLinearVelocity(vel);
 
 	remainingTime_ = BULLET_TIME;
 }
@@ -72,6 +73,11 @@ bool Bullet::isExist()
 void Bullet::ReduceTime(int dt)
 {
 	remainingTime_ -= dt;
+}
+
+void Bullet::hit()
+{
+	isExist_ = false;
 }
 
 void Bullet::Draw(Camera* camera)
