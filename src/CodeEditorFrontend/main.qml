@@ -8,7 +8,7 @@ ApplicationWindow {
     height: 480
     title: qsTr("Code Editor")
 
-    TaskEditor{
+    TaskEditor {
         id: taskEditor
         anchors.fill: parent
     }

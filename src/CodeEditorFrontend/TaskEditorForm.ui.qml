@@ -8,6 +8,7 @@ Item {
     property alias sendLuaButton: sendLuaButton
     property alias codeArea: codeArea
     property alias shipTextArea: shipTextArea
+    property alias startSimulationButton: startSimulationButton
     ColumnLayout {
         anchors.rightMargin: 0
         anchors.bottomMargin: 0
@@ -106,6 +107,8 @@ Item {
             text: qsTr("Отправить код на сервер")
         }
         Button {
+            id: startSimulationButton
+
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             text: qsTr("Запустить симуляцию!")
         }

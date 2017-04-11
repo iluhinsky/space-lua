@@ -5,6 +5,11 @@ TaskEditorForm {
         sendLuaCode(codeArea.text, shipTextArea.text)
     }
 
+    startSimulationButton.onClicked: {
+        simulatorDownloader.startSimulator("/../../bin/GameEngineDebug.exe", shipTextArea.text,
+                                           codeArea.text)
+    }
+
     function sendLuaCode (code, ship) {
         var http = new XMLHttpRequest()
         var url = "http://0.0.0.0:5000/send_code"
