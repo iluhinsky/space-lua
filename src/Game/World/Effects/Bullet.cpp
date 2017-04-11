@@ -27,6 +27,8 @@ Bullet::Bullet(glm::vec3 velocity, glm::vec3 startingPosition)
 	graphicsAsset_ = APPLICATION->GetGraphicsWorld()->GetManager()->Get(bulletInfo);
 	graphicsAsset_->SetScale(0.005f);
 
+	isExist_ = true;
+
 	InitRigidBody();
 
 	body_->applyCentralImpulse(vel);
@@ -36,6 +38,12 @@ Bullet::Bullet(glm::vec3 velocity, glm::vec3 startingPosition)
 
 Bullet::~Bullet()
 {
+	PHYSICSWORLD->RemoveRigidBody(body_);
+
+	delete motionState_;
+	delete body_;
+
+	std::cout << "Bullet destroyed!" << std::endl; //TODO: remove!
 }
 
 void Bullet::InitRigidBody()

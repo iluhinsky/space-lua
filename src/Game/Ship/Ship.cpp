@@ -11,7 +11,11 @@ Ship::Ship() : controller_(this)
 
 Ship::~Ship()
 {
+	PHYSICSWORLD->RemoveRigidBody(body_);
 
+	delete motionState_;
+	delete shape_;
+	delete body_;
 }
 
 

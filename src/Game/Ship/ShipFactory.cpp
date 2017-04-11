@@ -52,18 +52,13 @@ void ShipFactory::LoadConstruction(Ship* ship)
 	FILE* file = fopen(constrName.c_str(), "r");
 	assert(file);
 
-	Block* newBlock = nullptr;
+	Block* newBlock = blockFactory_.GetBlock(file);
 
-	while (true) // TODO: REMOVE THIS FCKN SHIT !!!!!!!
+	while (newBlock != nullptr) 
 	{
-		newBlock = blockFactory_.GetBlock(file);
-
-		if (newBlock == nullptr)
-		{
-			break;
-		}
-
 		ship->blocks_.push_back(newBlock);
+
+		newBlock = blockFactory_.GetBlock(file);
 	}
 
 	fclose(file);

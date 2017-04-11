@@ -11,11 +11,12 @@ Application::Application()
 
 Application::~Application() 
 {
-	physicsWorld_->Destroy();
-
 	delete world_;
 	delete player_;
+
+	physicsWorld_->Destroy();
 	delete physicsWorld_;
+
 	delete graphicsWorld_;
 }
 

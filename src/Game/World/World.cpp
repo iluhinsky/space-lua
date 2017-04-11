@@ -7,7 +7,7 @@ World::World()
 
 World::~World()
 {
-
+	bullets_.clear();
 }
 
 
@@ -43,8 +43,6 @@ void World::CreateBullet(glm::vec3 velocity, glm::vec3 startingPosition)
 	auto newBullet = std::make_shared<Bullet>(velocity, startingPosition);
 
 	bullets_.push_back(newBullet);
-
-
 }
 
 void World::ClearUnexisingBullets()

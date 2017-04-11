@@ -15,7 +15,7 @@ public:
 protected:
 	CollisionObjectType   CollisionType_;
 
-	btCollisionShape*      shape_;
+	btCollisionShape*     shape_;
 	btDefaultMotionState* motionState_;
 	btRigidBody*          body_;
 };
