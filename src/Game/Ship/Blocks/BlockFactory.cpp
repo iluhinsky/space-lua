@@ -4,6 +4,7 @@
 
 #include "BlockMain.h"
 #include "BlockShield.h"
+#include "BlockWeapon.h"
 
 
 ObjectDataBase::ObjectDataBase()
@@ -74,6 +75,10 @@ void ObjectDataBase::Fill(std::string name)
 
 			break;
 
+		case BlockTypeWeapon:
+			newBlock = new BlockWeapon;
+			break;
+
 		default:
 			break;
 		}
@@ -141,6 +146,7 @@ Block* BlockFactory::GetBlock(FILE* file)
 		switch (blockType)
 		{
 		case BlockTypeShield:
+		case BlockTypeWeapon:
 			fscanf(file, "%s", blockTypeName);
 
 			((BlockShield*) newBlock)->name_ = blockTypeName;
