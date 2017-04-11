@@ -2,6 +2,8 @@
 
 #include <btBulletDynamicsCommon.h>
 
+#include "..\..\Game\CollisionObjectTypes.h"
+
 class CollisionObject
 {
 public:
@@ -11,7 +13,9 @@ public:
 	virtual void InitRigidBody() = 0;
 
 protected:
-	btCompoundShape*      shape_;
+	CollisionObjectType   CollisionType_;
+
+	btCollisionShape*     shape_;
 	btDefaultMotionState* motionState_;
 	btRigidBody*          body_;
 };

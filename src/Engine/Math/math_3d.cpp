@@ -1,5 +1,10 @@
 #include "math_3d.h"
 
+btVector3 toBT(glm::vec3 vec)
+{
+	return btVector3(vec.x, vec.y, vec.z);
+}
+
 glm::vec3 toGLM(btVector3& vector)
 {
 	float x = vector.getX();

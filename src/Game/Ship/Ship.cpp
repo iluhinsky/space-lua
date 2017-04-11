@@ -11,7 +11,11 @@ Ship::Ship() : controller_(this)
 
 Ship::~Ship()
 {
+	PHYSICSWORLD->RemoveRigidBody(body_);
 
+	delete motionState_;
+	delete shape_;
+	delete body_;
 }
 
 
@@ -103,7 +107,8 @@ void Ship::ConstructShape(btScalar& mass, btVector3& inertia)
 	shape_ = new btCompoundShape();
 
 	for (int i = 0; i < tempShape->getNumChildShapes(); i++)
-		shape_->addChildShape(principalTransformInverse_ * tempShape->getChildTransform(i), tempShape->getChildShape(i));
+		((btCompoundShape*) shape_)->addChildShape(principalTransformInverse_ * tempShape->getChildTransform(i), 
+			tempShape->getChildShape(i));
 
 	delete tempShape;
 }

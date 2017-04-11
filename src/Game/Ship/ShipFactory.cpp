@@ -21,8 +21,9 @@ void ShipFactory::Init()
 Ship* ShipFactory::GenerateShip(ShipInfo shipInfo)
 {
 	Ship* ship = new Ship;
-	
-	ship->shipName_ = shipInfo.name_;
+
+	ship->shipName_      = shipInfo.name_;
+	ship->CollisionType_ = CollidingShip;
 
 	btQuaternion rotation(
 		(rand() - RAND_MAX) / 2.0f,
@@ -52,18 +53,13 @@ void ShipFactory::LoadConstruction(Ship* ship)
 	FILE* file = fopen(constrName.c_str(), "r");
 	assert(file);
 
-	Block* newBlock = nullptr;
+	Block* newBlock = blockFactory_.GetBlock(file);
 
-	while (true) // TODO: REMOVE THIS FCKN SHIT !!!!!!!
+	while (newBlock != nullptr) 
 	{
-		newBlock = blockFactory_.GetBlock(file);
-
-		if (newBlock == nullptr)
-		{
-			break;
-		}
-
 		ship->blocks_.push_back(newBlock);
+
+		newBlock = blockFactory_.GetBlock(file);
 	}
 
 	fclose(file);
