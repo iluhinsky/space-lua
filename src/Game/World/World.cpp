@@ -49,8 +49,6 @@ void World::ClearUnexisingBullets()
 {
 	bullets_.remove_if([](std::shared_ptr<Bullet> bullet) 
 		{ return !(bullet->isExist()); });
-	for (auto ship : ships_)
-		ship->Draw(camera);
 }
 
 void World::RunLUA()
