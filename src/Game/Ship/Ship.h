@@ -27,10 +27,12 @@ public:
 	void RunLUA();
 	void ExecuteLogic();
 
-	void hit(Bullet* bullet, btVector3* pointA, btVector3* pointB);
+	void hit(Bullet* bullet, btVector3& pointA, btVector3& pointB);
 
 private:
 	void ConstructShape(btScalar& mass, btVector3& inertia);
+
+	Block* GetNearestBlockTo(const btVector3&  pointA, const btVector3& pointB);
 
 	std::string shipName_;
 	

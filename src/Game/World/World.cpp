@@ -23,9 +23,9 @@ bool _ContactProcessedCallback(btManifoldPoint& cp, void* body0, void* body1)
 	btVector3 pointB = cp.getPositionWorldOnB();
 
 	if (p1->GetType() == CollidingShip)
-		((Ship*)p1)->hit((Bullet*)p2, &pointA, &pointB);
+		((Ship*)p1)->hit((Bullet*)p2, pointA, pointB);
 	else
-		((Ship*)p2)->hit((Bullet*)p1, &pointB, &pointA);
+		((Ship*)p2)->hit((Bullet*)p1, pointB, pointA);
 
 	return false;
 }

@@ -81,7 +81,7 @@ void Ship::ExecuteLogic()
 		block->ExecuteCommand();
 }
 
-void Ship::hit(Bullet* bullet, btVector3* pointA, btVector3* pointB)
+void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)
 {
 	std::cout << "Ship was hitten!" << std::endl;
 
@@ -118,4 +118,9 @@ void Ship::ConstructShape(btScalar& mass, btVector3& inertia)
 			tempShape->getChildShape(i));
 
 	delete tempShape;
+}
+
+Block* Ship::GetNearestBlockTo(const btVector3&  pointA, const btVector3& pointB)
+{
+	return blocks_[0];
 }
