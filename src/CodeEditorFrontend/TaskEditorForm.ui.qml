@@ -5,6 +5,10 @@ import QtQuick.Layouts 1.3
 Item {
     id: taskEditor
     anchors.fill: parent
+    property alias sendLuaButton: sendLuaButton
+    property alias codeArea: codeArea
+    property alias shipTextArea: shipTextArea
+    property alias startSimulationButton: startSimulationButton
     ColumnLayout {
         anchors.rightMargin: 0
         anchors.bottomMargin: 0
@@ -33,45 +37,80 @@ Item {
             readOnly: true
         }
 
-        RowLayout {
-            Layout.leftMargin: parent.width * 0.15
-            Layout.rightMargin: parent.width * 0.15
-            ColumnLayout {
-                id: numbersForCode
 
-                Rectangle {
-                    width: 25
-                    height: 6
+        ColumnLayout {
+
+            TabBar {
+                id: tabBar
+                TabButton {
+                    text: qsTr("Логика")
                 }
+                TabButton {
+                    text: qsTr("Корабль")
+                }
+            }
 
-                Repeater {
-                    id: numbersList
-                    delegate:
-                        Rectangle {
-                        width: 25
-                        height: 25
-                        Text {
-                            text: index
-                            anchors.verticalCenter: parent.verticalCenter
-                            font.bold: true
+            StackLayout {
+                currentIndex: tabBar.currentIndex
+                ColumnLayout {
+
+                    RowLayout {
+                        Layout.leftMargin: parent.width * 0.15
+                        Layout.rightMargin: parent.width * 0.15
+                        ColumnLayout {
+                            id: numbersForCode
+
+                            Rectangle {
+                                width: 25
+                                height: 6
+                            }
+
+                            Repeater {
+                                id: numbersList
+                                delegate:
+                                    Rectangle {
+                                    width: 25
+                                    height: 25
+                                    Text {
+                                        text: index
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        font.bold: true
+                                    }
+                                }
+                                model: codeArea.lineCount + 1
+                            }
+                        }
+                        TextArea {
+                            id: codeArea
+                            anchors.top: parent.top
+                            text: qsTr("int main() {\n\tprint(\"Hello\");\n}")
+                            font.pointSize: 17
+                            wrapMode: Text.NoWrap
+                            Layout.fillWidth: true
                         }
                     }
-                    model: codeArea.lineCount + 1
+                }
+                TextArea {
+                    id: shipTextArea
+                    anchors.leftMargin: parent.width * 0.15
+                    anchors.rightMargin: parent.width * 0.15
+                    wrapMode: Text.NoWrap
+                    Layout.fillWidth: true
+                    font.pointSize: 17
+                    text: qsTr("Code about ship...")
                 }
             }
-            TextArea {
-                id: codeArea
-                anchors.top: parent.top
-                text: qsTr("int main() {\n\tprint(\"Hello\");\n}")
-                font.pointSize: 17
-                wrapMode: Text.NoWrap
-                Layout.fillWidth: true
-            }
         }
-
         Button {
+            id: sendLuaButton
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-            text: qsTr("К бою!")
+            text: qsTr("Отправить код на сервер")
+        }
+        Button {
+            id: startSimulationButton
+
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            text: qsTr("Запустить симуляцию!")
         }
     }
 }
