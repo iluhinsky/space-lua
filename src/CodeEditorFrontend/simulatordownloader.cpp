@@ -12,8 +12,9 @@ void SimulatorDownloader::startSimulator(QString exePath, QString shipDeclaratio
                                          QString shipScript){
     QString shipDeclarationFilePath = QGuiApplication::applicationDirPath() +
             "/../../bin/resources/construction/Ship1.txt";
+
     QFile file( shipDeclarationFilePath );
-    if ( file.open(QIODevice::ReadWrite) )
+    if ( file.open(QIODevice::WriteOnly) )
     {
         QTextStream stream( &file );
         stream << shipDeclaration;
@@ -22,13 +23,15 @@ void SimulatorDownloader::startSimulator(QString exePath, QString shipDeclaratio
     QString shipScriptFilePath = QGuiApplication::applicationDirPath() +
             "/../../bin/resources/scripts/Ship1.lua";
 
-    QFile file( shipScriptFilePath );
-    if ( file.open(QIODevice::ReadWrite) )
+    QFile file1( shipScriptFilePath );
+    if ( file1.open(QIODevice::WriteOnly) )
     {
-        QTextStream stream( &file );
+        QTextStream stream( &file1 );
         stream << shipScript;
     }
-    file.close();
+    file1.close();
 
+    this->process.setWorkingDirectory(QGuiApplication::applicationDirPath() +
+                                      '/../../bin/');
     this->process.start(QGuiApplication::applicationDirPath() + exePath);
 }
