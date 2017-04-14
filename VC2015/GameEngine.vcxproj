@@ -50,6 +50,7 @@
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockShield.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockTypes.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockWeapon.h" />
+    <ClInclude Include="..\src\Game\Ship\Blocks\OrientedBlock.h" />
     <ClInclude Include="..\src\Game\Ship\Ship.h" />
     <ClInclude Include="..\src\Game\Ship\ShipController.h" />
     <ClInclude Include="..\src\Game\Ship\ShipFactory.h" />
@@ -89,6 +90,7 @@
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockMain.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockShield.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockWeapon.cpp" />
+    <ClCompile Include="..\src\Game\Ship\Blocks\OrientedBlock.cpp" />
     <ClCompile Include="..\src\Game\Ship\Ship.cpp" />
     <ClCompile Include="..\src\Game\Ship\ShipController.cpp" />
     <ClCompile Include="..\src\Game\Ship\ShipFactory.cpp" />

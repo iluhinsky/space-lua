@@ -161,6 +161,18 @@ Block* BlockFactory::GetBlock(FILE* file)
 			break;
 		}
 
+		switch (blockType)
+		{
+		case BlockTypeWeapon:
+			fscanf(file, " (%f, %f, %f)",
+				&(((OrientedBlock*)newBlock)->orientation_.x),
+				&(((OrientedBlock*)newBlock)->orientation_.y),
+				&(((OrientedBlock*)newBlock)->orientation_.z));
+			break;
+		default:
+			break;
+		}
+
 		return newBlock;
 	}
 

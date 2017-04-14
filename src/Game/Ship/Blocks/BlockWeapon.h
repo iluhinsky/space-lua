@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Block.h"
+#include "OrientedBlock.h"
 
 
 class BlockWeapon :
-	public Block
+	public OrientedBlock
 {
 	friend class ObjectDataBase;
 	friend class BlockFactory;
