@@ -86,6 +86,11 @@ void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)
 	std::cout << "Ship was hitten!" << std::endl;
 
 	bullet->hit();
+
+	Block* damagedBlock = GetNearestBlockTo(pointA, pointB);
+
+	if (damagedBlock->GetType() == BlockTypeShield)
+		std::cout << "Block " << ((BlockShield*)damagedBlock)->GetName() << " was beated!" << std::endl;
 }
 
 void Ship::ConstructShape(btScalar& mass, btVector3& inertia)
@@ -122,5 +127,58 @@ void Ship::ConstructShape(btScalar& mass, btVector3& inertia)
 
 Block* Ship::GetNearestBlockTo(const btVector3&  pointA, const btVector3& pointB)
 {
-	return blocks_[0];
+	btScalar inf = 1.0e+2f;
+	btScalar dist = +inf;
+	btVector3 closestBlock;
+
+	btCompoundShape* compoundShape = (btCompoundShape*)shape_;
+
+	for (int i = 0; i < compoundShape->getNumChildShapes(); i++)
+	{
+		btCollisionShape* childShape = compoundShape->getChildShape(i);
+
+		btVector3 localA = principalTransform_ * body_->getWorldTransform().inverse() * pointA;
+		btVector3 localB = principalTransform_ * body_->getWorldTransform().inverse() * pointB;
+
+		btVector3 block = principalTransform_ * compoundShape->getChildTransform(i).getOrigin();
+
+		btVector3 dA = localA - block;
+		btVector3 dB = localB - block;
+
+		btScalar d = max(abs(dA.getX()), max(abs(dA.getY()), max(abs(dA.getZ()),
+			max(abs(dB.getX()), max(abs(dB.getY()), abs(dB.getZ()))))));
+
+		if (d < dist)
+		{
+			dist = d;
+			closestBlock = block;
+		}
+	}
+
+	if (dist < +inf)
+		return getBlockByWorldPosition(toWorldPosition(closestBlock));
+
+	return NULL;
+}
+
+btVector3 Ship::toWorldPosition(const btVector3& localPosition)
+{
+	return body_->getWorldTransform() * principalTransformInverse_ * localPosition;
+}
+
+Block* Ship::getBlockByWorldPosition(const btVector3& position)
+{
+	btVector3 localPosition = principalTransform_ * body_->getCenterOfMassTransform().inverse() * position;
+	glm::vec3 blockPosition(
+		int(round(localPosition.getX())),
+		int(round(localPosition.getY())),
+		int(round(localPosition.getZ())));
+
+	Block* currBlock = nullptr;
+
+	for (auto block : blocks_)
+		if (block->GetRelatedCoords() == blockPosition)
+			currBlock = block;
+
+	return currBlock;;
 }

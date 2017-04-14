@@ -16,6 +16,9 @@ bool _ContactProcessedCallback(btManifoldPoint& cp, void* body0, void* body1)
 	{
 		((Bullet*)p1)->hit();
 		((Bullet*)p2)->hit();
+
+		std::cout << "Bullets damage themselves!" << std::endl;
+
 		return false;
 	}
 

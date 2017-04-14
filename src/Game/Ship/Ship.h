@@ -29,6 +29,9 @@ public:
 
 	void hit(Bullet* bullet, btVector3& pointA, btVector3& pointB);
 
+	btVector3 toWorldPosition(const btVector3& localPosition);
+	Block*    getBlockByWorldPosition(const btVector3& position);
+
 private:
 	void ConstructShape(btScalar& mass, btVector3& inertia);
 
