@@ -12,8 +12,10 @@ public:
 
 	virtual void InitRigidBody() = 0;
 
+	CollisionObjectType GetType();
+
 protected:
-	CollisionObjectType   CollisionType_;
+	CollisionObjectType   collisionType_;
 
 	btCollisionShape*     shape_;
 	btDefaultMotionState* motionState_;

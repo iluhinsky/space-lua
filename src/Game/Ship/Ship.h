@@ -6,7 +6,7 @@
 
 #include "Blocks\Block.h"
 #include "ShipController.h"
-
+#include "..\World\Effects\Bullet.h"
 
 class Ship : 
 	public CollisionObject
@@ -27,8 +27,15 @@ public:
 	void RunLUA();
 	void ExecuteLogic();
 
+	void hit(Bullet* bullet, btVector3& pointA, btVector3& pointB);
+
+	btVector3 toWorldPosition(const btVector3& localPosition);
+	Block*    getBlockByWorldPosition(const btVector3& position);
+
 private:
 	void ConstructShape(btScalar& mass, btVector3& inertia);
+
+	Block* GetNearestBlockTo(const btVector3&  pointA, const btVector3& pointB);
 
 	std::string shipName_;
 	
