@@ -11,6 +11,8 @@ public:
 	OrientedBlock();
 	~OrientedBlock();
 
+	bool isDirectionAllowed(glm::vec3 direction);
+
 protected:
 	glm::vec3 orientation_;
 };
