@@ -8,12 +8,13 @@ end
 if 5.0 < currentTime then
 	EnableShield("shield1")
 end
-if 10.0 < currentTime and currentTime < 15.0 then
-	DisableShield("shield1")
+if 5.0 < currentTime and currentTime < 5.1 then
+--	DisableShield("shield1")
+	Shoot("weapon1", 0.0, -10.0, 0.0)
 end
-if 15.0 < currentTime then
+--if 11.0 < currentTime then
 --	EnableShield("shield1")
-end
+--end
 
 --print("LUA FINISH: Ship1")
 

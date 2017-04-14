@@ -11,6 +11,7 @@ extern "C"
 #include <lua/LuaBridge.h>
 
 #include "Blocks/BlockShield.h"
+#include "Blocks/BlockWeapon.h"
 
 #define INSTRUCTION_LIMIT 1000
 
@@ -30,6 +31,7 @@ public:
 	static void SwitchShield(const std::string& blockName, BlockShieldCommand command, lua_State* luaThread);
 	static void EnableShield(const std::string& blockName, lua_State* luaThread);
 	static void DisableShield(const std::string& blockName, lua_State* luaThread);
+	static void Shoot(const std::string& blockName, double xBulletDir, double yBulletDir, double zBulletDir, lua_State* luaThread);
 
 	void Run();
 

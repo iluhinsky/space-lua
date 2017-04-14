@@ -83,6 +83,30 @@ void ShipController::CatchLuaHook(lua_State* luaThread, lua_Debug* luaDebug)
 }
 
 
+void ShipController::Shoot(const std::string& blockName, double xBulletDir, double yBulletDir, double zBulletDir, lua_State* luaThread)
+{
+	assert(luaThread);
+
+	Ship* ship = shipsDataBase_[luaThread];
+	assert(ship);
+
+	auto it = std::find_if(ship->blocks_.begin(), ship->blocks_.end(), [blockName](Block* block)
+	{
+		return block->GetType() == BlockTypeWeapon &&
+			!blockName.compare(((BlockWeapon*)block)->GetName());
+	});
+
+	if (it != ship->blocks_.end())
+	{
+		((BlockWeapon*)(*it))->SetDirection(glm::vec3(xBulletDir, yBulletDir, zBulletDir));
+		((BlockWeapon*)(*it))->SetCommand(ShootCommand);
+	}
+	else
+		std::cout << "There are no appropriate shields for shooting" <<
+		" ('" << blockName << "') " << std::endl; // for testing
+}
+
+
 void ShipController::Run()
 {
 	if (!isLuaScriptNormal_)

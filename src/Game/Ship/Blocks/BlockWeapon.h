@@ -2,6 +2,11 @@
 
 #include "OrientedBlock.h"
 
+enum BlockWeaponCommand
+{
+	ShootCommand = 0
+};
+
 
 class BlockWeapon :
 	public OrientedBlock
@@ -18,6 +23,8 @@ public:
 	void   ReduceTime(int dt);
 	const  std::string& GetName();
 	virtual Block* Clone() const;
+
+	void SetCommand(BlockWeaponCommand);
 
 private:
 	void Shoot();

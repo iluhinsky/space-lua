@@ -38,6 +38,18 @@ Block* BlockWeapon::Clone() const
 	return new BlockWeapon(*this);
 }
 
+void BlockWeapon::SetCommand(BlockWeaponCommand command)
+{
+	switch (command)
+	{
+	case ShootCommand:
+		(this->Command_) = (void (Block::*)()) &BlockWeapon::Shoot;
+		break;
+	default:
+		break;
+	}
+}
+
 void BlockWeapon::Shoot()
 {
 	if (coolDownTime_ > 0)
@@ -47,4 +59,6 @@ void BlockWeapon::Shoot()
 		return;
 
 	//! Create the bullet
+	//std::cout << "Shooting from " << name_ << " !\n";
+	WORLD->CreateBullet(currDirection_, glm::vec3(-20.0f, 5.0f, 0.0f));
 }
