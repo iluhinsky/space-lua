@@ -89,6 +89,11 @@ void Ship::ExecuteLogic()
 		block->ExecuteCommand();
 }
 
+btTransform Ship::GetTransform()
+{
+	return transform_;
+}
+
 void Ship::ConstructShape(btScalar& mass, btVector3& inertia)
 {
 	mass = 0.0f;

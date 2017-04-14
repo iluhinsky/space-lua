@@ -15,3 +15,4 @@ glm::vec3 toGLM(btVector3& vector);
 glm::vec4 toVec4(glm::vec3& vector);
 
 glm::mat4 toGLM(btMatrix3x3& matrix);
+glm::mat3 toGLM_M3x3(btMatrix3x3& matrix);

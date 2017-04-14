@@ -29,6 +29,8 @@ public:
 	void RunLUA();
 	void ExecuteLogic();
 
+	btTransform GetTransform();
+
 private:
 	void ConstructShape(btScalar& mass, btVector3& inertia);
 

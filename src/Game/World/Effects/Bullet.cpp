@@ -2,7 +2,7 @@
 
 #include "..\..\..\Application\Application.h"
 
-const int       BULLET_MASS    = 1.0f;
+const float     BULLET_MASS    = 0.1f;
 const btVector3 BULLET_INERTIA = btVector3(1.0f, 1.0f, 1.0f);
 const int       BULLET_TIME    = 10000;
 
@@ -31,7 +31,7 @@ Bullet::Bullet(glm::vec3 velocity, glm::vec3 startingPosition)
 
 	InitRigidBody();
 
-	body_->applyCentralImpulse(vel);
+	body_->setLinearVelocity(vel);
 
 	remainingTime_ = BULLET_TIME;
 }

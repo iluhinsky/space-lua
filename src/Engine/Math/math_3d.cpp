@@ -29,3 +29,14 @@ glm::mat4 toGLM(btMatrix3x3& matrix)
 
 	return GLM_matrix;
 }
+
+glm::mat3 toGLM_M3x3(btMatrix3x3& matrix)
+{
+	glm::mat3 GLM_matrix(1.0f);
+
+	GLM_matrix[0][0] = matrix[0][0]; GLM_matrix[0][1] = matrix[0][1]; GLM_matrix[0][2] = matrix[0][2];
+	GLM_matrix[1][0] = matrix[1][0]; GLM_matrix[1][1] = matrix[1][1]; GLM_matrix[1][2] = matrix[1][2];
+	GLM_matrix[2][0] = matrix[2][0]; GLM_matrix[2][1] = matrix[2][1]; GLM_matrix[2][2] = matrix[2][2];
+
+	return GLM_matrix;
+}

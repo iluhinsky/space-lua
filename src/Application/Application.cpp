@@ -156,6 +156,11 @@ GraphicsWorld* Application::GetGraphicsWorld()
 	return graphicsWorld_;
 }
 
+World* Application::GetWorld()
+{
+	return world_;
+}
+
 sf::Time Application::UpdateAndCountTime()
 {
 	sf::Time newTime = clocks_.getElapsedTime();

@@ -1,6 +1,6 @@
 #include "BlockWeapon.h"
 
-
+#include "..\..\..\Application\Application.h"
 
 BlockWeapon::BlockWeapon()
 {
@@ -43,5 +43,8 @@ void BlockWeapon::Shoot()
 	if (coolDownTime_ > 0)
 		return;
 
-	// Shooting
+	if (!isDirectionAllowed(currDirection_))
+		return;
+
+	//! Create the bullet
 }

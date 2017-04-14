@@ -57,6 +57,8 @@ void ShipFactory::LoadConstruction(Ship* ship)
 
 	while (newBlock != nullptr) 
 	{
+		newBlock->SetShip(ship);
+
 		ship->blocks_.push_back(newBlock);
 
 		newBlock = blockFactory_.GetBlock(file);

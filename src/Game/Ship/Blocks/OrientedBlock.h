@@ -12,8 +12,10 @@ public:
 	~OrientedBlock();
 
 	bool isDirectionAllowed(glm::vec3 direction);
+	void SetDirection(glm::vec3 direction);
 
 protected:
 	glm::vec3 orientation_;
+	glm::vec3 currDirection_;
 };
 
