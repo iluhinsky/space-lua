@@ -27,6 +27,9 @@ public:
 	~Block();
 
 	BlockType GetType();
+	void hit(int damage);
+	bool isExist();
+	bool isLinked();
 
 	void Draw(Camera* camera, glm::vec4& globalCoord, glm::mat4& rotation) const;
 	virtual Block* Clone() const = 0; //TODO: Remove this
@@ -46,6 +49,8 @@ protected:
 
 	float hits_;
 	float mass_;
+	
+	bool isLinked_;
 
 	GraphicsObject* graphicsAsset_;
 
