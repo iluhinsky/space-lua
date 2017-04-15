@@ -38,6 +38,8 @@ public:
 	glm::vec3 GetRelatedCoords();
 	void      SetShip(Ship* ship);
 
+	virtual const std::string& GetName() = 0;
+
 	void ExecuteCommand();
 
 	virtual void SetStandartCommand();

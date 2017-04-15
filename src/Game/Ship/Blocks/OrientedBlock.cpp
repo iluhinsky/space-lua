@@ -12,7 +12,7 @@ OrientedBlock::~OrientedBlock()
 }
 
 
-bool OrientedBlock::isDirectionAllowed(glm::vec3 direction)
+bool OrientedBlock::IsDirectionAllowed(glm::vec3 direction)
 {
 	btTransform shipTransform = ship_->GetTransform();
 

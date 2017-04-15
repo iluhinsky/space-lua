@@ -11,8 +11,10 @@ public:
 	OrientedBlock();
 	~OrientedBlock();
 
-	bool isDirectionAllowed(glm::vec3 direction);
+	bool IsDirectionAllowed(glm::vec3 direction);
 	void SetDirection(glm::vec3 direction);
+
+	virtual const std::string& GetName() = 0;
 
 protected:
 	glm::vec3 orientation_;

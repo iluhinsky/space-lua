@@ -43,17 +43,12 @@ void ShipController::SwitchShield(const std::string& blockName, BlockShieldComma
 	Ship* ship = shipsDataBase_[luaThread];
 	assert(ship);
 
-	auto it = std::find_if(ship->blocks_.begin(), ship->blocks_.end(), [blockName](Block* block)
-	{
-		return block->GetType() == BlockTypeShield && 
-			!blockName.compare(((BlockShield*)block)->GetName());
-	});
+	auto block = FindBlock(blockName, BlockTypeShield, ship);
 
-	if (it != ship->blocks_.end())
-		((BlockShield*)(*it))->SetComand(command);
+	if (block != ship->blocks_.end())
+		((BlockShield*)(*block))->SetComand(command);
 	else
-		std::cout << "There are no appropriate shields for switching" << 
-		" ('" << blockName << "') " << std::endl; // for testing
+		std::cout << "There are no appropriate shields for switching" << " ('" << blockName << "') " << std::endl;
 }
 
 
@@ -83,6 +78,29 @@ void ShipController::CatchLuaHook(lua_State* luaThread, lua_Debug* luaDebug)
 }
 
 
+bool ShipController::IsDirectionAllowed(const std::string& blockName, double xDir, double yDir, double zDir, lua_State* luaThread)
+{
+	assert(luaThread);
+
+	Ship* ship = shipsDataBase_[luaThread];
+	assert(ship);
+
+	bool isDirectionAllowed = false;
+	auto block = FindBlock(blockName, BlockTypeWeapon, ship);
+/*	if (block == ship->blocks_.end())
+	{
+		block = GetBlock(blockName, BlockTypeEngine, ship); // for engine
+	}*/
+
+	if (block != ship->blocks_.end())
+	{
+		isDirectionAllowed = ((OrientedBlock*)(*block))->IsDirectionAllowed(glm::vec3(xDir, yDir, zDir));
+	}
+
+	return isDirectionAllowed;
+}
+
+
 void ShipController::Shoot(const std::string& blockName, double xBulletDir, double yBulletDir, double zBulletDir, lua_State* luaThread)
 {
 	assert(luaThread);
@@ -90,20 +108,28 @@ void ShipController::Shoot(const std::string& blockName, double xBulletDir, doub
 	Ship* ship = shipsDataBase_[luaThread];
 	assert(ship);
 
-	auto it = std::find_if(ship->blocks_.begin(), ship->blocks_.end(), [blockName](Block* block)
-	{
-		return block->GetType() == BlockTypeWeapon &&
-			!blockName.compare(((BlockWeapon*)block)->GetName());
-	});
+	auto block = FindBlock(blockName, BlockTypeWeapon, ship);
 
-	if (it != ship->blocks_.end())
+	if (block != ship->blocks_.end())
 	{
-		((BlockWeapon*)(*it))->SetDirection(glm::vec3(xBulletDir, yBulletDir, zBulletDir));
-		((BlockWeapon*)(*it))->SetCommand(ShootCommand);
+		((BlockWeapon*)(*block))->SetDirection(glm::vec3(xBulletDir, yBulletDir, zBulletDir));
+		((BlockWeapon*)(*block))->SetCommand(ShootCommand);
 	}
 	else
-		std::cout << "There are no appropriate shields for shooting" <<
-		" ('" << blockName << "') " << std::endl; // for testing
+		std::cout << "There are no appropriate shields for shooting" << " ('" << blockName << "') " << std::endl;
+}
+
+
+std::vector<Block*>::iterator ShipController::FindBlock(const std::string& blockName, BlockType blockType, Ship* ship)
+{
+	assert(ship);
+
+	auto it = std::find_if(ship->blocks_.begin(), ship->blocks_.end(), [blockName, blockType](Block* block)
+	{
+		return block->GetType() == blockType && !blockName.compare(block->GetName());
+	});
+
+	return it;
 }
 
 

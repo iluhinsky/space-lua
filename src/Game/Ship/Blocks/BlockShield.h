@@ -20,7 +20,7 @@ public:
 
 	~BlockShield();
 
-	const std::string& GetName();
+	virtual const std::string& GetName();
 	virtual Block* Clone() const;
 
 	void SetComand(BlockShieldCommand command);

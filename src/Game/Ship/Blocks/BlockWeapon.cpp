@@ -55,10 +55,9 @@ void BlockWeapon::Shoot()
 	if (coolDownTime_ > 0)
 		return;
 
-	if (!isDirectionAllowed(currDirection_))
+	if (!IsDirectionAllowed(currDirection_))
 		return;
 
 	//! Create the bullet
-	//std::cout << "Shooting from " << name_ << " !\n";
-	WORLD->CreateBullet(currDirection_, glm::vec3(-20.0f, 5.0f, 0.0f));
+	WORLD->CreateBullet(currDirection_, glm::vec3(0.0f, 5.0f, 0.0f));
 }

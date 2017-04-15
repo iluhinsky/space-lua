@@ -20,10 +20,10 @@ public:
 
 	~BlockWeapon();
 
-	void   ReduceTime(int dt);
-	const  std::string& GetName();
+	virtual const std::string& GetName();
 	virtual Block* Clone() const;
 
+	void ReduceTime(int dt);
 	void SetCommand(BlockWeaponCommand);
 
 private:
