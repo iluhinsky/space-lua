@@ -41,7 +41,7 @@ void Particle::Update(float dt)
 
 glm::vec3 Particle::GenRandVector()
 {
-	int A = rand();
+	int A = rand() + 1;
 
 	return glm::vec3{ (rand() % A) / float(A), (rand() % A) / float(A), (rand() % A) / float(A)};
 }

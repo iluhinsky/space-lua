@@ -33,7 +33,7 @@ private:
 
 	sf::Time	prevTime_;
 
-	void SetUniforms	(Camera* camera, glm::vec3& particlePos, Particle particle);
+	void SetUniforms(Camera* camera);
 	void SetTranslation	(Pipeline* p, Camera* camera, glm::vec4& worldPos);
 };
 

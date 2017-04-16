@@ -6,7 +6,7 @@ layout (location = 1) in vec2 TexCoord;
 uniform mat4 gWVP;  
 uniform mat3 gRot;
 
-uniform vec3	  eyePos;
+uniform vec3	  deltaPos;
 
 uniform float	  scale;
 
@@ -16,5 +16,5 @@ void main()
 {
     TexCoord_ = TexCoord;
 
-	gl_Position =   gWVP * vec4(scale*gRot*Position, 1.0);	
+	gl_Position =   gWVP * vec4(scale*gRot*Position + deltaPos, 1.0);	
 }

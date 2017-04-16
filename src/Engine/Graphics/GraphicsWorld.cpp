@@ -22,10 +22,10 @@ void GraphicsWorld::Init()
 
 	//For first design
 
-	assets.initialSpeed_ = glm::vec3{1, 1, 0};
-	assets.lifeTime_			= 5.0f;
-	assets.numberOfParticles_	= 500;
-	assets.flowPerSecond_		= 50;
+	assets.initialSpeed_ = glm::vec3{3, 3, 0};
+	assets.lifeTime_			= 20.0f;
+	assets.numberOfParticles_	= 100000;
+	assets.flowPerSecond_		= 10000;
 	
 	assets.modelName_	= "particle.3ds";
 	assets.textureName_ = "face.png";
