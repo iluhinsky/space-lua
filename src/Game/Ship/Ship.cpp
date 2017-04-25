@@ -94,11 +94,12 @@ void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)
 
 	damagedBlock->hit(10);
 
+	/*
 	if (damagedBlock->isExist())
 		return;
 	
 	blocks_.remove(damagedBlock);
-	
+	*/
 }
 
 void Ship::ConstructShape(btScalar& mass, btVector3& inertia)
