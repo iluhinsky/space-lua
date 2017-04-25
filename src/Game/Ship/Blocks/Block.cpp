@@ -16,6 +16,21 @@ BlockType Block::GetType()
 	return blockType_;
 }
 
+void Block::hit(int damage)
+{
+	hits_ -= damage;
+}
+
+bool Block::isExist()
+{
+	return (hits_ > 0);
+}
+
+bool Block::isLinked()
+{
+	return isLinked_;
+}
+
 
 void Block::Draw(Camera* camera, glm::vec4& globalCoord, glm::mat4& rotation) const
 {
