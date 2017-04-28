@@ -27,6 +27,9 @@ void World::ReduceTime(int dt)
 {
 	for (auto bullet : bullets_)
 		bullet->ReduceTime(dt);
+
+	for (auto ship : ships_)
+		ship->ReduceTime(dt);
 }
 
 void World::Draw(Camera* camera)
@@ -38,9 +41,9 @@ void World::Draw(Camera* camera)
 		bullet->Draw(camera);
 }
 
-void World::CreateBullet(glm::vec3 velocity, glm::vec3 startingPosition)
+void World::CreateBullet(glm::vec3 direction, glm::vec3 startingPosition)
 {
-	auto newBullet = std::make_shared<Bullet>(velocity, startingPosition);
+	auto newBullet = std::make_shared<Bullet>(direction, startingPosition);
 
 	bullets_.push_back(newBullet);
 }

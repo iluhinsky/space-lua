@@ -2,17 +2,19 @@
 
 #include "..\..\..\Application\Application.h"
 
-const float     BULLET_MASS    = 0.1f;
-const btVector3 BULLET_INERTIA = btVector3(1.0f, 1.0f, 1.0f);
-const int       BULLET_TIME    = 10000;
+const float     BULLET_MASS           = 0.1f;
+const btVector3 BULLET_INERTIA        = btVector3(1.0f, 1.0f, 1.0f);
+const int       BULLET_TIME           = 10000;
+const int       BULLET_VELOCITY       = 10;
+const float     BULLET_GRAPHICS_SCALE = 0.005f;
 
 
-Bullet::Bullet(glm::vec3 velocity, glm::vec3 startingPosition)
+Bullet::Bullet(glm::vec3 direction, glm::vec3 startingPosition)
 {
 	btMatrix3x3 rotation;
 	rotation.setIdentity();
 
-	btVector3 vel = toBT(velocity);
+	btVector3 vel = toBT(direction);
 	btVector3 pos = toBT(startingPosition);
 
 	transform_ = btTransform(rotation, pos);
@@ -25,13 +27,13 @@ Bullet::Bullet(glm::vec3 velocity, glm::vec3 startingPosition)
 	bulletInfo.shaderNames_._fragmentShaderName = "block_fragment.glsl";
 
 	graphicsAsset_ = APPLICATION->GetGraphicsWorld()->GetManager()->Get(bulletInfo);
-	graphicsAsset_->SetScale(0.005f);
+	graphicsAsset_->SetScale(BULLET_GRAPHICS_SCALE);
 
 	isExist_ = true;
 
 	InitRigidBody();
 
-	body_->setLinearVelocity(vel);
+	body_->setLinearVelocity(vel * BULLET_VELOCITY);
 
 	remainingTime_ = BULLET_TIME;
 }

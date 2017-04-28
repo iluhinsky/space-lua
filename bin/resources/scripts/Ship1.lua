@@ -8,7 +8,7 @@ end
 if 1.0 < currentTime then
 	EnableShield("shield1")
 end
-if 3.0 < currentTime and currentTime < 3.2 then
+if 3.0 < currentTime and currentTime < 15 then
 --	DisableShield("shield1")
 	isDirectionAllowed = IsDirectionAllowed("weapon1", 0.0, 1.0, 0.0)
 	if isDirectionAllowed == true then
@@ -21,11 +21,3 @@ end
 --end
 
 --print("LUA FINISH: Ship1")
-
-
-
-
-
-
-
-

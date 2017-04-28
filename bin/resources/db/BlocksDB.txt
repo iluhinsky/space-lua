@@ -20,4 +20,5 @@ model: cube.3ds
 texture: Nekit.png
 vertexShader: block_vertex.glsl 
 fragmentShader: block_fragment.glsl 
+coolDownTime: 2000
 END

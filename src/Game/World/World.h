@@ -22,7 +22,7 @@ public:
 	void Draw(Camera* camera);
 	void ReduceTime(int dt);
 
-	void CreateBullet(glm::vec3 velocity, glm::vec3 startingPosition);
+	void CreateBullet(glm::vec3 direction, glm::vec3 startingPosition);
 
 	void ClearUnexisingBullets();
 

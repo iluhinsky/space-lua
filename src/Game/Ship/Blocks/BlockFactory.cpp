@@ -34,6 +34,7 @@ void ObjectDataBase::Fill(std::string name)
 	char string[30] = {};
 	float n = 0.0f;
 	float rate = 0.0f;
+	int integer_param = 0;
 
 	GraphicsObjectInfo assetNames = {};
 
@@ -77,6 +78,12 @@ void ObjectDataBase::Fill(std::string name)
 
 		case BlockTypeWeapon:
 			newBlock = new BlockWeapon;
+
+			fscanf(file, " coolDownTime: %d", &integer_param);
+
+			((BlockWeapon*)newBlock)->coolDownTime_  = integer_param;
+			((BlockWeapon*)newBlock)->estimatedTime_ = integer_param;
+
 			break;
 
 		default:

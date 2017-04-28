@@ -14,6 +14,9 @@ BlockWeapon::BlockWeapon(const BlockWeapon& block)
 
 	hits_ = block.hits_;
 	mass_ = block.mass_;
+
+	estimatedTime_ = block.estimatedTime_;
+	coolDownTime_  = block.coolDownTime_;
 }
 
 BlockWeapon::~BlockWeapon()
@@ -22,10 +25,10 @@ BlockWeapon::~BlockWeapon()
 
 void BlockWeapon::ReduceTime(int dt)
 {
-	coolDownTime_ -= dt;
+	estimatedTime_ -= dt;
 
-	if (coolDownTime_ < 0)
-		coolDownTime_ = 0;
+	if (estimatedTime_ < 0)
+		estimatedTime_ = -1;
 }
 
 const std::string& BlockWeapon::GetName()
@@ -52,12 +55,22 @@ void BlockWeapon::SetCommand(BlockWeaponCommand command)
 
 void BlockWeapon::Shoot()
 {
-	if (coolDownTime_ > 0)
+	if (estimatedTime_ > 0)
 		return;
 
 	if (!IsDirectionAllowed(currDirection_))
 		return;
 
 	//! Create the bullet
-	WORLD->CreateBullet(currDirection_, glm::vec3(0.0f, 5.0f, 0.0f));
+	btTransform shipTransform = ship_->GetTransform();
+
+	glm::mat3 rotation     = toGLM_M3x3(shipTransform.getBasis());
+	glm::mat3 rotation_inv = glm::inverse(rotation);
+	glm::vec3 shipCoords   = toGLM(shipTransform.getOrigin());
+
+	glm::vec3 globalCoords = shipCoords + rotation_inv * relatedCoords_;
+
+	WORLD->CreateBullet(currDirection_, globalCoords + currDirection_ * 2.0f);
+
+	estimatedTime_ = coolDownTime_;
 }

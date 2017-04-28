@@ -29,6 +29,7 @@ public:
 private:
 	void Shoot();
 
+	int estimatedTime_;
 	int coolDownTime_; //! in milliseconds
 
 	std::string name_;

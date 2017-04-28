@@ -8,7 +8,7 @@ class Bullet :
 	public CollisionObject
 {
 public:
-	Bullet(glm::vec3 velocity, glm::vec3 startingPosition);
+	Bullet(glm::vec3 direction, glm::vec3 startingPosition);
 	~Bullet();
 
 	virtual void InitRigidBody();
