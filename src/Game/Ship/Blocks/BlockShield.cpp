@@ -57,12 +57,12 @@ void BlockShield::SetComand(BlockShieldCommand command)
 
 void BlockShield::EnableShield()
 {
-	if (!isWorking_) std::cout << "Enable Shield '" << name_ << "'. Now it is working.\n"; // for testing
+//	if (!isWorking_) std::cout << "Enable Shield '" << name_ << "'. Now it is working.\n"; // for testing
 	isWorking_ = true;
 }
 
 void BlockShield::DisableShield()
 {
-	if (isWorking_) std::cout << "Disable Shield '" << name_ << "'. Now it isn't working.\n"; // for testing
+//	if (isWorking_) std::cout << "Disable Shield '" << name_ << "'. Now it isn't working.\n"; // for testing
 	isWorking_ = false;
 }

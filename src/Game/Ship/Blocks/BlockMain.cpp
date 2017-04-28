@@ -27,3 +27,8 @@ Block* BlockMain::Clone() const
 {
 	return new BlockMain(*this);
 }
+
+const std::string& BlockMain::GetName()
+{
+	return name_;
+}

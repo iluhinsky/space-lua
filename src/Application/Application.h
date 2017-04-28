@@ -3,6 +3,7 @@
 #include "Window.h"
 #include "..\Engine\Graphics\GraphicsWorld.h"
 #include "..\Engine\Physics\PhysicsWorld.h"
+#include "..\Game\World\World.h"
 //#include "Manager.h"
 
 #include "../Engine/Logic/Controllers/Players/Player.h"
@@ -13,13 +14,11 @@ enum AppState
 	Menu = 2
 };
 
-class World;
-
 #define APPLICATION	Application::instance_
 
 #define PHYSICSWORLD  Application::instance_->GetPhysicsWorld()
 #define GRAPHICSWORLD Application::instance_->GetGraphicsWorld()
-
+#define WORLD         Application::instance_->GetWorld()
 
 class Application : public Window
 {
@@ -34,6 +33,7 @@ public:
 	sf::Time getTime() const;
 	PhysicsWorld*  GetPhysicsWorld();
 	GraphicsWorld* GetGraphicsWorld();
+	World*         GetWorld();
 
 private:
 	virtual void MainFunc();

@@ -57,6 +57,8 @@ void ShipFactory::LoadConstruction(Ship* ship)
 
 	while (newBlock != nullptr) 
 	{
+		newBlock->SetShip(ship);
+
 		ship->blocks_.push_back(newBlock);
 
 		newBlock = blockFactory_.GetBlock(file);
@@ -106,8 +108,10 @@ void ShipFactory::LoadController(Ship* ship)
 	lua_sethook(luaThread, ShipController::CatchLuaHook, LUA_MASKCOUNT, INSTRUCTION_LIMIT);
 
 	luabridge::getGlobalNamespace(ship->controller_.luaThread_)
-		.addFunction("GetTime",       &ShipController::GetTime)
-		.addFunction("EnableShield",  &ShipController::EnableShield)
-		.addFunction("DisableShield", &ShipController::DisableShield);
+		.addFunction("GetTime",            &ShipController::GetTime)
+		.addFunction("EnableShield",       &ShipController::EnableShield)
+		.addFunction("DisableShield",      &ShipController::DisableShield)
+		.addFunction("Shoot",              &ShipController::Shoot)
+		.addFunction("IsDirectionAllowed", &ShipController::IsDirectionAllowed);
 
 }

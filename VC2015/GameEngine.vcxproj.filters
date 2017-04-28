@@ -183,6 +183,12 @@
     <ClInclude Include="..\src\Game\World\Effects\Bullet.h">
       <Filter>src\Game\World\Effects</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockWeapon.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\OrientedBlock.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -292,6 +298,12 @@
     </ClCompile>
     <ClCompile Include="..\src\Game\World\Effects\Bullet.cpp">
       <Filter>src\Game\World\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockWeapon.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\OrientedBlock.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

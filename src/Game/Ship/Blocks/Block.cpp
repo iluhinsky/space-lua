@@ -1,7 +1,6 @@
 #include "Block.h"
 
 
-
 Block::Block()
 {
 }
@@ -45,6 +44,11 @@ float Block::GetMass()
 glm::vec3 Block::GetRelatedCoords()
 {
 	return relatedCoords_;
+}
+
+void Block::SetShip(Ship* ship)
+{
+	ship_ = ship;
 }
 
 void Block::ExecuteCommand()

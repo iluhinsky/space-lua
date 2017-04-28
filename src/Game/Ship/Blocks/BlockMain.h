@@ -10,6 +10,10 @@ public:
 
 	~BlockMain();
 
+	virtual const std::string& GetName();
 	virtual Block* Clone() const;
+
+private:
+	std::string name_;
 };
 

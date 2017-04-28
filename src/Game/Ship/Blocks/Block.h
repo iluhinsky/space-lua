@@ -7,6 +7,9 @@
 #include "..\..\..\Engine\Math\math_3d.h"
 
 
+class Ship;
+
+
 enum BlockType
 {
 
@@ -36,6 +39,9 @@ public:
 
 	float     GetMass();
 	glm::vec3 GetRelatedCoords();
+	void      SetShip(Ship* ship);
+
+	virtual const std::string& GetName() = 0;
 
 	void ExecuteCommand();
 
@@ -55,4 +61,6 @@ protected:
 	GraphicsObject* graphicsAsset_;
 
 	void (Block:: *Command_) ();
+
+	Ship* ship_;
 };

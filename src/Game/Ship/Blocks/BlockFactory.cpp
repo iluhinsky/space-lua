@@ -4,6 +4,7 @@
 
 #include "BlockMain.h"
 #include "BlockShield.h"
+#include "BlockWeapon.h"
 
 
 ObjectDataBase::ObjectDataBase()
@@ -33,6 +34,7 @@ void ObjectDataBase::Fill(std::string name)
 	char string[30] = {};
 	float n = 0.0f;
 	float rate = 0.0f;
+	int integer_param = 0;
 
 	GraphicsObjectInfo assetNames = {};
 
@@ -71,6 +73,16 @@ void ObjectDataBase::Fill(std::string name)
 			((BlockShield*)newBlock)->shieldPowerMax_ = n;
 			((BlockShield*)newBlock)->shieldPower_    = n;
 			((BlockShield*)newBlock)->recoveryRate_   = rate;
+
+			break;
+
+		case BlockTypeWeapon:
+			newBlock = new BlockWeapon;
+
+			fscanf(file, " coolDownTime: %d", &integer_param);
+
+			((BlockWeapon*)newBlock)->coolDownTime_  = integer_param;
+			((BlockWeapon*)newBlock)->estimatedTime_ = integer_param;
 
 			break;
 
@@ -146,6 +158,24 @@ Block* BlockFactory::GetBlock(FILE* file)
 			((BlockShield*) newBlock)->name_ = blockTypeName;
 			break;
 
+		case BlockTypeWeapon:
+			fscanf(file, "%s", blockTypeName);
+
+			((BlockWeapon*)newBlock)->name_ = blockTypeName;
+			break;
+
+		default:
+			break;
+		}
+
+		switch (blockType)
+		{
+		case BlockTypeWeapon:
+			fscanf(file, " (%f, %f, %f)",
+				&(((OrientedBlock*)newBlock)->orientation_.x),
+				&(((OrientedBlock*)newBlock)->orientation_.y),
+				&(((OrientedBlock*)newBlock)->orientation_.z));
+			break;
 		default:
 			break;
 		}

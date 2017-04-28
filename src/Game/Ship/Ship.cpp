@@ -1,5 +1,6 @@
 #include "Ship.h"
 #include "Blocks/BlockShield.h"
+#include "Blocks\BlockWeapon.h"
 
 #include "..\..\Application\Application.h"
 
@@ -67,6 +68,13 @@ void Ship::UpdateRigidBody()
 	PHYSICSWORLD->AddRigidBody(body_);
 }
 
+void Ship::ReduceTime(int dt)
+{
+	for (auto block : blocks_)
+		if (block->GetType() == BlockTypeWeapon)
+			((BlockWeapon*)block)->ReduceTime(dt);
+}
+
 void Ship::RunLUA()
 {
 	for (auto block : blocks_)
@@ -100,6 +108,11 @@ void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)
 	
 	blocks_.remove(damagedBlock);
 	*/
+}
+
+btTransform Ship::GetTransform()
+{
+	return transform_;
 }
 
 void Ship::ConstructShape(btScalar& mass, btVector3& inertia)
