@@ -4,6 +4,7 @@
 #include "Blocks/BlockFactory.h"
 
 
+
 struct ShipInfo
 {
 	std::string name_;

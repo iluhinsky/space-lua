@@ -56,6 +56,10 @@ void World::Init()
 void World::Load(std::string worldName)
 {
 	worldLoader_->Load(worldName);
+
+//	it is only for testing!
+//	shipsID_.push_back(13);
+//	shipsID_.push_back(110);
 }
 
 void World::ReduceTime(int dt)
@@ -99,4 +103,9 @@ void World::ExecuteLogic()
 {
 	for (auto ship : ships_)
 		ship->ExecuteLogic();
+}
+
+const std::vector<int>& World::GetShipsID()
+{
+	return shipsID_;
 }

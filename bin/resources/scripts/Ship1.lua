@@ -16,6 +16,11 @@ if 3.0 < currentTime and currentTime < 15 then
 		Shoot("weapon1", 0.0, 1.0, 0.0)
 	end
 end
+
+if currentTime < 0.5 then
+--	print('@@@ ', shipsID:GetSize())
+--	print('@@@@ ', shipsID:at(0), shipsID:at(1))
+end
 --if 11.0 < currentTime then
 --	EnableShield("shield1")
 --end

@@ -140,6 +140,9 @@ void ShipController::Run()
 		return;
 	}
 
+	luabridge::push(luaThread_, WORLD->GetShipsID());
+	lua_setglobal(luaThread_, "shipsID");
+
 	lua_pushvalue(luaThread_, -1);
 	int luaStatus = lua_resume(luaThread_, NULL, 0);
 

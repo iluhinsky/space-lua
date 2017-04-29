@@ -2,6 +2,7 @@
 #include "ShipController.h"
 
 #include <btBulletDynamicsCommon.h>
+#include "../../Application/Application.h"
 
 ShipFactory::ShipFactory()
 {
@@ -71,15 +72,12 @@ void ShipFactory::LoadConstruction(Ship* ship)
 void ShipFactory::LoadController(Ship* ship)
 {
 	assert(ship);
-
 	std::string scriptName = "../bin/resources/scripts/" + ship->shipName_ + ".lua";
-//	std::cout << "C++: scriptName = '" << scriptName << "'\n";
 
 	lua_State* luaThread = ship->controller_.luaThread_;
 	assert(luaThread);
 
 	int errorCode = luaL_loadfile(luaThread, scriptName.c_str());
-
 	switch (errorCode)
 	{
 	case LUA_OK:
@@ -112,6 +110,11 @@ void ShipFactory::LoadController(Ship* ship)
 		.addFunction("EnableShield",       &ShipController::EnableShield)
 		.addFunction("DisableShield",      &ShipController::DisableShield)
 		.addFunction("Shoot",              &ShipController::Shoot)
-		.addFunction("IsDirectionAllowed", &ShipController::IsDirectionAllowed);
+		.addFunction("IsDirectionAllowed", &ShipController::IsDirectionAllowed)
+
+		.beginClass <std::vector<int>> ("shipsID")
+			.addFunction("GetSize", &std::vector<int>::size)
+			.addFunction <std::vector<int>::const_reference(std::vector<int>::*)(std::vector<int>::size_type) const> ("at", &std::vector<int>::at)
+		.endClass();
 
 }
