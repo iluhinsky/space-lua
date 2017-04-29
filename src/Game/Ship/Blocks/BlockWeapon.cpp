@@ -1,6 +1,7 @@
 #include "BlockWeapon.h"
 
-#include "..\..\..\Application\Application.h"
+#include "../../../Application/Application.h"
+
 
 BlockWeapon::BlockWeapon()
 {

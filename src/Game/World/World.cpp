@@ -114,7 +114,6 @@ Ship* World::GetShipByID(int shipID)
 	{
 		return NULL;
 	}
-
 	return it->second;
 }
 

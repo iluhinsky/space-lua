@@ -1,9 +1,9 @@
 #pragma once
 
-#include "..\..\Include.h"
+#include "../../Include.h"
 
-#include "..\..\Engine\Physics\CollisionObject.h"
-#include "..\World\Effects\Bullet.h"
+#include "../../Engine/Physics/CollisionObject.h"
+#include "../World/Effects/Bullet.h"
 
 #include "Blocks\Block.h"
 #include "ShipController.h"
