@@ -19,10 +19,13 @@ end
 
 if currentTime < 0.5 then
 --	print('@@@ ', shipsID:GetSize())
-	print('@@@@ ', shipsID:at(0), shipsID:at(1))
+--	print('@@@@ ', shipsID:at(0), shipsID:at(1))
 end
---if 11.0 < currentTime then
---	EnableShield("shield1")
---end
+
+if currentTime < 0.5 then
+	info = GetShipInfo(100500)
+	print('ShipInfo in LUA: ', info.x, info.y, info.z, info.team)
+end
+
 
 --print("LUA FINISH: Ship1")

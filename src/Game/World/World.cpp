@@ -105,6 +105,19 @@ void World::ExecuteLogic()
 		ship->ExecuteLogic();
 }
 
+Ship* World::GetShipByID(int shipID)
+{
+	assert(shipID >= 0);
+
+	auto it = shipsDataBase_.find(shipID);
+	if (it == shipsDataBase_.end())
+	{
+		return NULL;
+	}
+
+	return it->second;
+}
+
 const std::vector<int>& World::GetShipsID()
 {
 	return shipsID_;

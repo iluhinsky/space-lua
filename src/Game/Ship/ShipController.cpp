@@ -120,6 +120,27 @@ void ShipController::Shoot(const std::string& blockName, double xBulletDir, doub
 }
 
 
+ShipInfoForLUA ShipController::GetShipInfo(int shipID, lua_State* luaThread)
+{
+	assert(shipID >= 0);
+	assert(luaThread);
+
+	ShipInfoForLUA info = {};
+	Ship* ship = WORLD->GetShipByID(shipID);
+	if (ship == NULL)
+	{
+		std::cout << "There are no ships in your scope with ID = " << shipID << ".\n";
+		return info;
+	}
+
+//	here we should fill the structure 'info'
+//	info.x = 11;
+//	info.y = 22;
+
+	return info;
+}
+
+
 std::vector<Block*>::iterator ShipController::FindBlock(const std::string& blockName, BlockType blockType, Ship* ship)
 {
 	assert(ship);

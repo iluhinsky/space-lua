@@ -28,6 +28,7 @@ public:
 	void RunLUA();
 	void ExecuteLogic();
 
+	Ship* GetShipByID(int shipID);
 	const std::vector<int>& GetShipsID();
 
 private:
