@@ -19,7 +19,7 @@ end
 
 if currentTime < 0.5 then
 --	print('@@@ ', shipsID:GetSize())
---	print('@@@@ ', shipsID:at(0), shipsID:at(1))
+	print('@@@@ ', shipsID:at(0), shipsID:at(1))
 end
 --if 11.0 < currentTime then
 --	EnableShield("shield1")

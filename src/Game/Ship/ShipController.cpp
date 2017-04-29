@@ -144,7 +144,15 @@ void ShipController::Run()
 	lua_setglobal(luaThread_, "shipsID");
 
 	lua_pushvalue(luaThread_, -1);
-	int luaStatus = lua_resume(luaThread_, NULL, 0);
+	int luaStatus = LUA_OK;
+	try
+	{
+		luaStatus = lua_resume(luaThread_, NULL, 0);
+	}
+	catch (const std::out_of_range& oor)
+	{
+		std::cout << "Out of range error in shipsID: " << oor.what() << '\n';
+	}
 
 	switch (luaStatus)
 	{

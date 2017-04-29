@@ -2,7 +2,7 @@
 #include "ShipController.h"
 
 #include <btBulletDynamicsCommon.h>
-#include "../../Application/Application.h"
+
 
 ShipFactory::ShipFactory()
 {
