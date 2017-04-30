@@ -1,8 +1,8 @@
 #include "Ship.h"
 #include "Blocks/BlockShield.h"
-#include "Blocks\BlockWeapon.h"
+#include "Blocks/BlockWeapon.h"
 
-#include "..\..\Application\Application.h"
+#include "../../Application/Application.h"
 
 Ship::Ship() : controller_(this)
 {

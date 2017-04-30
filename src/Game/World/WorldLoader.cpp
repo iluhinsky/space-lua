@@ -1,7 +1,7 @@
 #include "WorldLoader.h"
 
-WorldLoader::WorldLoader(std::vector<Ship*>* ships):
-	ships_ (ships)
+WorldLoader::WorldLoader(std::map <int, Ship*>* shipsDataBase):
+	shipsDataBase_(shipsDataBase)
 {
 
 }
@@ -28,6 +28,7 @@ void WorldLoader::Load(std::string worldName)
 	FILE* file = fopen(worldName.c_str(), "r");
 
 	char string[30] = {};
+	int freeID      = 0;
 
 	fscanf(file, "%s", string);
 
@@ -44,7 +45,8 @@ void WorldLoader::Load(std::string worldName)
 
 		Ship* ship = shipFactory_.GenerateShip(shipInfo);
 
-		ships_->push_back(ship);
+		(*shipsDataBase_)[freeID] = ship;
+		freeID++;
 
 		fscanf(file, "%s", string);
 	}

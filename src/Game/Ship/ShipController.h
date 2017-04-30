@@ -18,6 +18,16 @@ extern "C"
 
 class Ship;
 
+struct ShipInfoForLUA
+{
+	float x;
+	float y;
+	float z;
+
+	int team;
+};
+
+
 class ShipController
 {
 	friend class ShipFactory;
@@ -33,6 +43,8 @@ public:
 	static void DisableShield      (const std::string& blockName, lua_State* luaThread);
 	static bool IsDirectionAllowed (const std::string& blockName, double xDir, double yDir, double zDir, lua_State* luaThread);
 	static void Shoot              (const std::string& blockName, double xBulletDir, double yBulletDir, double zBulletDir, lua_State* luaThread);
+	
+	static ShipInfoForLUA GetShipInfo(int shipID, lua_State* luaThread);
 
 	void Run();
 

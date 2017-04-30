@@ -48,7 +48,7 @@ void Application::Init()
 
 	clocks_.restart();
 
-	world_->ships_[0]->body_->applyCentralImpulse(btVector3(0.0f, 3.5f, 0.0f)); //! remove
+	world_->shipsDataBase_[0]->body_->applyCentralImpulse(btVector3(0.0f, 3.5f, 0.0f)); //! remove
 	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-1.0f, -5.0f, 1.0f)); //! remove
 	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-0.0f, -5.0f, 1.0f)); //! remove
 	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-1.0f, -5.0f, 0.0f)); //! remove

@@ -46,7 +46,7 @@ World::~World()
 
 void World::Init()
 {
-	worldLoader_ = new WorldLoader(&ships_);
+	worldLoader_ = new WorldLoader(&shipsDataBase_);
 	worldLoader_->Init();
 
 	gContactProcessedCallback = _ContactProcessedCallback;
@@ -56,6 +56,20 @@ void World::Init()
 void World::Load(std::string worldName)
 {
 	worldLoader_->Load(worldName);
+
+	UpdateShipsIDVector();
+
+//	it is only for testing!
+//	shipsID_.push_back(13);
+//	shipsID_.push_back(110);
+}
+
+void World::UpdateShipsIDVector()
+{
+	shipsID_.clear();
+
+	for (auto elem : shipsDataBase_)
+		shipsID_.push_back(elem.first);
 }
 
 void World::ReduceTime(int dt)
@@ -63,14 +77,14 @@ void World::ReduceTime(int dt)
 	for (auto bullet : bullets_)
 		bullet->ReduceTime(dt);
 
-	for (auto ship : ships_)
-		ship->ReduceTime(dt);
+	for (auto ship : shipsDataBase_)
+		ship.second->ReduceTime(dt);
 }
 
 void World::Draw(Camera* camera)
 {
-	for (auto ship : ships_)
-		ship->Draw(camera);
+	for (auto ship : shipsDataBase_)
+		ship.second->Draw(camera);
 
 	for (auto bullet : bullets_)
 		bullet->Draw(camera);
@@ -91,12 +105,29 @@ void World::ClearUnexisingBullets()
 
 void World::RunLUA()
 {
-	for (auto ship : ships_)
-		ship->RunLUA();
+	for (auto ship : shipsDataBase_)
+		ship.second->RunLUA();
 }
 
 void World::ExecuteLogic()
 {
-	for (auto ship : ships_)
-		ship->ExecuteLogic();
+	for (auto ship : shipsDataBase_)
+		ship.second->ExecuteLogic();
+}
+
+Ship* World::GetShipByID(int shipID)
+{
+	assert(shipID >= 0);
+
+	auto it = shipsDataBase_.find(shipID);
+
+	if (it == shipsDataBase_.end())
+		return nullptr;
+
+	return it->second;
+}
+
+const std::vector<int>& World::GetShipsID()
+{
+	return shipsID_;
 }

@@ -1,6 +1,6 @@
 #include "OrientedBlock.h"
 
-#include "..\Ship.h"
+#include "../Ship.h"
 
 OrientedBlock::OrientedBlock()
 {

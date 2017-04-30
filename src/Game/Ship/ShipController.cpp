@@ -120,6 +120,30 @@ void ShipController::Shoot(const std::string& blockName, double xBulletDir, doub
 }
 
 
+ShipInfoForLUA ShipController::GetShipInfo(int shipID, lua_State* luaThread)
+{
+	assert(shipID >= 0);
+	assert(luaThread);
+
+	ShipInfoForLUA info = {};
+	Ship* ship = WORLD->GetShipByID(shipID);
+	if (!ship)
+	{
+		std::cout << "There are no ships in your scope with ID = " << shipID << ".\n";
+		return info;
+	}
+
+	btTransform transform = ship->GetTransform();
+	btVector3   coords    = transform.getOrigin();
+
+	info.x = coords.x();
+	info.y = coords.y();
+	info.z = coords.z();
+
+	return info;
+}
+
+
 std::vector<Block*>::iterator ShipController::FindBlock(const std::string& blockName, BlockType blockType, Ship* ship)
 {
 	assert(ship);
@@ -140,8 +164,19 @@ void ShipController::Run()
 		return;
 	}
 
+	luabridge::push(luaThread_, WORLD->GetShipsID());
+	lua_setglobal(luaThread_, "shipsID");
+
 	lua_pushvalue(luaThread_, -1);
-	int luaStatus = lua_resume(luaThread_, NULL, 0);
+	int luaStatus = LUA_OK;
+	try
+	{
+		luaStatus = lua_resume(luaThread_, NULL, 0);
+	}
+	catch (const std::out_of_range& oor)
+	{
+		std::cout << "Out of range error in shipsID: " << oor.what() << '\n';
+	}
 
 	switch (luaStatus)
 	{
