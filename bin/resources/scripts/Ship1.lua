@@ -19,12 +19,15 @@ end
 
 if currentTime < 0.5 then
 --	print('@@@ ', shipsID:GetSize())
---	print('@@@@ ', shipsID:at(0), shipsID:at(1))
-end
+--	print('@@@@ ', shipsID:at(0))
+--	info = GetShipInfo(0)
+--	print('ShipInfo in LUA: ', info.x, info.y, info.z, info.team)
 
-if currentTime < 0.5 then
-	info = GetShipInfo(0)
-	print('ShipInfo in LUA: ', info.x, info.y, info.z, info.team)
+	v = GetBlocks(0)
+--	print('@@@  ', v:GetSize(), v:at(0), v:at(1), v:at(2), v:at(3))	
+	blockID = v:at(2)
+	blockInfo = GetBlockInfo(0, blockID)
+--	print('@@@ ', blockInfo.x, blockInfo.y, blockInfo.z)
 end
 
 

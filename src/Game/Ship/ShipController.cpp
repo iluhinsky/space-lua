@@ -129,7 +129,7 @@ ShipInfoForLUA ShipController::GetShipInfo(int shipID, lua_State* luaThread)
 	Ship* ship = WORLD->GetShipByID(shipID);
 	if (!ship)
 	{
-		std::cout << "There are no ships in your scope with ID = " << shipID << ".\n";
+		std::cout << "There is no ship in your scope with ID = " << shipID << ".\n";
 		return info;
 	}
 
@@ -139,6 +139,52 @@ ShipInfoForLUA ShipController::GetShipInfo(int shipID, lua_State* luaThread)
 	info.x = coords.x();
 	info.y = coords.y();
 	info.z = coords.z();
+
+	return info;
+}
+
+
+std::vector<int> ShipController::GetBlocksByShipID(int shipID, lua_State* luaThread)
+{
+	assert(shipID >= 0);
+	assert(luaThread);
+
+	Ship* ship = WORLD->GetShipByID(shipID);
+	if (!ship)
+	{
+		std::cout << "There is no ship in your scope with ID = " << shipID << ".\n";
+		std::vector<int> empty;
+		return empty;
+	}
+
+	return ship->blocksID_;
+}
+
+
+BlockInfoForLUA ShipController::GetBlockInfo(int shipID, int blockID, lua_State* luaThread)
+{
+	assert(blockID >= 0);
+	assert(luaThread);
+
+	BlockInfoForLUA info = {};
+	Ship* ship = WORLD->GetShipByID(shipID);
+	if (!ship)
+	{
+		std::cout << "There is no ship in your scope with ID = " << shipID << ".\n";
+		return info;
+	}
+
+	auto it = ship->blocksDataBase_.find(blockID);
+	if (it == ship->blocksDataBase_.end())
+	{
+		std::cout << "There is no block with ID = " << blockID << " at the ship with ID = " << shipID << ".\n";
+		return info;
+	}
+
+	Block* block = it->second;
+	assert(block);
+
+	// here we fill the structure 'info' by information about block
 
 	return info;
 }

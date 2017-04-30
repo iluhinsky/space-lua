@@ -58,10 +58,6 @@ void World::Load(std::string worldName)
 	worldLoader_->Load(worldName);
 
 	UpdateShipsIDVector();
-
-//	it is only for testing!
-//	shipsID_.push_back(13);
-//	shipsID_.push_back(110);
 }
 
 void World::UpdateShipsIDVector()
