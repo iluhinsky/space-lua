@@ -7,7 +7,7 @@
 class WorldLoader
 {
 public:
-	WorldLoader(std::vector<Ship*>* ships);
+	WorldLoader(std::map <int, Ship*>* shipsDataBase);
 	~WorldLoader();
 
 	void Init();
@@ -15,7 +15,7 @@ public:
 	void Load(std::string worldName);
 
 private:
-	std::vector<Ship*>* ships_;
+	std::map <int, Ship*>* shipsDataBase_;
 
 	ShipFactory shipFactory_;
 };

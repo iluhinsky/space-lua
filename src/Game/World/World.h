@@ -18,6 +18,7 @@ public:
 
 	void Init();
 	void Load(std::string worldName);
+	void UpdateShipsIDVector();
 
 	void Draw(Camera* camera);
 	void ReduceTime(int dt);
