@@ -54,13 +54,16 @@ void ShipFactory::LoadConstruction(Ship* ship)
 	FILE* file = fopen(constrName.c_str(), "r");
 	assert(file);
 
+	int freeID = 0;
+
 	Block* newBlock = blockFactory_.GetBlock(file);
 
 	while (newBlock != nullptr) 
 	{
 		newBlock->SetShip(ship);
 
-		ship->blocks_.push_back(newBlock);
+		ship->blocksDataBase_[freeID] = newBlock;
+		freeID++;
 
 		newBlock = blockFactory_.GetBlock(file);
 	}

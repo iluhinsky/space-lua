@@ -26,6 +26,7 @@ public:
 	void UpdateRigidBody();
 
 	void ReduceTime(int dt);
+	void UpdateBlocksIDVector();
 
 	void RunLUA();
 	void ExecuteLogic();
@@ -48,7 +49,8 @@ private:
 	btTransform	principalTransform_;
 	btTransform	principalTransformInverse_;
 
-	std::vector<Block*> blocks_;
+	std::map   <int, Block*> blocksDataBase_;
+	std::vector<int>         blocksID_;
 
 	ShipController controller_;
 };

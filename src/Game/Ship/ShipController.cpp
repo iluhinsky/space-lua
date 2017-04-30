@@ -43,10 +43,10 @@ void ShipController::SwitchShield(const std::string& blockName, BlockShieldComma
 	Ship* ship = shipsDataBase_[luaThread];
 	assert(ship);
 
-	auto block = FindBlock(blockName, BlockTypeShield, ship);
+	Block* block = FindBlock(blockName, BlockTypeShield, ship);
 
-	if (block != ship->blocks_.end())
-		((BlockShield*)(*block))->SetComand(command);
+	if (block != nullptr)
+		((BlockShield*)(block))->SetComand(command);
 	else
 		std::cout << "There are no appropriate shields for switching" << " ('" << blockName << "') " << std::endl;
 }
@@ -86,15 +86,15 @@ bool ShipController::IsDirectionAllowed(const std::string& blockName, double xDi
 	assert(ship);
 
 	bool isDirectionAllowed = false;
-	auto block = FindBlock(blockName, BlockTypeWeapon, ship);
+	Block* block = FindBlock(blockName, BlockTypeWeapon, ship);
 /*	if (block == ship->blocks_.end())
 	{
 		block = GetBlock(blockName, BlockTypeEngine, ship); // for engine
 	}*/
 
-	if (block != ship->blocks_.end())
+	if (block != nullptr)
 	{
-		isDirectionAllowed = ((OrientedBlock*)(*block))->IsDirectionAllowed(glm::vec3(xDir, yDir, zDir));
+		isDirectionAllowed = ((OrientedBlock*)(block))->IsDirectionAllowed(glm::vec3(xDir, yDir, zDir));
 	}
 
 	return isDirectionAllowed;
@@ -108,12 +108,12 @@ void ShipController::Shoot(const std::string& blockName, double xBulletDir, doub
 	Ship* ship = shipsDataBase_[luaThread];
 	assert(ship);
 
-	auto block = FindBlock(blockName, BlockTypeWeapon, ship);
+	Block* block = FindBlock(blockName, BlockTypeWeapon, ship);
 
-	if (block != ship->blocks_.end())
+	if (block != nullptr)
 	{
-		((BlockWeapon*)(*block))->SetDirection(glm::vec3(xBulletDir, yBulletDir, zBulletDir));
-		((BlockWeapon*)(*block))->SetCommand(ShootCommand);
+		((BlockWeapon*)(block))->SetDirection(glm::vec3(xBulletDir, yBulletDir, zBulletDir));
+		((BlockWeapon*)(block))->SetCommand(ShootCommand);
 	}
 	else
 		std::cout << "There are no appropriate shields for shooting" << " ('" << blockName << "') " << std::endl;
@@ -144,16 +144,19 @@ ShipInfoForLUA ShipController::GetShipInfo(int shipID, lua_State* luaThread)
 }
 
 
-std::vector<Block*>::iterator ShipController::FindBlock(const std::string& blockName, BlockType blockType, Ship* ship)
+Block* ShipController::FindBlock(const std::string& blockName, BlockType blockType, Ship* ship)
 {
 	assert(ship);
 
-	auto it = std::find_if(ship->blocks_.begin(), ship->blocks_.end(), [blockName, blockType](Block* block)
+	auto it = std::find_if(ship->blocksDataBase_.begin(), ship->blocksDataBase_.end(), [blockName, blockType](auto block)
 	{
-		return block->GetType() == blockType && !blockName.compare(block->GetName());
+		return block.second->GetType() == blockType && !blockName.compare(block.second->GetName());
 	});
 
-	return it;
+	if (it == ship->blocksDataBase_.end())
+		return nullptr;
+
+	return (*it).second;
 }
 
 
