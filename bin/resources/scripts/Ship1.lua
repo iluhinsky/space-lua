@@ -23,7 +23,7 @@ if currentTime < 0.5 then
 end
 
 if currentTime < 0.5 then
-	info = GetShipInfo(100500)
+	info = GetShipInfo(0)
 	print('ShipInfo in LUA: ', info.x, info.y, info.z, info.team)
 end
 

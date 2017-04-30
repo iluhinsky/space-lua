@@ -33,7 +33,6 @@ public:
 	const std::vector<int>& GetShipsID();
 
 private:
-	std::vector <Ship*>                   ships_;
 	std::list   <std::shared_ptr<Bullet>> bullets_;
 	std::map    <int, Ship*>              shipsDataBase_;
 	std::vector <int>                     shipsID_;

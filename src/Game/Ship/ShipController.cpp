@@ -133,7 +133,12 @@ ShipInfoForLUA ShipController::GetShipInfo(int shipID, lua_State* luaThread)
 		return info;
 	}
 
-//!	here we should fill the structure 'info'
+	btTransform transform = ship->GetTransform();
+	btVector3   coords    = transform.getOrigin();
+
+	info.x = coords.x();
+	info.y = coords.y();
+	info.z = coords.z();
 
 	return info;
 }
