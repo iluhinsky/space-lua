@@ -26,7 +26,7 @@ public:
 	void UpdateRigidBody();
 
 	void ReduceTime(int dt);
-	void UpdateBlocksIDVector();
+	void UpdateBlocksIDVector(); //! Call after every death of any block
 
 	void RunLUA();
 	void ExecuteLogic();

@@ -40,6 +40,7 @@ Ship* ShipFactory::GenerateShip(ShipInfo shipInfo)
 	LoadController(ship);
 
 	ship->InitRigidBody();
+	ship->UpdateBlocksIDVector();
 
 	return ship;
 }
