@@ -26,9 +26,12 @@ public:
 	void UpdateRigidBody();
 
 	void ReduceTime(int dt);
+	void UpdateBlocksIDVector(); //! Call after every death of any block
 
 	void RunLUA();
 	void ExecuteLogic();
+
+	void UpdateAfterPhysicsStep();
 
 	btTransform GetTransform();
 
@@ -48,7 +51,12 @@ private:
 	btTransform	principalTransform_;
 	btTransform	principalTransformInverse_;
 
-	std::vector<Block*> blocks_;
+	glm::vec3   globalCoords_;
+	glm::mat3   currRotation_;
+	glm::mat3   currRotationInverse_;
+
+	std::map   <int, Block*> blocksDataBase_;
+	std::vector<int>         blocksID_;
 
 	ShipController controller_;
 };

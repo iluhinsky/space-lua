@@ -58,10 +58,6 @@ void World::Load(std::string worldName)
 	worldLoader_->Load(worldName);
 
 	UpdateShipsIDVector();
-
-//	it is only for testing!
-//	shipsID_.push_back(13);
-//	shipsID_.push_back(110);
 }
 
 void World::UpdateShipsIDVector()
@@ -70,6 +66,12 @@ void World::UpdateShipsIDVector()
 
 	for (auto elem : shipsDataBase_)
 		shipsID_.push_back(elem.first);
+}
+
+void World::UpdateAfterPhysicsStep()
+{
+	for (auto ship : shipsDataBase_)
+		ship.second->UpdateAfterPhysicsStep();
 }
 
 void World::ReduceTime(int dt)

@@ -18,7 +18,8 @@ public:
 
 	void Init();
 	void Load(std::string worldName);
-	void UpdateShipsIDVector();
+	void UpdateShipsIDVector(); //! Call after every death of any ship
+	void UpdateAfterPhysicsStep();
 
 	void Draw(Camera* camera);
 	void ReduceTime(int dt);

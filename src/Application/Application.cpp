@@ -73,6 +73,7 @@ void Application::MainFunc()
 	world_->ClearUnexisingBullets();
 
 	physicsWorld_->proc(dt.asMilliseconds());
+	world_->UpdateAfterPhysicsStep();
 
 	player_->UpdateCamera();
 

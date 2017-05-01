@@ -31,9 +31,9 @@ bool Block::isLinked()
 }
 
 
-void Block::Draw(Camera* camera, glm::vec4& globalCoord, glm::mat4& rotation) const
+void Block::Draw(Camera* camera) const
 {
-	graphicsAsset_->Draw(camera, globalCoord + rotation * glm::vec4(relatedCoords_, 1.0f), rotation);
+	graphicsAsset_->Draw(camera, currGlobalCoords_, currRotation_);
 }
 
 float Block::GetMass()
@@ -46,9 +46,21 @@ glm::vec3 Block::GetRelatedCoords()
 	return relatedCoords_;
 }
 
+glm::vec3 Block::GetGlobalCoords()
+{
+	return currGlobalCoords_;
+}
+
 void Block::SetShip(Ship* ship)
 {
 	ship_ = ship;
+}
+
+
+void Block::UpdateAfterPhysicsStep(glm::vec3& shipGlobalCoords, glm::mat3& currRotation)
+{
+	currGlobalCoords_ = shipGlobalCoords + currRotation * relatedCoords_;
+	currRotation_     = currRotation;
 }
 
 void Block::ExecuteCommand()

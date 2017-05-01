@@ -32,3 +32,8 @@ const glm::mat4& Pipeline::GetProjMatrix()
 {
 	return _ProjMatrix;
 }
+
+void Pipeline::Rotate(glm::mat3& RotateMatrix)
+{
+	_RotateMatrix = glm::mat4(RotateMatrix);
+}

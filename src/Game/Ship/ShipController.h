@@ -18,6 +18,7 @@ extern "C"
 
 class Ship;
 
+
 struct ShipInfoForLUA
 {
 	float x;
@@ -25,6 +26,13 @@ struct ShipInfoForLUA
 	float z;
 
 	int team;
+};
+
+struct BlockInfoForLUA
+{
+	float x;
+	float y;
+	float z;
 };
 
 
@@ -45,11 +53,13 @@ public:
 	static void Shoot              (const std::string& blockName, double xBulletDir, double yBulletDir, double zBulletDir, lua_State* luaThread);
 	
 	static ShipInfoForLUA GetShipInfo(int shipID, lua_State* luaThread);
+	static std::vector<int> GetBlocksByShipID(int shipID, lua_State* luaThread);
+	static BlockInfoForLUA GetBlockInfo(int shipID, int blockID, lua_State* luaThread);
 
 	void Run();
 
 private:
-	static std::vector<Block*>::iterator FindBlock(const std::string& blockName, BlockType blockType, Ship* ship);
+	static Block* FindBlock(const std::string& blockName, BlockType blockType, Ship* ship);
 
 	static std::map<lua_State*, Ship*> shipsDataBase_;
 

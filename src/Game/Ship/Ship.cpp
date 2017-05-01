@@ -22,15 +22,8 @@ Ship::~Ship()
 
 void Ship::Draw(Camera* camera)
 {
-	transform_ = body_->getWorldTransform() * principalTransformInverse_;
-
-	glm::vec4 globalCoord = glm::vec4 (toGLM(transform_.getOrigin()), 1.0f);
-	glm::mat4 rotation    = toGLM(transform_.getBasis());
-
-	glm::mat4 rotation_inv = glm::inverse(rotation);
-
-	for (auto block : blocks_)
-		block->Draw(camera, globalCoord, rotation_inv);
+	for (auto block : blocksDataBase_)
+		block.second->Draw(camera);
 }
 
 void Ship::InitRigidBody()
@@ -70,23 +63,43 @@ void Ship::UpdateRigidBody()
 
 void Ship::ReduceTime(int dt)
 {
-	for (auto block : blocks_)
-		if (block->GetType() == BlockTypeWeapon)
-			((BlockWeapon*)block)->ReduceTime(dt);
+	for (auto block : blocksDataBase_)
+		if (block.second->GetType() == BlockTypeWeapon)
+			((BlockWeapon*)block.second)->ReduceTime(dt);
+}
+
+void Ship::UpdateBlocksIDVector()
+{
+	blocksID_.clear();
+
+	for (auto elem : blocksDataBase_)
+		blocksID_.push_back(elem.first);
 }
 
 void Ship::RunLUA()
 {
-	for (auto block : blocks_)
-		block->SetStandartCommand();
+	for (auto block : blocksDataBase_)
+		block.second->SetStandartCommand();
 
 	controller_.Run();
 }
 
 void Ship::ExecuteLogic()
 {
-	for (auto block : blocks_)
-		block->ExecuteCommand();
+	for (auto block : blocksDataBase_)
+		block.second->ExecuteCommand();
+}
+
+void Ship::UpdateAfterPhysicsStep()
+{
+	transform_ = body_->getWorldTransform() * principalTransformInverse_;
+
+	globalCoords_        = toGLM(transform_.getOrigin());
+	currRotation_        = toGLM_M3x3(transform_.getBasis());
+	currRotationInverse_ = glm::inverse(currRotation_);
+
+	for (auto block : blocksDataBase_)
+		block.second->UpdateAfterPhysicsStep(globalCoords_, currRotationInverse_);
 }
 
 void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)
@@ -122,13 +135,13 @@ void Ship::ConstructShape(btScalar& mass, btVector3& inertia)
 
 	btCompoundShape* tempShape = new btCompoundShape();
 
-	for (auto block : blocks_)
+	for (auto block : blocksDataBase_)
 	{
-		float blockMass = block->GetMass();
+		float blockMass = block.second->GetMass();
 		blockMasses.push_back(blockMass);
 		mass += blockMass;
 
-		glm::vec3 glm_relatedCoords = block->GetRelatedCoords();
+		glm::vec3 glm_relatedCoords = block.second->GetRelatedCoords();
 		btVector3 bt_relatedCoords  = btVector3(glm_relatedCoords.x, glm_relatedCoords.y, glm_relatedCoords.z);
 
 		btTransform blockTransform(btQuaternion::getIdentity(), bt_relatedCoords);
@@ -198,9 +211,9 @@ Block* Ship::getBlockByWorldPosition(const btVector3& position)
 
 	Block* currBlock = nullptr;
 
-	for (auto block : blocks_)
-		if (block->GetRelatedCoords() == blockPosition)
-			currBlock = block;
+	for (auto block : blocksDataBase_)
+		if (block.second->GetRelatedCoords() == blockPosition)
+			currBlock = block.second;
 
 	return currBlock;;
 }
