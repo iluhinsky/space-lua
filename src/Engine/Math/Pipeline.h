@@ -27,10 +27,7 @@ public:
 		m_worldPos.z = z;
 	}
 
-	void Rotate(glm::mat4& RotateMatrix)
-	{
-		_RotateMatrix = RotateMatrix;
-	}
+	void Rotate(glm::mat3& RotateMatrix);
 
 	void SetPerspectiveProj(float FOV, float Width, float Height, float zNear, float zFar)
 	{

@@ -19,7 +19,7 @@ void GraphicsObject::SetScale(float scale)
 }
 
 
-void GraphicsObject::Draw(Camera* camera, glm::vec4& worldPos, glm::mat4& rotation)
+void GraphicsObject::Draw(Camera* camera, glm::vec3 worldPos, glm::mat3 rotation)
 {
 	shaderProg_->Use();
 
@@ -49,7 +49,7 @@ void GraphicsObject::Draw(Camera* camera, glm::vec4& worldPos, glm::mat4& rotati
 }
 
 
-void GraphicsObject::SetUniforms(Camera* camera, glm::vec4& worldPos, glm::mat4& rotation)
+void GraphicsObject::SetUniforms(Camera* camera, glm::vec3& worldPos, glm::mat3& rotation)
 {
 	sf::Vector2u size = APPLICATION->GetWindowSize();
 
@@ -76,7 +76,7 @@ void GraphicsObject::SetUniforms(Camera* camera, glm::vec4& worldPos, glm::mat4&
 	shaderProg_->UniformVector3D (shaderProg_->GetUniformLocation(  "eyePos"), camera->GetPos());
 }
 
-void GraphicsObject::SetTranslation(Pipeline* p, Camera* camera, glm::vec4& worldPos)
+void GraphicsObject::SetTranslation(Pipeline* p, Camera* camera, glm::vec3& worldPos)
 {
 	p->WorldPos(worldPos.x, worldPos.y, worldPos.z);
 	p->SetCamera(camera->GetPos(), camera->GetTarget(), camera->GetUp());

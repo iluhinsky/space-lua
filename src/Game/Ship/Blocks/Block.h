@@ -34,14 +34,18 @@ public:
 	bool isExist();
 	bool isLinked();
 
-	void Draw(Camera* camera, glm::vec4& globalCoord, glm::mat4& rotation) const;
+	void Draw(Camera* camera) const;
 	virtual Block* Clone() const = 0; //TODO: Remove this
 
 	float     GetMass();
 	glm::vec3 GetRelatedCoords();
+	glm::vec3 GetGlobalCoords();
+
 	void      SetShip(Ship* ship);
 
 	virtual const std::string& GetName() = 0;
+
+	void UpdateAfterPhysicsStep(glm::vec3& shipGlobalCoords, glm::mat3& currRotation);
 
 	void ExecuteCommand();
 
@@ -50,6 +54,9 @@ public:
 
 protected:
 	glm::vec3 relatedCoords_;
+
+	glm::vec3 currGlobalCoords_;
+	glm::mat3 currRotation_;
 
 	BlockType blockType_;
 

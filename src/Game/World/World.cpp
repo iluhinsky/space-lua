@@ -68,6 +68,12 @@ void World::UpdateShipsIDVector()
 		shipsID_.push_back(elem.first);
 }
 
+void World::UpdateAfterPhysicsStep()
+{
+	for (auto ship : shipsDataBase_)
+		ship.second->UpdateAfterPhysicsStep();
+}
+
 void World::ReduceTime(int dt)
 {
 	for (auto bullet : bullets_)

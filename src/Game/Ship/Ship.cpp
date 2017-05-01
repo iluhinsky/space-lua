@@ -22,15 +22,8 @@ Ship::~Ship()
 
 void Ship::Draw(Camera* camera)
 {
-	transform_ = body_->getWorldTransform() * principalTransformInverse_;
-
-	glm::vec4 globalCoord = glm::vec4 (toGLM(transform_.getOrigin()), 1.0f);
-	glm::mat4 rotation    = toGLM(transform_.getBasis());
-
-	glm::mat4 rotation_inv = glm::inverse(rotation);
-
 	for (auto block : blocksDataBase_)
-		block.second->Draw(camera, globalCoord, rotation_inv);
+		block.second->Draw(camera);
 }
 
 void Ship::InitRigidBody()
@@ -95,6 +88,18 @@ void Ship::ExecuteLogic()
 {
 	for (auto block : blocksDataBase_)
 		block.second->ExecuteCommand();
+}
+
+void Ship::UpdateAfterPhysicsStep()
+{
+	transform_ = body_->getWorldTransform() * principalTransformInverse_;
+
+	globalCoords_        = toGLM(transform_.getOrigin());
+	currRotation_        = toGLM_M3x3(transform_.getBasis());
+	currRotationInverse_ = glm::inverse(currRotation_);
+
+	for (auto block : blocksDataBase_)
+		block.second->UpdateAfterPhysicsStep(globalCoords_, currRotationInverse_);
 }
 
 void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)

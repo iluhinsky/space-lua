@@ -31,6 +31,8 @@ public:
 	void RunLUA();
 	void ExecuteLogic();
 
+	void UpdateAfterPhysicsStep();
+
 	btTransform GetTransform();
 
 	void hit(Bullet* bullet, btVector3& pointA, btVector3& pointB);
@@ -48,6 +50,10 @@ private:
 	btTransform transform_;
 	btTransform	principalTransform_;
 	btTransform	principalTransformInverse_;
+
+	glm::vec3   globalCoords_;
+	glm::mat3   currRotation_;
+	glm::mat3   currRotationInverse_;
 
 	std::map   <int, Block*> blocksDataBase_;
 	std::vector<int>         blocksID_;

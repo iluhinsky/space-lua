@@ -184,7 +184,11 @@ BlockInfoForLUA ShipController::GetBlockInfo(int shipID, int blockID, lua_State*
 	Block* block = it->second;
 	assert(block);
 
-	// here we fill the structure 'info' by information about block
+	glm::vec3 globalCoords = block->GetGlobalCoords();
+
+	info.x = globalCoords.x;
+	info.y = globalCoords.y;
+	info.z = globalCoords.z;
 
 	return info;
 }
