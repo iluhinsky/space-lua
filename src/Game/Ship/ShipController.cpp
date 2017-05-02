@@ -3,6 +3,7 @@
 #include "../../Application/Application.h"
 
 std::map<lua_State*, Ship*> ShipController::shipsDataBase_;
+extern const int engineMaxPower;
 
 
 ShipController::ShipController(Ship* ship)
@@ -12,7 +13,7 @@ ShipController::ShipController(Ship* ship)
 
 	luaState_ = luaL_newstate();
 	luaL_openlibs(luaState_);
-
+	
 	luaThread_ = lua_newthread(luaState_);
 	shipsDataBase_[luaThread_] = ship;
 
@@ -120,7 +121,7 @@ void ShipController::Shoot(const std::string& blockName, double xBulletDir, doub
 }
 
 
-void ShipController::Gas(const std::string& blockName, double xDir, double yDir, double zDir, lua_State* luaThread)
+void ShipController::Gas(const std::string& blockName, double xDir, double yDir, double zDir, int power, lua_State* luaThread)
 {
 	assert(luaThread);
 
@@ -133,6 +134,10 @@ void ShipController::Gas(const std::string& blockName, double xDir, double yDir,
 	{
 		((BlockEngine*)(block))->SetDirection(glm::vec3(xDir, yDir, zDir));
 		((BlockEngine*)(block))->SetCommand(GasCommand);
+		if (0 <= power && power <= engineMaxPower)
+			((BlockEngine*)(block))->SetPower(power);
+		else
+			std::cout << "Incorrect engine power. It is " << power << " but it should be integer between 0 and 10.\n";
 	}
 	else
 		std::cout << "There are no appropriate engines for gasing" << " ('" << blockName << "') " << std::endl;

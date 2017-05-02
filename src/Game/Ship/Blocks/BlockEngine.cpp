@@ -2,6 +2,8 @@
 
 #include "../../../Application/Application.h"
 
+extern const int engineMaxPower = 10;
+
 
 BlockEngine::BlockEngine()
 {
@@ -39,7 +41,7 @@ void BlockEngine::ReduceTime(int dt)
 
 void BlockEngine::SetPower(int power)
 {
-	assert(power >= 0 && power <= 10);
+	assert(0 <= power && power <= engineMaxPower);
 
 	power_ = power;
 }
