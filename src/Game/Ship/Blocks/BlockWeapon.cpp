@@ -44,16 +44,7 @@ void BlockWeapon::Shoot()
 	if (!IsDirectionAllowed(currDirection_))
 		return;
 
-	//! Create the bullet
-	btTransform shipTransform = ship_->GetTransform();
-
-	glm::mat3 rotation     = toGLM_M3x3(shipTransform.getBasis());
-	glm::mat3 rotation_inv = glm::inverse(rotation);
-	glm::vec3 shipCoords   = toGLM(shipTransform.getOrigin());
-
-	glm::vec3 globalCoords = shipCoords + rotation_inv * relatedCoords_;
-
-	WORLD->CreateBullet(currDirection_, globalCoords + currDirection_ * 2.0f);
+	WORLD->CreateBullet(currDirection_, currGlobalCoords_ + currDirection_ * 2.0f);
 
 	estimatedTime_ = coolDownTime_;
 }

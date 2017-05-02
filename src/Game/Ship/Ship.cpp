@@ -1,6 +1,7 @@
 #include "Ship.h"
 #include "Blocks/BlockShield.h"
 #include "Blocks/BlockWeapon.h"
+#include "Blocks/BlockEngine.h"
 
 #include "../../Application/Application.h"
 
@@ -64,9 +65,15 @@ void Ship::UpdateRigidBody()
 void Ship::ReduceTime(int dt)
 {
 	for (auto block : blocksDataBase_)
+	{
 		if (block.second->GetType() == BlockTypeWeapon)
 			((BlockWeapon*)block.second)->ReduceTime(dt);
+
+		if (block.second->GetType() == BlockTypeEngine)
+			((BlockEngine*)block.second)->ReduceTime(dt);
+	}
 }
+		
 
 void Ship::UpdateBlocksIDVector()
 {
@@ -80,6 +87,16 @@ void Ship::RunLUA()
 {
 	for (auto block : blocksDataBase_)
 		block.second->SetStandartCommand();
+	
+	//! Only for testing!!
+	for (auto block : blocksDataBase_)
+		if (block.second->GetType() == BlockTypeEngine)
+		{
+			((BlockEngine*)block.second)->SetPower(1);
+			((BlockEngine*)block.second)->SetDirection(glm::vec3(0.0f, 0.0f, -1.0f));
+
+			((BlockEngine*)block.second)->SetCommand(gasCommand);
+		}
 
 	controller_.Run();
 }
@@ -194,6 +211,12 @@ Block* Ship::GetNearestBlockTo(const btVector3&  pointA, const btVector3& pointB
 		return getBlockByWorldPosition(toWorldPosition(closestBlock));
 
 	return NULL;
+}
+
+void Ship::ApplyForce(btVector3& force, btVector3& globalPosition)
+{
+	body_->applyForce(principalTransformInverse_ * force, 
+		principalTransformInverse_ * globalPosition - body_->getCenterOfMassPosition());
 }
 
 btVector3 Ship::toWorldPosition(const btVector3& localPosition)
