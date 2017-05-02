@@ -1,5 +1,15 @@
 #include "math_3d.h"
 
+bool isEqual(glm::vec3 vec1, glm::vec3 vec2)
+{
+	if (round(vec1.x) == round(vec2.x) &&
+		round(vec1.y) == round(vec2.y) &&
+		round(vec1.z) == round(vec2.z))
+		return true;
+
+	return false;
+}
+
 btVector3 toBT(glm::vec3 vec)
 {
 	return btVector3(vec.x, vec.y, vec.z);

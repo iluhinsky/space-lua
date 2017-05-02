@@ -43,7 +43,7 @@ private:
 	void RemoveUnlinkedBlocks();
 	void MakeHomiesLinked(int currentBlockNumber);
 
-	int  Ship::GetBlockNumber(glm::vec3 relatedCoords);
+	Block*  GetBlock(glm::vec3 relatedCoords);
 
 	Block* GetNearestBlockTo(const btVector3&  pointA, const btVector3& pointB);
 

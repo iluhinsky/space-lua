@@ -15,6 +15,8 @@ T max(T a, T b)
 	return a > b ? a : b;
 }
 
+bool isEqual(glm::vec3 vec1, glm::vec3 vec2);
+
 btVector3 toBT(glm::vec3 vector);
 
 glm::vec3 toGLM(btVector3& vector);
