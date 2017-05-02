@@ -34,6 +34,16 @@ public:
 	bool isExist();
 	bool isLinked();
 
+	void Link()
+	{
+		isLinked_ = true;
+	}
+	void Unlink()
+	{
+		isLinked_ = false;
+	}
+
+
 	void Draw(Camera* camera, glm::vec4& globalCoord, glm::mat4& rotation) const;
 	virtual Block* Clone() const = 0; //TODO: Remove this
 

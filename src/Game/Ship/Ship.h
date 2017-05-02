@@ -7,6 +7,7 @@
 
 #include "Blocks\Block.h"
 #include "ShipController.h"
+#include <queue>
 
 
 class Ship :
@@ -39,6 +40,10 @@ public:
 
 private:
 	void ConstructShape(btScalar& mass, btVector3& inertia);
+	void RemoveUnlinkedBlocks();
+	void MakeHomiesLinked(int currentBlockNumber);
+
+	int  Ship::GetBlockNumber(glm::vec3 relatedCoords);
 
 	Block* GetNearestBlockTo(const btVector3&  pointA, const btVector3& pointB);
 

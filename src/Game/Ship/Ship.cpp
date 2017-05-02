@@ -75,6 +75,58 @@ void Ship::ReduceTime(int dt)
 			((BlockWeapon*)block)->ReduceTime(dt);
 }
 
+int  Ship::GetBlockNumber(glm::vec3 relatedCoords)
+{
+	int blockNumber = -1;
+
+	for (int i = 0; i < blocks_.capacity(); i++)
+	{
+		glm::vec3 curRelatedCoords = blocks_[i]->GetRelatedCoords();
+		if (curRelatedCoords.x == relatedCoords.x && curRelatedCoords.y == relatedCoords.y && curRelatedCoords.z == relatedCoords.z)
+		{
+			blockNumber = i;
+			break;
+		}
+	}
+
+	return blockNumber;
+}
+
+void Ship::MakeHomiesLinked(int currentBlockNumber)
+{
+	if (currentBlockNumber == -1)
+		return;
+
+	if (blocks_[currentBlockNumber]->isLinked() == true)
+		return;
+
+	blocks_[currentBlockNumber]->Link();
+	glm::vec3 curBlockCoords = blocks_[currentBlockNumber]->GetRelatedCoords();
+
+	MakeHomiesLinked(GetBlockNumber(curBlockCoords + glm::vec3( 1.0f,  0.0f,  0.0f)));
+	MakeHomiesLinked(GetBlockNumber(curBlockCoords + glm::vec3(-1.0f,  0.0f,  0.0f)));
+	MakeHomiesLinked(GetBlockNumber(curBlockCoords + glm::vec3( 0.0f,  1.0f,  0.0f)));
+	MakeHomiesLinked(GetBlockNumber(curBlockCoords + glm::vec3( 0.0f, -1.0f,  0.0f)));
+	MakeHomiesLinked(GetBlockNumber(curBlockCoords + glm::vec3( 0.0f,  0.0f,  1.0f)));
+	MakeHomiesLinked(GetBlockNumber(curBlockCoords + glm::vec3( 0.0f,  0.0f, -1.0f)));
+}
+
+void Ship::RemoveUnlinkedBlocks()
+{	
+	for (auto block : blocks_)
+		block->Unlink();
+	
+	MakeHomiesLinked(GetBlockNumber(glm::vec3(0.0f, 0.0f, 0.0f)));
+
+	for (auto block : blocks_)
+	{
+		if (block->isLinked() == false)
+		{
+			//Deleting this block
+		}
+	}
+}
+
 void Ship::RunLUA()
 {
 	for (auto block : blocks_)
@@ -108,6 +160,8 @@ void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)
 	
 	blocks_.remove(damagedBlock);
 	*/
+
+	RemoveUnlinkedBlocks();
 }
 
 btTransform Ship::GetTransform()

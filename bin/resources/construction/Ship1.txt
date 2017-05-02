@@ -1,4 +1,4 @@
 BlockTypeMain (0, 0, 0)
-BlockTypeShield (0, 2, 0) shield1
-BlockTypeWeapon (0, -2, 0) weapon1 (0, -1, 0)
+BlockTypeShield (0, 1, 0) shield1
+BlockTypeWeapon (0, -1, 0) weapon1 (0, 0, 1)
 END
