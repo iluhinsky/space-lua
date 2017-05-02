@@ -90,6 +90,11 @@ void ObjectDataBase::Fill(std::string name)
 			break;
 		}
 
+		newBlock->relatedCoords_ = glm::vec3(0.0f);
+		newBlock->isLinked_      = true;
+		newBlock->ship_          = nullptr;
+		newBlock->name_          = "";
+
 		newBlock->blockType_ = blockType;
 		newBlock->hits_ = hits;
 		newBlock->mass_ = mass;

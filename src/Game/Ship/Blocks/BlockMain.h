@@ -6,14 +6,8 @@ class BlockMain :
 {
 public:
 	BlockMain();
-	BlockMain(const BlockMain& block);
-
 	~BlockMain();
 
-	virtual const std::string& GetName();
 	virtual Block* Clone() const;
-
-private:
-	std::string name_;
 };
 

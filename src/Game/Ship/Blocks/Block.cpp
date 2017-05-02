@@ -56,6 +56,10 @@ void Block::SetShip(Ship* ship)
 	ship_ = ship;
 }
 
+const std::string& Block::GetName()
+{
+	return name_;
+}
 
 void Block::UpdateAfterPhysicsStep(glm::vec3& shipGlobalCoords, glm::mat3& currRotation)
 {

@@ -7,19 +7,6 @@ BlockWeapon::BlockWeapon()
 {
 }
 
-BlockWeapon::BlockWeapon(const BlockWeapon& block)
-{
-	graphicsAsset_ = block.graphicsAsset_;
-
-	blockType_ = block.blockType_;
-
-	hits_ = block.hits_;
-	mass_ = block.mass_;
-
-	estimatedTime_ = block.estimatedTime_;
-	coolDownTime_  = block.coolDownTime_;
-}
-
 BlockWeapon::~BlockWeapon()
 {
 }
@@ -30,11 +17,6 @@ void BlockWeapon::ReduceTime(int dt)
 
 	if (estimatedTime_ < 0)
 		estimatedTime_ = -1;
-}
-
-const std::string& BlockWeapon::GetName()
-{
-	return name_;
 }
 
 Block* BlockWeapon::Clone() const

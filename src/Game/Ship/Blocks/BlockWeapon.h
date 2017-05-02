@@ -16,11 +16,8 @@ class BlockWeapon :
 
 public:
 	BlockWeapon();
-	BlockWeapon(const BlockWeapon& block);
-
 	~BlockWeapon();
 
-	virtual const std::string& GetName();
 	virtual Block* Clone() const;
 
 	void ReduceTime(int dt);
@@ -31,7 +28,5 @@ private:
 
 	int estimatedTime_;
 	int coolDownTime_; //! in milliseconds
-
-	std::string name_;
 };
 
