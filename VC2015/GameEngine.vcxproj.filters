@@ -189,6 +189,9 @@
     <ClInclude Include="..\src\Game\Ship\Blocks\OrientedBlock.h">
       <Filter>src\Game\Ship\Blocks</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockEngine.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -303,6 +306,9 @@
       <Filter>src\Game\Ship\Blocks</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Game\Ship\Blocks\OrientedBlock.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockEngine.cpp">
       <Filter>src\Game\Ship\Blocks</Filter>
     </ClCompile>
   </ItemGroup>
