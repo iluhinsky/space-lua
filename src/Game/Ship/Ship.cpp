@@ -82,7 +82,7 @@ int  Ship::GetBlockNumber(glm::vec3 relatedCoords)
 	for (int i = 0; i < blocks_.capacity(); i++)
 	{
 		glm::vec3 curRelatedCoords = blocks_[i]->GetRelatedCoords();
-		if (curRelatedCoords.x == relatedCoords.x && curRelatedCoords.y == relatedCoords.y && curRelatedCoords.z == relatedCoords.z)
+		if (round(curRelatedCoords.x) == round(relatedCoords.x) && round(curRelatedCoords.y) == round(relatedCoords.y) && round(curRelatedCoords.z)  == round(relatedCoords.z))
 		{
 			blockNumber = i;
 			break;
