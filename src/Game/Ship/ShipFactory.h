@@ -26,5 +26,6 @@ private:
 
 	void LoadConstruction(Ship* ship);
 	void LoadController(Ship* ship);
+	void MakeLinks(Ship* ship);
 };
 

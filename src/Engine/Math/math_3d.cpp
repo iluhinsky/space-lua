@@ -1,5 +1,20 @@
 #include "math_3d.h"
 
+std::map<Direction, Direction> oppositeDirections = 
+{
+	{ x_up  , x_down },
+	{ y_up  , y_down },
+	{ z_up  , z_down },
+	{ x_down, x_up   },
+	{ y_down, y_up   },
+	{ z_down, z_up   }
+};
+
+Direction oppositeTo(Direction direction)
+{
+	return oppositeDirections[direction];
+}
+
 bool isEqual(glm::vec3 vec1, glm::vec3 vec2)
 {
 	if (round(vec1.x) == round(vec2.x) &&

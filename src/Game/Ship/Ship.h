@@ -53,7 +53,10 @@ private:
 	btTransform	principalTransform_;
 	btTransform	principalTransformInverse_;
 
-	std::vector<Block*> blocks_;
+	std::list<Block*> blocks_;
+	Block* blockMain;
+
+	bool isExist_;
 
 	ShipController controller_;
 };

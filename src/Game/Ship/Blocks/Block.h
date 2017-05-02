@@ -29,23 +29,22 @@ public:
 	Block();
 	~Block();
 
+	//! For basic logic
 	BlockType GetType();
 	void hit(int damage);
 	bool isExist();
-	bool isLinked();
 
-	void Link()
-	{
-		isLinked_ = true;
-	}
-	void Unlink()
-	{
-		isLinked_ = false;
-	}
+	//! For removing unlinked blocks
+	bool isLinkedtoMain();
+	void LinktoMain();
+	void UnlinkfromMain();
 
+	void Link  (Direction direction, Block* block);
+	void Unlink(Direction direction);
+	Block* GetBlockBy (Direction direction);
 
 	void Draw(Camera* camera, glm::vec4& globalCoord, glm::mat4& rotation) const;
-	virtual Block* Clone() const = 0; //TODO: Remove this
+	virtual Block* Clone() const = 0;
 
 	float     GetMass();
 	glm::vec3 GetRelatedCoords();
@@ -71,6 +70,8 @@ protected:
 	GraphicsObject* graphicsAsset_;
 
 	void (Block:: *Command_) ();
+
+	std::map<Direction, Block*> links_;
 
 	Ship* ship_;
 };

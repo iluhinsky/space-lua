@@ -3,6 +3,18 @@
 
 #include <btBulletDynamicsCommon.h>
 
+
+std::map<Direction, glm::vec3> directionShifts =
+{
+	{ x_up  , glm::vec3( 1.0f, 0.0f, 0.0f) },
+	{ y_up  , glm::vec3( 0.0f, 1.0f, 0.0f) },
+	{ z_up  , glm::vec3( 0.0f, 0.0f, 1.0f) },
+	{ x_down, glm::vec3(-1.0f, 0.0f, 0.0f) },
+	{ y_down, glm::vec3( 0.0f,-1.0f, 0.0f) },
+	{ z_down, glm::vec3( 0.0f, 0.0f,-1.0f) },
+};
+
+
 ShipFactory::ShipFactory()
 {
 }
@@ -65,6 +77,8 @@ void ShipFactory::LoadConstruction(Ship* ship)
 	}
 
 	fclose(file);
+
+	MakeLinks(ship);
 }
 
 
@@ -114,4 +128,23 @@ void ShipFactory::LoadController(Ship* ship)
 		.addFunction("Shoot",              &ShipController::Shoot)
 		.addFunction("IsDirectionAllowed", &ShipController::IsDirectionAllowed);
 
+}
+
+void ShipFactory::MakeLinks(Ship* ship)
+{
+	for (Block* currBlock : ship->blocks_)
+	{
+		for (auto direction : directionShifts)
+		{
+			auto neihborBlockIt = std::find_if(ship->blocks_.begin(), ship->blocks_.end(), 
+				[currBlock, direction](Block* neihborBlock)
+			{
+				return isEqual (
+					neihborBlock->GetRelatedCoords(),
+					currBlock   ->GetRelatedCoords() + direction.second);
+			});
+
+			currBlock->Link(direction.first, *neihborBlockIt);
+		}
+	}
 }

@@ -4,6 +4,18 @@
 
 #include "..\..\Application\Application.h"
 
+
+std::vector<Direction> directions =
+{
+	x_up,  
+	y_up,  
+	z_up, 
+	x_down,
+	y_down,
+	z_down
+};
+
+
 Ship::Ship() : controller_(this)
 {
 	
@@ -12,6 +24,8 @@ Ship::Ship() : controller_(this)
 
 Ship::~Ship()
 {
+	blocks_.clear();
+
 	PHYSICSWORLD->RemoveRigidBody(body_);
 
 	delete motionState_;
@@ -88,39 +102,40 @@ Block*  Ship::GetBlock(glm::vec3 relatedCoords)
 	return *it;
 }
 
-void Ship::MakeHomiesLinked(int currentBlockNumber)
-{
-	if (currentBlockNumber == -1)
-		return;
-
-	if (blocks_[currentBlockNumber]->isLinked() == true)
-		return;
-
-	blocks_[currentBlockNumber]->Link();
-	glm::vec3 curBlockCoords = blocks_[currentBlockNumber]->GetRelatedCoords();
-
-	MakeHomiesLinked(GetBlockNumber(curBlockCoords + glm::vec3( 1.0f,  0.0f,  0.0f)));
-	MakeHomiesLinked(GetBlockNumber(curBlockCoords + glm::vec3(-1.0f,  0.0f,  0.0f)));
-	MakeHomiesLinked(GetBlockNumber(curBlockCoords + glm::vec3( 0.0f,  1.0f,  0.0f)));
-	MakeHomiesLinked(GetBlockNumber(curBlockCoords + glm::vec3( 0.0f, -1.0f,  0.0f)));
-	MakeHomiesLinked(GetBlockNumber(curBlockCoords + glm::vec3( 0.0f,  0.0f,  1.0f)));
-	MakeHomiesLinked(GetBlockNumber(curBlockCoords + glm::vec3( 0.0f,  0.0f, -1.0f)));
-}
-
 void Ship::RemoveUnlinkedBlocks()
 {	
 	for (auto block : blocks_)
-		block->Unlink();
-	
-	MakeHomiesLinked(GetBlockNumber(glm::vec3(0.0f, 0.0f, 0.0f)));
+		block->UnlinkfromMain();
 
-	for (auto block : blocks_)
+	std::queue<Block*> BFSqueue;
+	Block* currBlock     = nullptr;
+	Block* neighborBlock = nullptr;
+
+	if (blockMain != nullptr)
 	{
-		if (block->isLinked() == false)
+		BFSqueue.push(blockMain);
+		blockMain->LinktoMain();
+	}
+
+	while (!BFSqueue.empty())
+	{
+		currBlock = BFSqueue.front();
+		BFSqueue.pop();
+
+		for (auto direction : directions)
 		{
-			//Deleting this block
+			neighborBlock = currBlock->GetBlockBy(direction);
+
+			if (neighborBlock != nullptr &&
+				!neighborBlock->isLinkedtoMain())
+			{
+				BFSqueue.push(neighborBlock);
+				neighborBlock->LinktoMain();
+			}
 		}
 	}
+
+	blocks_.remove_if([](Block* block) {return !block->isLinkedtoMain(); });
 }
 
 void Ship::RunLUA()
@@ -150,14 +165,20 @@ void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)
 
 	damagedBlock->hit(10);
 
-	/*
 	if (damagedBlock->isExist())
 		return;
-	
-	blocks_.remove(damagedBlock);
-	*/
 
+	if (damagedBlock->GetType() == BlockTypeMain)
+	{
+		isExist_  = false;
+		return;
+	}
+
+	blocks_.remove(damagedBlock);
+	
 	RemoveUnlinkedBlocks();
+
+	UpdateRigidBody();
 }
 
 btTransform Ship::GetTransform()
