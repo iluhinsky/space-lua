@@ -87,10 +87,10 @@ bool ShipController::IsDirectionAllowed(const std::string& blockName, double xDi
 
 	bool isDirectionAllowed = false;
 	Block* block = FindBlock(blockName, BlockTypeWeapon, ship);
-/*	if (block == ship->blocks_.end())
+	if (block == nullptr)
 	{
-		block = GetBlock(blockName, BlockTypeEngine, ship); // for engine
-	}*/
+		block = FindBlock(blockName, BlockTypeEngine, ship);
+	}
 
 	if (block != nullptr)
 	{
@@ -117,6 +117,25 @@ void ShipController::Shoot(const std::string& blockName, double xBulletDir, doub
 	}
 	else
 		std::cout << "There are no appropriate shields for shooting" << " ('" << blockName << "') " << std::endl;
+}
+
+
+void ShipController::Gas(const std::string& blockName, double xDir, double yDir, double zDir, lua_State* luaThread)
+{
+	assert(luaThread);
+
+	Ship* ship = shipsDataBase_[luaThread];
+	assert(ship);
+
+	Block* block = FindBlock(blockName, BlockTypeEngine, ship);
+
+	if (block != nullptr)
+	{
+		((BlockEngine*)(block))->SetDirection(glm::vec3(xDir, yDir, zDir));
+		((BlockEngine*)(block))->SetCommand(GasCommand);
+	}
+	else
+		std::cout << "There are no appropriate engines for gasing" << " ('" << blockName << "') " << std::endl;
 }
 
 

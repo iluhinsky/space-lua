@@ -95,7 +95,7 @@ void Ship::RunLUA()
 			((BlockEngine*)block.second)->SetPower(1);
 			((BlockEngine*)block.second)->SetDirection(glm::vec3(0.0f, 0.0f, -1.0f));
 
-			((BlockEngine*)block.second)->SetCommand(gasCommand);
+			((BlockEngine*)block.second)->SetCommand(GasCommand);
 		}
 
 	controller_.Run();

@@ -118,6 +118,7 @@ void ShipFactory::LoadController(Ship* ship)
 		.addFunction("GetShipInfo",        &ShipController::GetShipInfo)
 		.addFunction("GetBlocks",          &ShipController::GetBlocksByShipID)
 		.addFunction("GetBlockInfo",       &ShipController::GetBlockInfo)
+		.addFunction("Gas",                &ShipController::Gas)
 
 		.beginClass <ShipInfoForLUA> ("ShipInfoForLUA")
 			.addData("x",    &ShipInfoForLUA::x)

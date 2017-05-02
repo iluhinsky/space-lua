@@ -4,7 +4,7 @@
 
 enum BlockEngineCommand
 {
-	gasCommand
+	GasCommand = 0
 };
 
 

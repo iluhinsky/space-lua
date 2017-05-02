@@ -21,7 +21,7 @@ void BlockEngine::SetCommand(BlockEngineCommand command)
 {
 	switch (command)
 	{
-	case gasCommand:
+	case GasCommand:
 		(this->Command_) = (void (Block::*)()) &BlockEngine::Gas;
 		break;
 	default:
