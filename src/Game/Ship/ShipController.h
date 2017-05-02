@@ -14,8 +14,6 @@ extern "C"
 #include "Blocks/BlockWeapon.h"
 #include "Blocks/BlockEngine.h"
 
-#define INSTRUCTION_LIMIT 1000
-
 
 class Ship;
 

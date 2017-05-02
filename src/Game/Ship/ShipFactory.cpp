@@ -3,6 +3,8 @@
 
 #include <btBulletDynamicsCommon.h>
 
+extern const int instructionsLimit;
+
 
 ShipFactory::ShipFactory()
 {
@@ -107,7 +109,7 @@ void ShipFactory::LoadController(Ship* ship)
 	}
 
 
-	lua_sethook(luaThread, ShipController::CatchLuaHook, LUA_MASKCOUNT, INSTRUCTION_LIMIT);
+	lua_sethook(luaThread, ShipController::CatchLuaHook, LUA_MASKCOUNT, instructionsLimit);
 
 	luabridge::getGlobalNamespace(ship->controller_.luaThread_)
 		.addFunction("GetTime",            &ShipController::GetTime)
