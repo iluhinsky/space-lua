@@ -99,10 +99,24 @@ void World::CreateBullet(glm::vec3 direction, glm::vec3 startingPosition)
 	bullets_.push_back(newBullet);
 }
 
-void World::ClearUnexisingBullets()
+void World::ClearUnexisingObjects()
 {
 	bullets_.remove_if([](std::shared_ptr<Bullet> bullet) 
 		{ return !(bullet->isExist()); });
+
+	std::list<int> deadShipsIDs;
+
+	for (auto ship : shipsDataBase_)
+		if (!ship.second->isExist())
+		{
+			deadShipsIDs.push_back(ship.first);
+			delete ship.second;
+		}
+
+	for (auto shipID : deadShipsIDs)
+		shipsDataBase_.erase(shipID);
+
+	UpdateShipsIDVector();
 }
 
 void World::RunLUA()

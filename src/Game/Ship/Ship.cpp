@@ -24,6 +24,11 @@ Ship::Ship() : controller_(this)
 
 Ship::~Ship()
 {
+	std::cout << "Ship " << shipName_ << " was punished!" << std::endl;
+
+	for (auto block : blocksDataBase_)
+		delete block.second;
+
 	blocksDataBase_.clear();
 
 	PHYSICSWORLD->RemoveRigidBody(body_);
@@ -196,6 +201,11 @@ void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)
 	RemoveUnlinkedBlocks();
 
 	UpdateRigidBody();
+}
+
+bool Ship::isExist()
+{
+	return isExist_;
 }
 
 btTransform Ship::GetTransform()
