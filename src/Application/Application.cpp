@@ -70,7 +70,7 @@ void Application::MainFunc()
 	sf::Time dt = UpdateAndCountTime();
 
 	world_->ReduceTime(dt.asMilliseconds());
-	world_->ClearUnexisingBullets();
+	world_->ClearUnexisingObjects();
 
 	physicsWorld_->proc(dt.asMilliseconds());
 	world_->UpdateAfterPhysicsStep();

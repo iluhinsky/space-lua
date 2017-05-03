@@ -37,6 +37,7 @@ public:
 	btTransform GetTransform();
 
 	void hit(Bullet* bullet, btVector3& pointA, btVector3& pointB);
+	bool isExist();
 
 	btVector3 toWorldPosition(const btVector3& localPosition);
 	Block*    getBlockByWorldPosition(const btVector3& position);

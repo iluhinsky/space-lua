@@ -8,6 +8,8 @@ Block::Block()
 
 Block::~Block()
 {
+	std::cout << "Block " << blockType_ << " was punished!" << std::endl;
+
 	for (auto link : links_)
 		link.second->Unlink(oppositeTo(link.first));
 }

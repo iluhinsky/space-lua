@@ -25,7 +25,7 @@ public:
 	void ReduceTime(int dt);
 
 	void CreateBullet(glm::vec3 direction, glm::vec3 startingPosition);
-	void ClearUnexisingBullets();
+	void ClearUnexisingObjects();
 
 	void RunLUA();
 	void ExecuteLogic();
