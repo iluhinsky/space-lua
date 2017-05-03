@@ -82,16 +82,16 @@ void ShipFactory::LoadConstruction(Ship* ship)
 
 	fclose(file);
 
-	auto it = std::find_if(ship->blocks_.begin(), ship->blocks_.end(),
-		[](Block* block)
+	auto it = std::find_if(ship->blocksDataBase_.begin(), ship->blocksDataBase_.end(),
+		[](std::pair<int, Block*> block)
 	{
-		return block->GetType() == BlockTypeMain ? true : false;
+		return block.second->GetType() == BlockTypeMain ? true : false;
 	});
 
-	if (it == ship->blocks_.end())
+	if (it == ship->blocksDataBase_.end())
 		assert(0);
 
-	ship->blockMain = *it;
+	ship->blockMain = it->second;
 
 	MakeLinks(ship);
 }
@@ -165,20 +165,20 @@ void ShipFactory::LoadController(Ship* ship)
 
 void ShipFactory::MakeLinks(Ship* ship)
 {
-	for (auto currBlock : ship->blocks_)
+	for (auto currBlock : ship->blocksDataBase_)
 	{
 		for (auto direction : directionShifts)
 		{
-			auto neihborBlockIt = std::find_if(ship->blocks_.begin(), ship->blocks_.end(), 
-				[currBlock, direction](Block* neihborBlock)
+			auto neihborBlockIt = std::find_if(ship->blocksDataBase_.begin(), ship->blocksDataBase_.end(),
+				[currBlock, direction](std::pair<int, Block*> neihborBlock)
 			{
 				return isEqual (
-					neihborBlock->GetRelatedCoords(),
-					currBlock   ->GetRelatedCoords() + direction.second);
+					neihborBlock.second->GetRelatedCoords(),
+					currBlock.second   ->GetRelatedCoords() + direction.second);
 			});
 
-			if (neihborBlockIt != ship->blocks_.end())
-				currBlock->Link(direction.first, *neihborBlockIt);
+			if (neihborBlockIt != ship->blocksDataBase_.end())
+				currBlock.second->Link(direction.first, (*neihborBlockIt).second);
 		}
 	}
 }

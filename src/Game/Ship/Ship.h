@@ -47,6 +47,8 @@ private:
 
 	Block* GetNearestBlockTo(const btVector3&  pointA, const btVector3& pointB);
 
+	int GetidOf(Block* block);
+
 	std::string shipName_;
 
 	btTransform transform_;
@@ -59,7 +61,6 @@ private:
 
 	std::map   <int, Block*> blocksDataBase_;
 	std::vector<int>         blocksID_;
-	std::list<Block*> blocks_;
 	Block* blockMain;
 
 	bool isExist_;

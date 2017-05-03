@@ -24,7 +24,7 @@ Ship::Ship() : controller_(this)
 
 Ship::~Ship()
 {
-	blocks_.clear();
+	blocksDataBase_.clear();
 
 	PHYSICSWORLD->RemoveRigidBody(body_);
 
@@ -93,8 +93,8 @@ void Ship::UpdateBlocksIDVector()
 
 void Ship::RemoveUnlinkedBlocks()
 {	
-	for (auto block : blocks_)
-		block->UnlinkfromMain();
+	for (auto block : blocksDataBase_)
+		block.second->UnlinkfromMain();
 
 	std::queue<Block*> BFSqueue;
 	Block* currBlock     = nullptr;
@@ -124,15 +124,21 @@ void Ship::RemoveUnlinkedBlocks()
 		}
 	}
 
-	blocks_.remove_if([](Block* block) 
+	std::list<int> deletingBlocks;
+
+	for (auto block : blocksDataBase_)
+		if (!block.second->isLinkedtoMain())
+			deletingBlocks.push_back(block.first);
+
+	for (auto blockID : deletingBlocks)
 	{
-		if (!block->isLinkedtoMain())
-		{
-			delete block;
-			return true;
-		}
-		return false; 
-	});
+		currBlock = blocksDataBase_[blockID];
+
+		delete currBlock;
+		blocksDataBase_.erase(blockID);
+	}
+
+	UpdateBlocksIDVector();
 }
 
 void Ship::RunLUA()
@@ -183,7 +189,8 @@ void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)
 		return;
 	}
 
-	blocks_.remove(damagedBlock);
+
+	blocksDataBase_.erase(GetidOf(damagedBlock));
 	delete damagedBlock;
 	
 	RemoveUnlinkedBlocks();
@@ -284,4 +291,18 @@ Block* Ship::getBlockByWorldPosition(const btVector3& position)
 			currBlock = block.second;
 
 	return currBlock;;
+}
+
+int Ship::GetidOf(Block* block)
+{
+	auto it = std::find_if(blocksDataBase_.begin(), blocksDataBase_.end(),
+		[block](std::pair<int, Block*> currBlock)
+	{
+		return currBlock.second == block;
+	});
+
+	if (it == blocksDataBase_.end())
+		return -1;
+
+	return it->first;
 }

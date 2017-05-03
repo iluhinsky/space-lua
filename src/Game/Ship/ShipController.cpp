@@ -195,7 +195,6 @@ BlockInfoForLUA ShipController::GetBlockInfo(int shipID, int blockID, lua_State*
 
 
 Block* ShipController::FindBlock(const std::string& blockName, BlockType blockType, Ship* ship)
-std::list<Block*>::iterator ShipController::FindBlock(const std::string& blockName, BlockType blockType, Ship* ship)
 {
 	assert(ship);
 
