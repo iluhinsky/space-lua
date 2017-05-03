@@ -75,6 +75,7 @@ void Ship::UpdateRigidBody()
 
 	ConstructShape(mass, inertia);
 
+	body_->setWorldTransform(transform_ * principalTransform_);
 	body_->setCollisionShape(shape_);
 	body_->setMassProps(mass, inertia);
 	body_->updateInertiaTensor();
@@ -87,19 +88,6 @@ void Ship::ReduceTime(int dt)
 	for (auto block : blocks_)
 		if (block->GetType() == BlockTypeWeapon)
 			((BlockWeapon*)block)->ReduceTime(dt);
-}
-
-Block*  Ship::GetBlock(glm::vec3 relatedCoords)
-{
-	auto it = std::find_if(blocks_.begin(), blocks_.end(), [relatedCoords](Block* block)
-	{ 
-		return isEqual(relatedCoords, block->GetRelatedCoords()); 
-	});
-
-	if (it == blocks_.end())
-		return nullptr;
-
-	return *it;
 }
 
 void Ship::RemoveUnlinkedBlocks()
@@ -135,7 +123,15 @@ void Ship::RemoveUnlinkedBlocks()
 		}
 	}
 
-	blocks_.remove_if([](Block* block) {return !block->isLinkedtoMain(); });
+	blocks_.remove_if([](Block* block) 
+	{
+		if (!block->isLinkedtoMain())
+		{
+			delete block;
+			return true;
+		}
+		return false; 
+	});
 }
 
 void Ship::RunLUA()
@@ -175,6 +171,7 @@ void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)
 	}
 
 	blocks_.remove(damagedBlock);
+	delete damagedBlock;
 	
 	RemoveUnlinkedBlocks();
 

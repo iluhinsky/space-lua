@@ -120,7 +120,7 @@ void ShipController::Shoot(const std::string& blockName, double xBulletDir, doub
 }
 
 
-std::vector<Block*>::iterator ShipController::FindBlock(const std::string& blockName, BlockType blockType, Ship* ship)
+std::list<Block*>::iterator ShipController::FindBlock(const std::string& blockName, BlockType blockType, Ship* ship)
 {
 	assert(ship);
 

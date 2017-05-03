@@ -41,9 +41,6 @@ public:
 private:
 	void ConstructShape(btScalar& mass, btVector3& inertia);
 	void RemoveUnlinkedBlocks();
-	void MakeHomiesLinked(int currentBlockNumber);
-
-	Block*  GetBlock(glm::vec3 relatedCoords);
 
 	Block* GetNearestBlockTo(const btVector3&  pointA, const btVector3& pointB);
 

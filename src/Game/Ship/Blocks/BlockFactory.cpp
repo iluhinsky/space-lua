@@ -91,8 +91,9 @@ void ObjectDataBase::Fill(std::string name)
 		}
 
 		newBlock->blockType_ = blockType;
-		newBlock->hits_ = hits;
-		newBlock->mass_ = mass;
+		newBlock->hits_      = hits;
+		newBlock->mass_      = mass;
+		newBlock->isLinked_  = true;
 
 		newBlock->graphicsAsset_ = GRAPHICSWORLD->GetManager()->Get(assetNames);
 
@@ -164,7 +165,7 @@ Block* BlockFactory::GetBlock(FILE* file)
 			((BlockWeapon*)newBlock)->name_ = blockTypeName;
 			break;
 
-		default:
+		default:	
 			break;
 		}
 
