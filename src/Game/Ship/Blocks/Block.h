@@ -29,10 +29,19 @@ public:
 	Block();
 	~Block();
 
+	//! For basic logic
 	BlockType GetType();
 	void hit(int damage);
 	bool isExist();
-	bool isLinked();
+
+	//! For removing unlinked blocks
+	bool isLinkedtoMain();
+	void LinktoMain();
+	void UnlinkfromMain();
+
+	void Link  (Direction direction, Block* block);
+	void Unlink(Direction direction);
+	Block* GetBlockBy (Direction direction);
 
 	void Draw(Camera* camera) const;
 	virtual Block* Clone() const = 0; //TODO: Remove this
@@ -68,6 +77,8 @@ protected:
 	GraphicsObject* graphicsAsset_;
 
 	void (Block:: *Command_) ();
+
+	std::map<Direction, Block*> links_;
 
 	Ship* ship_;
 };

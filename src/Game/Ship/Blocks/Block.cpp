@@ -8,6 +8,8 @@ Block::Block()
 
 Block::~Block()
 {
+	for (auto link : links_)
+		link.second->Unlink(oppositeTo(link.first));
 }
 
 BlockType Block::GetType()
@@ -25,11 +27,35 @@ bool Block::isExist()
 	return (hits_ > 0);
 }
 
-bool Block::isLinked()
+bool Block::isLinkedtoMain()
 {
 	return isLinked_;
 }
 
+void Block::LinktoMain()
+{
+	isLinked_ = true;
+}
+
+void Block::UnlinkfromMain()
+{
+	isLinked_ = false;
+}
+
+void Block::Link(Direction direction, Block* block)
+{
+	links_[direction] = block;
+}
+
+void Block::Unlink(Direction direction)
+{
+	links_.erase(direction);
+}
+
+Block* Block::GetBlockBy(Direction direction)
+{
+	return links_[direction];
+}
 
 void Block::Draw(Camera* camera) const
 {

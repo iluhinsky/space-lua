@@ -4,6 +4,17 @@
 #include <btBulletDynamicsCommon.h>
 
 
+std::map<Direction, glm::vec3> directionShifts =
+{
+	{ x_up  , glm::vec3( 2.0f, 0.0f, 0.0f) },
+	{ y_up  , glm::vec3( 0.0f, 2.0f, 0.0f) },
+	{ z_up  , glm::vec3( 0.0f, 0.0f, 2.0f) },
+	{ x_down, glm::vec3(-2.0f, 0.0f, 0.0f) },
+	{ y_down, glm::vec3( 0.0f,-2.0f, 0.0f) },
+	{ z_down, glm::vec3( 0.0f, 0.0f,-2.0f) },
+};
+
+
 ShipFactory::ShipFactory()
 {
 }
@@ -70,6 +81,19 @@ void ShipFactory::LoadConstruction(Ship* ship)
 	}
 
 	fclose(file);
+
+	auto it = std::find_if(ship->blocks_.begin(), ship->blocks_.end(),
+		[](Block* block)
+	{
+		return block->GetType() == BlockTypeMain ? true : false;
+	});
+
+	if (it == ship->blocks_.end())
+		assert(0);
+
+	ship->blockMain = *it;
+
+	MakeLinks(ship);
 }
 
 
@@ -137,4 +161,24 @@ void ShipFactory::LoadController(Ship* ship)
 			.addFunction <std::vector<int>::const_reference(std::vector<int>::*)(std::vector<int>::size_type) const> ("at", &std::vector<int>::at)
 		.endClass();
 
+}
+
+void ShipFactory::MakeLinks(Ship* ship)
+{
+	for (auto currBlock : ship->blocks_)
+	{
+		for (auto direction : directionShifts)
+		{
+			auto neihborBlockIt = std::find_if(ship->blocks_.begin(), ship->blocks_.end(), 
+				[currBlock, direction](Block* neihborBlock)
+			{
+				return isEqual (
+					neihborBlock->GetRelatedCoords(),
+					currBlock   ->GetRelatedCoords() + direction.second);
+			});
+
+			if (neihborBlockIt != ship->blocks_.end())
+				currBlock->Link(direction.first, *neihborBlockIt);
+		}
+	}
 }

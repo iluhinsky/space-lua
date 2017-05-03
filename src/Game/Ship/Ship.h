@@ -7,6 +7,7 @@
 
 #include "Blocks\Block.h"
 #include "ShipController.h"
+#include <queue>
 
 
 class Ship :
@@ -42,6 +43,7 @@ public:
 
 private:
 	void ConstructShape(btScalar& mass, btVector3& inertia);
+	void RemoveUnlinkedBlocks();
 
 	Block* GetNearestBlockTo(const btVector3&  pointA, const btVector3& pointB);
 
@@ -57,6 +59,10 @@ private:
 
 	std::map   <int, Block*> blocksDataBase_;
 	std::vector<int>         blocksID_;
+	std::list<Block*> blocks_;
+	Block* blockMain;
+
+	bool isExist_;
 
 	ShipController controller_;
 };

@@ -4,6 +4,18 @@
 
 #include "../../Application/Application.h"
 
+
+std::vector<Direction> directions =
+{
+	x_up,  
+	y_up,  
+	z_up, 
+	x_down,
+	y_down,
+	z_down
+};
+
+
 Ship::Ship() : controller_(this)
 {
 	
@@ -12,6 +24,8 @@ Ship::Ship() : controller_(this)
 
 Ship::~Ship()
 {
+	blocks_.clear();
+
 	PHYSICSWORLD->RemoveRigidBody(body_);
 
 	delete motionState_;
@@ -54,6 +68,7 @@ void Ship::UpdateRigidBody()
 
 	ConstructShape(mass, inertia);
 
+	body_->setWorldTransform(transform_ * principalTransform_);
 	body_->setCollisionShape(shape_);
 	body_->setMassProps(mass, inertia);
 	body_->updateInertiaTensor();
@@ -74,6 +89,50 @@ void Ship::UpdateBlocksIDVector()
 
 	for (auto elem : blocksDataBase_)
 		blocksID_.push_back(elem.first);
+}
+
+void Ship::RemoveUnlinkedBlocks()
+{	
+	for (auto block : blocks_)
+		block->UnlinkfromMain();
+
+	std::queue<Block*> BFSqueue;
+	Block* currBlock     = nullptr;
+	Block* neighborBlock = nullptr;
+
+	if (blockMain != nullptr)
+	{
+		BFSqueue.push(blockMain);
+		blockMain->LinktoMain();
+	}
+
+	while (!BFSqueue.empty())
+	{
+		currBlock = BFSqueue.front();
+		BFSqueue.pop();
+
+		for (auto direction : directions)
+		{
+			neighborBlock = currBlock->GetBlockBy(direction);
+
+			if (neighborBlock != nullptr &&
+				!neighborBlock->isLinkedtoMain())
+			{
+				BFSqueue.push(neighborBlock);
+				neighborBlock->LinktoMain();
+			}
+		}
+	}
+
+	blocks_.remove_if([](Block* block) 
+	{
+		if (!block->isLinkedtoMain())
+		{
+			delete block;
+			return true;
+		}
+		return false; 
+	});
 }
 
 void Ship::RunLUA()
@@ -115,12 +174,21 @@ void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)
 
 	damagedBlock->hit(10);
 
-	/*
 	if (damagedBlock->isExist())
 		return;
-	
+
+	if (damagedBlock->GetType() == BlockTypeMain)
+	{
+		isExist_  = false;
+		return;
+	}
+
 	blocks_.remove(damagedBlock);
-	*/
+	delete damagedBlock;
+	
+	RemoveUnlinkedBlocks();
+
+	UpdateRigidBody();
 }
 
 btTransform Ship::GetTransform()

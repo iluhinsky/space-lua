@@ -1,5 +1,5 @@
 BlockTypeMain 
-hits: 30.0 mass: 0.1 
+hits: 20.0 mass: 0.1 
 model: cube.3ds
 texture: main.png
 vertexShader: block_vertex.glsl 

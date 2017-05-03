@@ -59,7 +59,7 @@ public:
 	void Run();
 
 private:
-	static Block* FindBlock(const std::string& blockName, BlockType blockType, Ship* ship);
+	static std::list<Block*>::iterator FindBlock(const std::string& blockName, BlockType blockType, Ship* ship);
 
 	static std::map<lua_State*, Ship*> shipsDataBase_;
 
