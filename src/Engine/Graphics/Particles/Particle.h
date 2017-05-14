@@ -8,7 +8,7 @@ public:
 	~Particle();
 
 	glm::vec3 GetPosition();
-	void Update(float dt);
+	void Update(float dt, int flowPerSecond_, int numberOfParticles_, bool isRepeat);
 	void SetVelocity(glm::vec3 initialSpeed);
 	void SetLifeTime(float lifeTime);
 
@@ -21,6 +21,11 @@ public:
 	void Disable()
 	{
 		isEnabled = false;
+	}
+
+	bool isEnable()
+	{
+		return isEnabled;
 	}
 
 	float GetEstimatedTime()

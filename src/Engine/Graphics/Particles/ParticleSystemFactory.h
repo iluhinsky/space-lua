@@ -8,10 +8,14 @@ struct ParticleSystemInfo
 
 	ShaderNames shaderNames_;
 
-	int			numberOfParticles_; 
+	int			numberOfParticles_;
 	int			flowPerSecond_;
 	float		lifeTime_; 
+	float		scale_;
 	glm::vec3	initialSpeed_;
+	glm::vec3	color_;
+
+	bool		isRepeat_;
 };
 
 class ParticleSystemFactory

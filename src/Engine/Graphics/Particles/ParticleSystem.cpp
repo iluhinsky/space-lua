@@ -3,22 +3,17 @@
 
 
 
-ParticleSystem::ParticleSystem(glm::vec3 position, int numberOfParticles, int flowPerSecond, float lifeTime, glm::vec3 initialSpeed)
+ParticleSystem::ParticleSystem(glm::vec3 position, int numberOfParticles, int flowPerSecond, float lifeTime, glm::vec3 initialSpeed, glm::vec3 color, bool isRepeat, float scale)
 {
-	scale_ = 0.1;
+	scale_ = scale;
 	numberOfParticles_ = numberOfParticles;
 	lifeTime_ = lifeTime;
 	initialSpeed_ = initialSpeed;
 	position_ = position;
-
-	if (flowPerSecond > numberOfParticles)
-	{
-		flowPerSecond_ = numberOfParticles;
-	}
-	else
-	{
-		flowPerSecond_ = flowPerSecond;
-	}
+	color_ = color;
+	flowPerSecond_ = flowPerSecond;
+	isRepeat_ = isRepeat;
+	
 
 	particles_ = new Particle[numberOfParticles_];
 
@@ -63,12 +58,13 @@ void ParticleSystem::Draw(Camera* camera)
 	{	
 		shaderProg_->UniformFloat(shaderProg_->GetUniformLocation("scale"), scale_*(0.5 + (lifeTime_ - particles_[i].GetEstimatedTime()) / 3));
 		shaderProg_->UniformFloat(shaderProg_->GetUniformLocation("estimatedTime"), particles_[i].GetEstimatedTime());
-		shaderProg_->UniformVector3D(shaderProg_->GetUniformLocation("deltaPos"), position_+particles_[i].GetPosition());
+		shaderProg_->UniformVector3D(shaderProg_->GetUniformLocation("deltaPos"), position_ + particles_[i].GetPosition());
 
-		glDrawArrays(GL_TRIANGLES, 0, model_->_meshes[0]._nVerticles);
-
-		particles_[i].Enable(deltaT, flowPerSecond_, numberOfParticles_);
-		particles_[i].Update(deltaT);
+		if (particles_[i].isEnable()) {
+			glDrawArrays(GL_TRIANGLES, 0, model_->_meshes[0]._nVerticles);
+		}
+		
+		particles_[i].Update(deltaT, flowPerSecond_, numberOfParticles_, isRepeat_);
 	}
 
 	glDisableVertexAttribArray(0);
@@ -81,6 +77,7 @@ void ParticleSystem::SetUniforms(Camera* camera)
 {
 	shaderProg_->UniformFloat(shaderProg_->GetUniformLocation("lifeTime"), lifeTime_);
 	shaderProg_->UniformInt(shaderProg_->GetUniformLocation("texture"), 0);
+	shaderProg_->UniformVector3D(shaderProg_->GetUniformLocation("blendColor"), color_);
 
 	Pipeline p;
 

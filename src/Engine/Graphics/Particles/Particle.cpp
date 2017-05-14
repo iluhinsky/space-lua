@@ -16,20 +16,21 @@ glm::vec3 Particle::GetPosition()
 	return position_;
 }
 
-void Particle::Update(float dt)
+void Particle::Update(float dt, int flowPerSecond_, int numberOfParticles_, bool isRepeat)
 {
-	if (!isEnabled)
+	if (estimatedTime_ < 0 && isRepeat == false)
 	{
+		Disable();
 		return;
 	}
-	
-	position_.x += velocity_.x * dt;
-	position_.y += velocity_.y * dt;
-	position_.z += velocity_.z * dt;
 
-	estimatedTime_ -= dt;
+	if (!isEnabled)
+	{
+		Enable(dt, flowPerSecond_, numberOfParticles_);
+		return;
+	}
 
-	if (estimatedTime_ < 0)
+	if (estimatedTime_ < 0 && isRepeat)
 	{
 		estimatedTime_ = lifeTime_;
 		position_.x = 0;
@@ -37,13 +38,27 @@ void Particle::Update(float dt)
 		position_.z = 0;
 	}
 
+	position_.x += velocity_.x * dt;
+	position_.y += velocity_.y * dt;
+	position_.z += velocity_.z * dt;
+
+	estimatedTime_ -= dt;
 }
 
 glm::vec3 Particle::GenRandVector()
 {
 	int A = rand() + 1;
+	float coneCoef = 3;
 
-	return glm::vec3{ (rand() % A) / float(A), (rand() % A) / float(A), (rand() % A) / float(A)};
+	glm::vec3 addedVelocity = {}; 
+	addedVelocity.x = coneCoef * (rand() % A) / float(A);
+	if (rand() % 2) { addedVelocity.x *= -1.0f; }
+	addedVelocity.y = coneCoef * (rand() % A) / float(A);
+	if (rand() % 2) { addedVelocity.y *= -1.0f; }
+	addedVelocity.z = coneCoef * (rand() % A) / float(A);
+	if (rand() % 2) { addedVelocity.z *= -1.0f; } 
+
+	return addedVelocity;
 }
 
 void Particle::SetVelocity(glm::vec3 initialSpeed)
