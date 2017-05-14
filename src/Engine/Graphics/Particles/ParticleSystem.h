@@ -20,7 +20,7 @@ public:
 	}
 
 	void SetVelocity(glm::vec3 velocity) {
-		initialSpeed_ = velocity;
+		initialSpeed_ = glm::length(initialSpeed_) * glm::normalize(velocity);
 	}
 
 	glm::vec3 GetVelocity() {
