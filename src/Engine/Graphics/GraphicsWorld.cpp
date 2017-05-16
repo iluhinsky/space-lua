@@ -10,10 +10,8 @@ GraphicsWorld::GraphicsWorld()
 
 GraphicsWorld::~GraphicsWorld()
 {
-	for each (ParticleSystem* it in particleSystem_)
-	{
-		delete it;
-	}
+	for (auto system : particleSystem_)
+		delete system;
 
 	delete manager_;
 

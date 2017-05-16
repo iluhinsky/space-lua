@@ -67,10 +67,8 @@ void Application::MainFunc()
 
 	world_->Draw(player_->GetCamera());
 	
-	for each (ParticleSystem* it in graphicsWorld_->GetParticleSystem())
-	{
-		it->Draw(player_->GetCamera());
-	}
+	for (auto particleSystem : graphicsWorld_->GetParticleSystem())
+		particleSystem->Draw(player_->GetCamera());
 
 	window_->display();
 }
