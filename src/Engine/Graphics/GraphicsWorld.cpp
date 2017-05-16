@@ -69,6 +69,11 @@ ParticleSystem* GraphicsWorld::GetExplosionParticleSystem(glm::vec3 position)
 	assets.textureName_ = "face.png";
 	assets.shaderNames_ = ShaderNames{ "particle_vertex.glsl", "particle_fragment.glsl", "" };
 
-	ParticleSystemFactory factory = ParticleSystemFactory();
-	return factory.CreateParticleSystem(position, assets);
+	ParticleSystemFactory factory = ParticleSystemFactory(); //?! WTF!?!?!?!?
+
+	ParticleSystem* explosion = factory.CreateParticleSystem(position, assets);
+
+	particleSystem_.push_back(explosion);
+
+	return explosion;
 }

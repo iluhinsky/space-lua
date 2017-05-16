@@ -1,5 +1,6 @@
 #include "Block.h"
 
+#include "..\..\..\Application\Application.h"
 
 Block::Block()
 {
@@ -11,7 +12,10 @@ Block::~Block()
 	std::cout << "Block " << blockType_ << " was punished!" << std::endl;
 
 	for (auto link : links_)
-		link.second->Unlink(oppositeTo(link.first));
+		if (link.second != nullptr)                        // Cost ill
+			link.second->Unlink(oppositeTo(link.first));
+
+	GRAPHICSWORLD->GetExplosionParticleSystem(currGlobalCoords_);
 }
 
 BlockType Block::GetType()
