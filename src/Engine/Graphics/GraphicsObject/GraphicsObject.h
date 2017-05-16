@@ -22,7 +22,6 @@ private:
 	void SetUniforms(Camera* camera, glm::vec3& worldPos, glm::mat3& rotation);
 	void SetTranslation(Pipeline* p, Camera* camera, glm::vec3& worldPos);
 
-	float t; // temp
 	float       scale_;
 
 	Model*      model_;

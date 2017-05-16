@@ -27,6 +27,8 @@ public:
 private:
 	std::map<BlockType, Block*> db_;
 	std::map<std::string, BlockType> dictionary_;
+
+	//GraphicsObjectManager manager_;
 };
 
 

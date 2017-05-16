@@ -35,6 +35,8 @@ public:
 	GraphicsWorld* GetGraphicsWorld();
 	World*         GetWorld();
 
+	ShaderProgManager shaderManager_;
+
 private:
 	virtual void MainFunc();
 	virtual void ReshapeFunc(int width, int height);

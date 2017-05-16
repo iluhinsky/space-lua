@@ -2,9 +2,7 @@
 
 #include "../../../Application/Application.h"
 
-GraphicsObject::GraphicsObject():
-	t(0),
-	scale_(1)
+GraphicsObject::GraphicsObject(): scale_(1)
 {
 }
 
@@ -46,6 +44,8 @@ void GraphicsObject::Draw(Camera* camera, glm::vec3 worldPos, glm::mat3 rotation
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
+
+	shaderProg_->Detach();
 }
 
 
@@ -53,27 +53,29 @@ void GraphicsObject::SetUniforms(Camera* camera, glm::vec3& worldPos, glm::mat3&
 {
 	sf::Vector2u size = APPLICATION->GetWindowSize();
 
+
+
 	Pipeline p;
+
+	float time = APPLICATION->getTime().asSeconds();
 
 	SetTranslation(&p, camera, worldPos);
 
 	p.SetPerspectiveProj(60.0f, size.x, size.y, 1.0f, 10000.0f);
 	p.Rotate(rotation);
 
-	t += 0.01f;
-
 	p.CalculateMatrices();
 
 	glm::mat4 ModelViewMatrix = p.GetViewMatrix() * p.GetModelMatrix();
-	glm::mat4 MVPMatrix       = p.GetProjMatrix() * ModelViewMatrix;
+	glm::mat4 MVPMatrix = p.GetProjMatrix() * ModelViewMatrix;
 
-	shaderProg_->UniformMatrix4x4(shaderProg_->GetUniformLocation(    "gWVP"), MVPMatrix);
-	shaderProg_->UniformMatrix4x4(shaderProg_->GetUniformLocation(     "gWV"), ModelViewMatrix);
+	shaderProg_->UniformMatrix4x4(shaderProg_->GetUniformLocation("gWVP"), MVPMatrix);
+	shaderProg_->UniformMatrix4x4(shaderProg_->GetUniformLocation("gWV"), ModelViewMatrix);
 
-	shaderProg_->UniformInt      (shaderProg_->GetUniformLocation( "texture"),      0);
-	shaderProg_->UniformFloat    (shaderProg_->GetUniformLocation(   "scale"), scale_);
-	shaderProg_->UniformVector3D (shaderProg_->GetUniformLocation("lightPos"), 1000.0 * cos(t), 10000.0 * sin(t), 0.0f);
-	shaderProg_->UniformVector3D (shaderProg_->GetUniformLocation(  "eyePos"), camera->GetPos());
+	shaderProg_->UniformInt(shaderProg_->GetUniformLocation("texture"), 0);
+	shaderProg_->UniformFloat(shaderProg_->GetUniformLocation("scale"), scale_);
+	shaderProg_->UniformVector3D(shaderProg_->GetUniformLocation("lightPos"), 1000.0 * cos(time), 1000.0 * sin(time), 0.0f);
+	shaderProg_->UniformVector3D(shaderProg_->GetUniformLocation("eyePos"), camera->GetPos());
 }
 
 void GraphicsObject::SetTranslation(Pipeline* p, Camera* camera, glm::vec3& worldPos)

@@ -10,11 +10,13 @@ public:
 	~ShaderProg();
 
 	void Use();
+	void Detach();
 
 	int GetUniformLocation(const char* Name);
 
 	void UniformInt       (GLuint location, int I);
 	void UniformFloat     (GLuint location, float F);
+	void UniformMatrix3x3 (GLuint location, glm::mat3 M);
 	void UniformMatrix4x4 (GLuint location, glm::mat4 M);
 	void UniformVector3D  (GLuint location, glm::vec3 V);
 	void UniformVector2D  (GLuint location, float x, float y);

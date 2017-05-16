@@ -1,5 +1,5 @@
 #include "GraphicsObjectFactory.h"
-
+#include "../../../src/Application/Application.h"
 
 
 bool operator< (const GraphicsObjectInfo& left, const GraphicsObjectInfo& right) {
@@ -27,9 +27,9 @@ GraphicsObject* GraphicsObjectFactory::CreateObject(GraphicsObjectInfo assetName
 {
 	GraphicsObject* newObject = new GraphicsObject;
 
-	newObject->model_      = modelManager_  .Get(assetNames.modelName_  );
-	newObject->texture_    = textureManager_.Get(assetNames.textureName_);
-	newObject->shaderProg_ = shaderManager_ .Get(assetNames.shaderNames_);
+	newObject->model_ = modelManager_.Get(assetNames.modelName_);
+	newObject->texture_ = textureManager_.Get(assetNames.textureName_);
+	newObject->shaderProg_ = APPLICATION->shaderManager_.Get(assetNames.shaderNames_);
 
 	return newObject;
 }

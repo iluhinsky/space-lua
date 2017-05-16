@@ -11,11 +11,14 @@ public:
 	~GraphicsWorld();
 	void Init();
 
-	ParticleSystem*        GetParticleSystem();
+	ParticleSystem* GetFireParticleSystem(glm::vec3 position, glm::vec3 velocity);
+	ParticleSystem* GetExplosionParticleSystem(glm::vec3 position);
+
+	std::vector<ParticleSystem*> GetParticleSystem();
 	GraphicsObjectManager* GetManager();
 
 private:
-	ParticleSystem*        particleSystem_;
-	GraphicsObjectManager* manager_;
+	std::vector<ParticleSystem*>	particleSystem_;
+	GraphicsObjectManager*			manager_;
 };
 

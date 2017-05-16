@@ -8,6 +8,7 @@ struct ShaderNames
 {
 	std::string _vertexShaderName;
 	std::string _fragmentShaderName;
+	std::string _geometryShaderName;
 };
 
 bool operator< (const ShaderNames& left, const ShaderNames& right);
@@ -24,6 +25,7 @@ public:
 private:
 	ShaderManager* _vertexShaderManager;
 	ShaderManager* _fragmentShaderManager;
+	ShaderManager* _geometryShaderManager;
 
 	ShaderProg* LoadShaderProg (ShaderNames names);
 

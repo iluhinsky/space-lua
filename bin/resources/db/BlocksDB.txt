@@ -3,7 +3,7 @@ hits: 20.0 mass: 0.1
 model: cube.3ds
 texture: main.png
 vertexShader: block_vertex.glsl 
-fragmentShader: block_fragment.glsl 
+fragmentShader: block_fragment.glsl
 
 BlockTypeShield 
 hits: 10.0 mass: 0.2 
