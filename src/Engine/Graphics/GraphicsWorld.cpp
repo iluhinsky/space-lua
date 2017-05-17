@@ -1,10 +1,9 @@
 #include "GraphicsWorld.h"
-#include "Particles/ParticleSystemFactory.h"
-
 
 GraphicsWorld::GraphicsWorld()
 {
 	manager_ = new GraphicsObjectManager;
+	particleSystemFactory_ = ParticleSystemFactory();
 }
 
 
@@ -20,13 +19,11 @@ GraphicsWorld::~GraphicsWorld()
 
 void GraphicsWorld::Init()
 {
-	particleSystem_.push_back(GetExplosionParticleSystem(glm::vec3(3, 1, 0)));
-	particleSystem_.push_back(GetFireParticleSystem(glm::vec3(3, 1, 0), glm::vec3(1, 0, 0)));
+	particleSystem_.push_back(GetFireParticleSystem(glm::vec3(20, -40, 0), glm::vec3(1, 0, 0)));
 }
 
 std::vector<ParticleSystem*> GraphicsWorld::GetParticleSystem()
 {
-	particleSystem_[1]->SetPosition(glm::vec3(-0.05, 0, 0) + particleSystem_[1]->GetPosition());
 	return particleSystem_;
 }
 
@@ -50,8 +47,7 @@ ParticleSystem* GraphicsWorld::GetFireParticleSystem(glm::vec3 position, glm::ve
 	assets.textureName_ = "face.png";
 	assets.shaderNames_ = ShaderNames{ "particle_vertex.glsl", "particle_fragment.glsl", "" };
 
-	ParticleSystemFactory factory = ParticleSystemFactory();
-	return factory.CreateParticleSystem(position, assets);
+	return particleSystemFactory_.CreateParticleSystem(position, assets);
 }
 
 ParticleSystem* GraphicsWorld::GetExplosionParticleSystem(glm::vec3 position)
@@ -69,10 +65,7 @@ ParticleSystem* GraphicsWorld::GetExplosionParticleSystem(glm::vec3 position)
 	assets.textureName_ = "face.png";
 	assets.shaderNames_ = ShaderNames{ "particle_vertex.glsl", "particle_fragment.glsl", "" };
 
-	ParticleSystemFactory factory = ParticleSystemFactory(); //?! WTF!?!?!?!?
-
-	ParticleSystem* explosion = factory.CreateParticleSystem(position, assets);
-
+	ParticleSystem* explosion = particleSystemFactory_.CreateParticleSystem(position, assets);
 	particleSystem_.push_back(explosion);
 
 	return explosion;

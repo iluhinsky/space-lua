@@ -9,13 +9,14 @@ ParticleSystem::ParticleSystem(glm::vec3 position, int numberOfParticles, int fl
 	numberOfParticles_ = numberOfParticles;
 	lifeTime_ = lifeTime;
 	initialSpeed_ = initialSpeed;
-	position_ = position;
+	position_ = position * 0.5f; //Cost ill :( 
 	color_ = color;
 	flowPerSecond_ = flowPerSecond;
 	isRepeat_ = isRepeat;
 	
 
 	particles_ = new Particle[numberOfParticles_];
+	printf("\nCREATE PARTICLE SYSTEM WITH particles_ %p\n", particles_);
 
 	for (int i = 0; i < numberOfParticles_; i++)
 	{
@@ -29,6 +30,7 @@ ParticleSystem::ParticleSystem(glm::vec3 position, int numberOfParticles, int fl
 
 ParticleSystem::~ParticleSystem()
 {
+	printf("\nDELETE PARTICLE SYSTEM WITH particles_ %p\n", particles_);
 	delete[] particles_;
 }
 
@@ -84,7 +86,7 @@ void ParticleSystem::SetUniforms(Camera* camera)
 	sf::Vector2u size = APPLICATION->GetWindowSize();
 	p.SetPerspectiveProj(60.0f, size.x, size.y, 1.0f, 10000.0f);
 
-	SetTranslation(&p, camera, glm::vec4{ position_, 1 });
+	SetTranslation(&p, camera, glm::vec4{position_, 1 });
 	p.CalculateMatrices();
 
 	glm::mat4 ModelViewMatrix = p.GetViewMatrix() * p.GetModelMatrix();
@@ -100,7 +102,7 @@ void ParticleSystem::SetUniforms(Camera* camera)
 
 void ParticleSystem::SetTranslation(Pipeline* p, Camera* camera, glm::vec4& worldPos)
 {
-	p->WorldPos(-camera->GetPos().x, -camera->GetPos().y, -camera->GetPos().z);
+	p->WorldPos(worldPos.x, worldPos.y, worldPos.z);
 	p->SetCamera(camera->GetPos(), camera->GetTarget(), camera->GetUp());
 }
 
