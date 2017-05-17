@@ -2,31 +2,35 @@
 
 #include "OrientedBlock.h"
 
-enum BlockWeaponCommand
+
+enum BlockEngineCommand
 {
-	ShootCommand = 0
+	GasCommand = 0
 };
 
 
-class BlockWeapon :
+class BlockEngine :
 	public OrientedBlock
 {
 	friend class ObjectDataBase;
 	friend class BlockFactory;
 
 public:
-	BlockWeapon();
-	~BlockWeapon();
-
+	BlockEngine();
+	~BlockEngine();
 	virtual Block* Clone() const;
 
 	void ReduceTime(int dt);
-	void SetCommand(BlockWeaponCommand);
+	void SetCommand(BlockEngineCommand);
+
+	void SetPower(int power); //! from 1 to 10
 
 private:
-	void Shoot();
+	void Gas();
+
+	float power_;
 
 	int estimatedTime_;
-	int coolDownTime_; //! in milliseconds
+	int coolDownTime_;
 };
 

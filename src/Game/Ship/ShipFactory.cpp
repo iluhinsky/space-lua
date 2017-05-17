@@ -3,6 +3,8 @@
 
 #include <btBulletDynamicsCommon.h>
 
+extern const int instructionsLimit;
+
 
 std::map<Direction, glm::vec3> directionShifts =
 {
@@ -131,7 +133,7 @@ void ShipFactory::LoadController(Ship* ship)
 	}
 
 
-	lua_sethook(luaThread, ShipController::CatchLuaHook, LUA_MASKCOUNT, INSTRUCTION_LIMIT);
+	lua_sethook(luaThread, ShipController::CatchLuaHook, LUA_MASKCOUNT, instructionsLimit);
 
 	luabridge::getGlobalNamespace(ship->controller_.luaThread_)
 		.addFunction("GetTime",            &ShipController::GetTime)
@@ -142,6 +144,7 @@ void ShipFactory::LoadController(Ship* ship)
 		.addFunction("GetShipInfo",        &ShipController::GetShipInfo)
 		.addFunction("GetBlocks",          &ShipController::GetBlocksByShipID)
 		.addFunction("GetBlockInfo",       &ShipController::GetBlockInfo)
+		.addFunction("Gas",                &ShipController::Gas)
 
 		.beginClass <ShipInfoForLUA> ("ShipInfoForLUA")
 			.addData("x",    &ShipInfoForLUA::x)

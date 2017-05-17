@@ -5,6 +5,7 @@
 #include "BlockMain.h"
 #include "BlockShield.h"
 #include "BlockWeapon.h"
+#include "BlockEngine.h"
 
 #include "../../../Application/Application.h"
 
@@ -92,9 +93,25 @@ void ObjectDataBase::Fill(std::string name)
 
 			break;
 
+		case BlockTypeEngine:
+			newBlock = new BlockWeapon;
+
+			fscanf(file, " coolDownTime: %d", &integer_param);
+
+			((BlockEngine*)newBlock)->coolDownTime_  = integer_param;
+			((BlockEngine*)newBlock)->estimatedTime_ = integer_param;
+			((BlockEngine*)newBlock)->power_         = 0.0f;
+
+			break;
+
 		default:
 			break;
 		}
+
+		newBlock->relatedCoords_ = glm::vec3(0.0f);
+		newBlock->isLinked_      = true;
+		newBlock->ship_          = nullptr;
+		newBlock->name_          = "";
 
 		newBlock->blockType_ = blockType;
 		newBlock->hits_      = hits;
@@ -160,15 +177,11 @@ Block* BlockFactory::GetBlock(FILE* file)
 		switch (blockType)
 		{
 		case BlockTypeShield:
-			fscanf(file, "%s", blockTypeName);
-
-			((BlockShield*) newBlock)->name_ = blockTypeName;
-			break;
-
 		case BlockTypeWeapon:
+		case BlockTypeEngine:
 			fscanf(file, "%s", blockTypeName);
 
-			((BlockWeapon*)newBlock)->name_ = blockTypeName;
+			newBlock->name_ = blockTypeName;
 			break;
 
 		default:	
@@ -178,6 +191,7 @@ Block* BlockFactory::GetBlock(FILE* file)
 		switch (blockType)
 		{
 		case BlockTypeWeapon:
+		case BlockTypeEngine:
 			fscanf(file, " (%f, %f, %f)",
 				&(((OrientedBlock*)newBlock)->orientation_.x),
 				&(((OrientedBlock*)newBlock)->orientation_.y),

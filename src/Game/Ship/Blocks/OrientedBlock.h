@@ -13,8 +13,7 @@ public:
 
 	bool IsDirectionAllowed(glm::vec3 direction);
 	void SetDirection(glm::vec3 direction);
-
-	virtual const std::string& GetName() = 0;
+	void SetDirectionFromAngles(int theta, int psi);
 
 protected:
 	glm::vec3 orientation_;

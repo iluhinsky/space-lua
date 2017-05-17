@@ -26,3 +26,13 @@ void OrientedBlock::SetDirection(glm::vec3 direction)
 {
 	currDirection_ = direction;
 }
+
+void OrientedBlock::SetDirectionFromAngles(int theta, int psi)
+{
+	btTransform shipTransform = ship_->GetTransform();
+
+	glm::mat3 rotation = toGLM_M3x3(shipTransform.getBasis());
+	glm::mat3 rotation_inv = glm::inverse(rotation);
+
+	currDirection_ = rotation_inv * orientation_;
+}

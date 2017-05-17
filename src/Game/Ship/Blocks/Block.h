@@ -52,7 +52,7 @@ public:
 
 	void      SetShip(Ship* ship);
 
-	virtual const std::string& GetName() = 0;
+	const std::string& GetName();
 
 	void UpdateAfterPhysicsStep(glm::vec3& shipGlobalCoords, glm::mat3& currRotation);
 
@@ -62,16 +62,17 @@ public:
 	void DoNothing();
 
 protected:
-	glm::vec3 relatedCoords_;
+	std::string name_;
 
-	glm::vec3 currGlobalCoords_;
-	glm::mat3 currRotation_;
+	BlockType   blockType_;
+	glm::vec3   relatedCoords_;
 
-	BlockType blockType_;
+	float       hits_;
+	float       mass_;
 
-	float hits_;
-	float mass_;
-	
+	glm::vec3   currGlobalCoords_;
+	glm::mat3   currRotation_;
+
 	bool isLinked_;
 
 	GraphicsObject* graphicsAsset_;

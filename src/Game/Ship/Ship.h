@@ -39,6 +39,7 @@ public:
 	void hit(Bullet* bullet, btVector3& pointA, btVector3& pointB);
 	bool isExist();
 
+	void      ApplyForce(btVector3& force, btVector3& globalPosition);
 	btVector3 toWorldPosition(const btVector3& localPosition);
 	Block*    getBlockByWorldPosition(const btVector3& position);
 

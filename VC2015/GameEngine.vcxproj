@@ -46,6 +46,7 @@
     <ClInclude Include="..\src\Engine\Physics\PhysicsWorld.h" />
     <ClInclude Include="..\src\Game\CollisionObjectTypes.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\Block.h" />
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockEngine.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockFactory.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockMain.h" />
     <ClInclude Include="..\src\Game\Ship\Blocks\BlockShield.h" />
@@ -88,6 +89,7 @@
     <ClCompile Include="..\src\Engine\Physics\CollisionObject.cpp" />
     <ClCompile Include="..\src\Engine\Physics\PhysicsWorld.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\Block.cpp" />
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockEngine.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockFactory.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockMain.cpp" />
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockShield.cpp" />

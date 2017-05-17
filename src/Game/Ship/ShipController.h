@@ -12,8 +12,7 @@ extern "C"
 
 #include "Blocks/BlockShield.h"
 #include "Blocks/BlockWeapon.h"
-
-#define INSTRUCTION_LIMIT 1000
+#include "Blocks/BlockEngine.h"
 
 
 class Ship;
@@ -51,6 +50,7 @@ public:
 	static void DisableShield      (const std::string& blockName, lua_State* luaThread);
 	static bool IsDirectionAllowed (const std::string& blockName, double xDir, double yDir, double zDir, lua_State* luaThread);
 	static void Shoot              (const std::string& blockName, double xBulletDir, double yBulletDir, double zBulletDir, lua_State* luaThread);
+	static void Gas                (const std::string& blockName, double xDir, double yDir, double zDir, int power, lua_State* luaThread);
 	
 	static ShipInfoForLUA GetShipInfo(int shipID, lua_State* luaThread);
 	static std::vector<int> GetBlocksByShipID(int shipID, lua_State* luaThread);
