@@ -4,4 +4,5 @@ BlockTypeShield (1, 0, 0) shield2
 BlockTypeShield (-1, 0, 0) shield2
 BlockTypeShield (0, -1, 0) shield2
 BlockTypeEngine (0, 0, 1) engine1 (0, 0, 1) (0, 1, 0)
+BlockTypeWeapon (0, 0, -1) weapon1 (0, 0, -1) (0, 1, 0)
 END
