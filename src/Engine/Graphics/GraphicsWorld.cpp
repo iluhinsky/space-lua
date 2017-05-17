@@ -57,7 +57,7 @@ ParticleSystem* GraphicsWorld::GetExplosionParticleSystem(glm::vec3 position)
 	assets.initialSpeed_ = glm::vec3{ 0, 0, 0 };
 	assets.color_ = glm::vec3{ 1, 1, 1 };
 	assets.lifeTime_ = 1.0f;
-	assets.scale_ = 0.2f;
+	assets.scale_ = 0.6f;
 	assets.numberOfParticles_ = 500;
 	assets.flowPerSecond_ = 100000;
 	assets.isRepeat_ = false;
