@@ -59,10 +59,12 @@ void BlockEngine::Gas()
 		currDirection_.y,
 		currDirection_.z);
 
-	btVector3 currGlobalCoords = btVector3(
-		currGlobalCoords_.x,
-		currGlobalCoords_.y,
-		currGlobalCoords_.z);
+	glm::vec3 relCoords = currRotation_ * relatedCoords_;
 
-	ship_->ApplyForce(currDirection * power_, currGlobalCoords);
+	btVector3 bt_relCoords = btVector3(
+		relCoords.x,
+		relCoords.y,
+		relCoords.z);
+
+	ship_->ApplyForce( - currDirection * power_, bt_relCoords);
 }

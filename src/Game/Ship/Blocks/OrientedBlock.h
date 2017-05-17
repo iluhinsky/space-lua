@@ -16,7 +16,9 @@ public:
 	void SetDirectionFromAngles(int theta, int psi);
 
 protected:
-	glm::vec3 orientation_;
+	glm::vec3 target_;
+	glm::vec3 up_;
+
 	glm::vec3 currDirection_;
 };
 
