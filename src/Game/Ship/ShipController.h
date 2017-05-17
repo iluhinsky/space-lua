@@ -43,6 +43,7 @@ public:
 	ShipController(Ship* ship);
 	~ShipController();
 
+	static int GetSelfID           (lua_State* luaThread);
 	static float GetTime           (lua_State* luaThread);
 	static void CatchLuaHook       (lua_State* luaThread, lua_Debug* luaDebug);
 	static void SwitchShield       (const std::string& blockName, BlockShieldCommand command, lua_State* luaThread);
