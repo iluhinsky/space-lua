@@ -7,6 +7,7 @@ in vec3 v;
 in vec3 n;
 
 uniform sampler2D texture;
+uniform vec3 color;
 
 out vec4 FragColor;
 
@@ -23,7 +24,7 @@ void main()
 
 	vec3 r  = reflect (-n2, v2);
 
-	vec4 diff = diffColor * (0.5f + 0.5f * max ( dot (n2, l2), 0.0));
+	vec4 diff = (diffColor+vec4(color, 1)) * (0.5f + 0.5f * max ( dot (n2, l2), 0.0));
 	vec4 spec = specColor * pow ( max ( dot (l2, r), 0.0), specPower );
 
 	FragColor =  diff + spec;

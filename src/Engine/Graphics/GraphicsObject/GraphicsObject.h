@@ -20,7 +20,7 @@ public:
 		glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f));
 
 private:
-	void SetUniforms(Camera* camera, glm::vec3& worldPos, glm::mat3& rotation);
+	void SetUniforms(Camera* camera, glm::vec3& worldPos, glm::mat3& rotation, glm::vec3 color);
 	void SetTranslation(Pipeline* p, Camera* camera, glm::vec3& worldPos);
 
 	float       scale_;
