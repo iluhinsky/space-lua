@@ -24,6 +24,8 @@ bool OrientedBlock::IsDirectionAllowed(glm::vec3 direction)
 
 void OrientedBlock::SetDirection(glm::vec3 direction)
 {
+	direction = glm::normalize(direction);
+
 	currDirection_ = direction;
 }
 

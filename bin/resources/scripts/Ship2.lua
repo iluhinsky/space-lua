@@ -29,17 +29,17 @@ for i = 0, size - 1 do
 		--is = IsDirectionAllowed('weapon1', shipInfo.x, shipInfo.y, shipInfo.z)	
 		--print('LUA is = ', is)
 		Shoot('weapon1', shipInfo.x - selfInfo.x, shipInfo.y - selfInfo.y, shipInfo.z - selfInfo.z)
-		Shoot('weapon1', selfInfo.x - shipInfo.x, selfInfo.y - shipInfo.y, selfInfo.z - shipInfo.z)
+--		Shoot('weapon1', selfInfo.x - shipInfo.x, selfInfo.y - shipInfo.y, selfInfo.z - shipInfo.z)
 		if currentTime < 0.9 then
 			--print('LUA: ', shipInfo.x - selfInfo.x, shipInfo.y - selfInfo.y, shipInfo.z - selfInfo.z)
 		end
 	end
 
-	if id == selfID and currentTime < 0.7 then
+--	if id == selfID and currentTime < 0.7 then
 --		print('LUA:: ', id, selfID)
-		print('LUA::::: ', shipInfo.x, selfInfo.x)
+--		print('LUA::::: ', shipInfo.x, selfInfo.x)
 --		print('LUA::: ', shipInfo.x - selfInfo.x, shipInfo.y - selfInfo.y, shipInfo.z - selfInfo.z)
-	end
+--	end
 end
 
 --print("LUA FINISH: Ship2")
