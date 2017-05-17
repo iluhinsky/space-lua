@@ -15,7 +15,7 @@ Block::~Block()
 		if (link.second != nullptr)                        // Cost ill
 			link.second->Unlink(oppositeTo(link.first));
 
-	//GRAPHICSWORLD->GetExplosionParticleSystem(currGlobalCoords_);
+	GRAPHICSWORLD->GetExplosionParticleSystem(currGlobalCoords_);
 }
 
 BlockType Block::GetType()
