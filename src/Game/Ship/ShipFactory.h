@@ -28,5 +28,7 @@ private:
 	void LoadConstruction(Ship* ship);
 	void LoadController(Ship* ship);
 	void MakeLinks(Ship* ship);
+
+	std::map<std::string, glm::vec3> colorDictionary_;
 };
 

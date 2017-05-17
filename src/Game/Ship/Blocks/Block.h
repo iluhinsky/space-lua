@@ -43,7 +43,7 @@ public:
 	void Unlink(Direction direction);
 	Block* GetBlockBy (Direction direction);
 
-	void Draw(Camera* camera) const;
+	void Draw(Camera* camera, glm::vec3& color) const;
 	virtual Block* Clone() const = 0; //TODO: Remove this
 
 	float     GetMass();

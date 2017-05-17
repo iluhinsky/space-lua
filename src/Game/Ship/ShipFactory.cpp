@@ -5,6 +5,12 @@
 
 extern const int instructionsLimit;
 
+std::vector<glm::vec3> colors =
+{
+	glm::vec3(1.0f, 0.0f, 0.0f),
+	glm::vec3(0.0f, 1.0f, 0.0f),
+	glm::vec3(0.0f, 0.0f, 1.0f)
+};
 
 std::map<Direction, glm::vec3> directionShifts =
 {
@@ -38,6 +44,19 @@ Ship* ShipFactory::GenerateShip(ShipInfo shipInfo)
 
 	ship->shipName_      = shipInfo.name_;
 	ship->collisionType_ = CollidingShip;
+
+	auto shipColor = colorDictionary_.find(ship->shipName_);
+
+	if (shipColor != colorDictionary_.end())
+		ship->color_ = shipColor->second;
+
+	else
+	{
+		int colorNumber = colorDictionary_.size();
+
+		colorDictionary_[ship->shipName_] = colors[colorNumber];
+		ship->color_                      = colors[colorNumber];
+	}
 
 	btQuaternion rotation(
 		(rand() - RAND_MAX) / 2.0f,
@@ -86,12 +105,9 @@ void ShipFactory::LoadConstruction(Ship* ship)
 
 	auto it = std::find_if(ship->blocksDataBase_.begin(), ship->blocksDataBase_.end(),
 		[](std::pair<int, Block*> block)
-	{
-		return block.second->GetType() == BlockTypeMain ? true : false;
-	});
+	{ return block.second->GetType() == BlockTypeMain ? true : false; });
 
-	if (it == ship->blocksDataBase_.end())
-		assert(0);
+	assert(it != ship->blocksDataBase_.end());
 
 	ship->blockMain = it->second;
 

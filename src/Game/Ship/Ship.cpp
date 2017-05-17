@@ -43,7 +43,7 @@ Ship::~Ship()
 void Ship::Draw(Camera* camera)
 {
 	for (auto block : blocksDataBase_)
-		block.second->Draw(camera);
+		block.second->Draw(camera, color_);
 }
 
 void Ship::InitRigidBody()
