@@ -28,6 +28,20 @@ ShipController::~ShipController()
 }
 
 
+int ShipController::GetSelfID(lua_State* luaThread)
+{
+	assert(luaThread);
+
+	Ship* ship = shipsDataBase_[luaThread];
+	assert(ship);
+
+	const int shipID = WORLD->GetIDByShip(ship);
+	assert(shipID >= 0);
+
+	return shipID;
+}
+
+
 float ShipController::GetTime(lua_State* luaThread)
 {
 	assert(luaThread);
@@ -120,7 +134,7 @@ void ShipController::Shoot(const std::string& blockName, double xBulletDir, doub
 		((BlockWeapon*)(block))->SetCommand(ShootCommand);
 	}
 	else
-		std::cout << ship->shipName_ << ": There are no appropriate shields for shooting" << " (" << blockName << ").\n";
+		std::cout << ship->shipName_ << ": There are no appropriate weapons for shooting" << " (" << blockName << ").\n";
 }
 
 

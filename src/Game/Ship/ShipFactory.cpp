@@ -136,6 +136,7 @@ void ShipFactory::LoadController(Ship* ship)
 	lua_sethook(luaThread, ShipController::CatchLuaHook, LUA_MASKCOUNT, instructionsLimit);
 
 	luabridge::getGlobalNamespace(ship->controller_.luaThread_)
+		.addFunction("GetSelfID",          &ShipController::GetSelfID)
 		.addFunction("GetTime",            &ShipController::GetTime)
 		.addFunction("EnableShield",       &ShipController::EnableShield)
 		.addFunction("DisableShield",      &ShipController::DisableShield)

@@ -31,6 +31,7 @@ public:
 	void ExecuteLogic();
 
 	Ship* GetShipByID(int shipID);
+	int GetIDByShip(Ship* ship);
 	const std::vector<int>& GetShipsID();
 
 private:

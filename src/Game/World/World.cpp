@@ -143,6 +143,21 @@ Ship* World::GetShipByID(int shipID)
 	return it->second;
 }
 
+int World::GetIDByShip(Ship* ship)
+{
+	assert(ship);
+
+	for (std::map<int, Ship*>::iterator it = shipsDataBase_.begin(); it != shipsDataBase_.end(); ++it)
+	{
+		if (ship == it->second)
+		{
+			return it->first;
+		}
+	}
+
+	return -1;
+}
+
 const std::vector<int>& World::GetShipsID()
 {
 	return shipsID_;
