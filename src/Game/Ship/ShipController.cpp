@@ -135,7 +135,7 @@ void ShipController::Gas(const std::string& blockName, double xDir, double yDir,
 
 	if (block != nullptr)
 	{
-		((BlockEngine*)(block))->SetDirectionFromAngles(0, 0);
+		((BlockEngine*)(block))->SetDirectionFromAngles(5, 90);
 
 		//((BlockEngine*)(block))->SetDirection(glm::vec3(xDir, yDir, zDir));
 		((BlockEngine*)(block))->SetCommand(GasCommand);
