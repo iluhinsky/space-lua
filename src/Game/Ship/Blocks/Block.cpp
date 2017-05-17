@@ -63,9 +63,9 @@ Block* Block::GetBlockBy(Direction direction)
 	return links_[direction];
 }
 
-void Block::Draw(Camera* camera) const
+void Block::Draw(Camera* camera, glm::vec3& color) const
 {
-	graphicsAsset_->Draw(camera, currGlobalCoords_, currRotation_);
+	graphicsAsset_->Draw(camera, currGlobalCoords_, currRotation_, color);
 }
 
 float Block::GetMass()

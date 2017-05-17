@@ -17,7 +17,7 @@ void GraphicsObject::SetScale(float scale)
 }
 
 
-void GraphicsObject::Draw(Camera* camera, glm::vec3 worldPos, glm::mat3 rotation)
+void GraphicsObject::Draw(Camera* camera, glm::vec3 worldPos, glm::mat3 rotation, glm::vec3 color)
 {
 	shaderProg_->Use();
 

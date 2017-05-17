@@ -52,6 +52,7 @@ private:
 	int GetidOf(Block* block);
 
 	std::string shipName_;
+	glm::vec3   color_;
 
 	btTransform transform_;
 	btTransform	principalTransform_;
