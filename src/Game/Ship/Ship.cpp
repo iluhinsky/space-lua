@@ -298,10 +298,9 @@ Block* Ship::GetNearestBlockTo(const btVector3&  pointA, const btVector3& pointB
 	return NULL;
 }
 
-void Ship::ApplyForce(btVector3& force, btVector3& globalPosition)
+void Ship::ApplyForce(btVector3& force, btVector3& relPos)
 {
-	body_->applyForce(principalTransformInverse_ * force, 
-		principalTransformInverse_ * globalPosition - body_->getCenterOfMassPosition());
+	body_->applyForce(force, relPos);
 }
 
 btVector3 Ship::toWorldPosition(const btVector3& localPosition)
