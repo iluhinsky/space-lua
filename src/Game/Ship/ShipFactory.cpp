@@ -6,12 +6,12 @@
 
 std::map<Direction, glm::vec3> directionShifts =
 {
-	{ x_up  , glm::vec3( 2.0f, 0.0f, 0.0f) },
-	{ y_up  , glm::vec3( 0.0f, 2.0f, 0.0f) },
-	{ z_up  , glm::vec3( 0.0f, 0.0f, 2.0f) },
-	{ x_down, glm::vec3(-2.0f, 0.0f, 0.0f) },
-	{ y_down, glm::vec3( 0.0f,-2.0f, 0.0f) },
-	{ z_down, glm::vec3( 0.0f, 0.0f,-2.0f) },
+	{ x_up  , glm::vec3( 1.0f, 0.0f, 0.0f) },
+	{ y_up  , glm::vec3( 0.0f, 1.0f, 0.0f) },
+	{ z_up  , glm::vec3( 0.0f, 0.0f, 1.0f) },
+	{ x_down, glm::vec3(-1.0f, 0.0f, 0.0f) },
+	{ y_down, glm::vec3( 0.0f,-1.0f, 0.0f) },
+	{ z_down, glm::vec3( 0.0f, 0.0f,-1.0f) },
 };
 
 
