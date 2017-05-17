@@ -53,6 +53,18 @@ void Application::Init()
 	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-0.0f, -5.0f, 2.5f)); //! remove
 	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-1.0f, -5.0f, 0.0f)); //! remove
 	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-0.0f, -5.0f, 0.0f)); //! remove
+
+	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-1.0f, -8.0f, 2.5f)); //! remove
+	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-0.0f, -8.0f, 2.5f)); //! remove
+	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-1.0f, -8.0f, 0.0f)); //! remove
+	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-0.0f, -8.0f, 0.0f)); //! remove
+
+	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-1.0f, -11.0f, 2.5f)); //! remove
+	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-0.0f, -11.0f, 2.5f)); //! remove
+	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-1.0f, -11.0f, 0.0f)); //! remove
+	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(3.4f, 12.4f, 1.0f)); //! remove
+
+
 }
 
 sf::Time Application::getTime() const

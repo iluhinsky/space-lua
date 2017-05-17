@@ -3,6 +3,7 @@
 
 #include "GraphicsObjectManager.h"
 #include "Particles\ParticleSystem.h"
+#include "Particles\ParticleSystemFactory.h"
 
 class GraphicsWorld
 {
@@ -20,5 +21,6 @@ public:
 private:
 	std::vector<ParticleSystem*>	particleSystem_;
 	GraphicsObjectManager*			manager_;
+	ParticleSystemFactory			particleSystemFactory_;
 };
 
