@@ -178,10 +178,15 @@ ShipInfoForLUA ShipController::GetShipInfo(int shipID, lua_State* luaThread)
 
 	btTransform transform = ship->GetTransform();
 	btVector3   coords    = transform.getOrigin();
+	btVector3   velocity  = ship->getVelocity();
 
 	info.x = coords.x();
 	info.y = coords.y();
 	info.z = coords.z();
+	info.velx = velocity.x();
+	info.vely = velocity.y();
+	info.velz = velocity.z();
+//	std::cout << "C++: velocity = " << info.vx << " " << info.vy << " " << info.vz << "\n";
 
 	info.team = ship->team_;
 

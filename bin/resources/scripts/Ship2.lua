@@ -23,8 +23,13 @@ for i = 0, size - 1 do
 	id = shipsID:at(i)
 	shipInfo = GetShipInfo(id)
 	selfInfo = GetShipInfo(selfID)
+
 	selfTeam = selfInfo.team
 	shipTeam = shipInfo.team
+	print('LUA: velocity = ', shipInfo.vx, shipInfo.vy, shipInfo.vz) --, 'coords = ', selfInfo.x, selfInfo.y, selfInfo.z)
+--	vx = selfInfo.vx
+--	vy = selfInfo.vy
+--	print('LUA test ', selfInfo.x, vx, vy)
 
 	if id ~= selfID and selfTeam ~= shipTeam then
 		--is = IsDirectionAllowed('weapon1', shipInfo.x, shipInfo.y, shipInfo.z)	
