@@ -42,6 +42,7 @@ public:
 	void CleanUpBlocks();
 
 	void      ApplyForce(btVector3& force, btVector3& globalPosition);
+	void      ReduceVelocity(float factor);
 	btVector3 toWorldPosition(const btVector3& localPosition);
 	Block*    getBlockByWorldPosition(const btVector3& position);
 

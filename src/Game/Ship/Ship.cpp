@@ -318,6 +318,11 @@ void Ship::ApplyForce(btVector3& force, btVector3& relPos)
 	body_->applyForce(force, relPos);
 }
 
+void Ship::ReduceVelocity(float factor)
+{
+	body_->setLinearVelocity(getVelocity() * factor);
+}
+
 btVector3 Ship::toWorldPosition(const btVector3& localPosition)
 {
 	return body_->getWorldTransform() * principalTransformInverse_ * localPosition;
