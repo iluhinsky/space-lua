@@ -63,8 +63,8 @@ void ShipController::SwitchShield(const std::string& blockName, BlockShieldComma
 
 	if (block != nullptr)
 		((BlockShield*)(block))->SetComand(command);
-	else
-		std::cout << ship->shipName_ << ": There are no appropriate shields for switching" << " (" << blockName << ").\n";
+//	else
+//		std::cout << ship->shipName_ << ": There are no appropriate shields for switching" << " (" << blockName << ").\n";
 }
 
 
@@ -112,8 +112,8 @@ bool ShipController::IsDirectionAllowed(const std::string& blockName, double xDi
 	{
 		isDirectionAllowed = ((OrientedBlock*)(block))->IsDirectionAllowed(glm::vec3(xDir, yDir, zDir));
 	}
-	else
-		std::cout << ship->shipName_ << ": There is no engine or weapon block with name '" << blockName << "'.\n";
+//	else
+//		std::cout << ship->shipName_ << ": There is no engine or weapon block with name '" << blockName << "'.\n";
 
 	return isDirectionAllowed;
 }
@@ -133,8 +133,8 @@ void ShipController::Shoot(const std::string& blockName, double xBulletDir, doub
 		((BlockWeapon*)(block))->SetDirection(glm::vec3(xBulletDir, yBulletDir, zBulletDir));
 		((BlockWeapon*)(block))->SetCommand(ShootCommand);
 	}
-	else
-		std::cout << ship->shipName_ << ": There are no appropriate weapons for shooting" << " (" << blockName << ").\n";
+//	else
+//		std::cout << ship->shipName_ << ": There are no appropriate weapons for shooting" << " (" << blockName << ").\n";
 }
 
 
@@ -155,11 +155,11 @@ void ShipController::Gas(const std::string& blockName, double xDir, double yDir,
 		((BlockEngine*)(block))->SetCommand(GasCommand);
 		if (0 <= power && power <= engineMaxPower)
 			((BlockEngine*)(block))->SetPower(power);
-		else
-			std::cout << ship->shipName_ << ": Incorrect engine power. It is " << power << " but it should be integer between 0 and 10. It will be equal to 1.\n";
+//		else
+//			std::cout << ship->shipName_ << ": Incorrect engine power. It is " << power << " but it should be integer between 0 and 10. It will be equal to 1.\n";
 	}
-	else
-		std::cout << ship->shipName_ << ": There are no appropriate engines for gasing" << " (" << blockName << ").\n";
+//	else
+//		std::cout << ship->shipName_ << ": There are no appropriate engines for gasing" << " (" << blockName << ").\n";
 }
 
 
@@ -172,16 +172,21 @@ ShipInfoForLUA ShipController::GetShipInfo(int shipID, lua_State* luaThread)
 	Ship* ship = WORLD->GetShipByID(shipID);
 	if (!ship)
 	{
-		std::cout << shipsDataBase_[luaThread]->shipName_ << ": There is no ship in your scope with ID = " << shipID << ".\n";
+//		std::cout << shipsDataBase_[luaThread]->shipName_ << ": There is no ship in your scope with ID = " << shipID << ".\n";
 		return info;
 	}
 
 	btTransform transform = ship->GetTransform();
 	btVector3   coords    = transform.getOrigin();
+	btVector3   velocity  = ship->getVelocity();
 
 	info.x = coords.x();
 	info.y = coords.y();
 	info.z = coords.z();
+	info.velx = velocity.x();
+	info.vely = velocity.y();
+	info.velz = velocity.z();
+//	std::cout << "C++: velocity = " << info.vx << " " << info.vy << " " << info.vz << "\n";
 
 	info.team = ship->team_;
 
@@ -197,7 +202,7 @@ std::vector<int> ShipController::GetBlocksByShipID(int shipID, lua_State* luaThr
 	Ship* ship = WORLD->GetShipByID(shipID);
 	if (!ship)
 	{
-		std::cout << shipsDataBase_[luaThread]->shipName_ << ": There is no ship in your scope with ID = " << shipID << ".\n";
+//		std::cout << shipsDataBase_[luaThread]->shipName_ << ": There is no ship in your scope with ID = " << shipID << ".\n";
 		std::vector<int> empty;
 		return empty;
 	}
@@ -215,14 +220,14 @@ BlockInfoForLUA ShipController::GetBlockInfo(int shipID, int blockID, lua_State*
 	Ship* ship = WORLD->GetShipByID(shipID);
 	if (!ship)
 	{
-		std::cout << shipsDataBase_[luaThread]->shipName_ << ": There is no ship in your scope with ID = " << shipID << ".\n";
+//		std::cout << shipsDataBase_[luaThread]->shipName_ << ": There is no ship in your scope with ID = " << shipID << ".\n";
 		return info;
 	}
 
 	auto it = ship->blocksDataBase_.find(blockID);
 	if (it == ship->blocksDataBase_.end())
 	{
-		std::cout << shipsDataBase_[luaThread]->shipName_ << ": There is no block with ID = " << blockID << " at the ship with ID = " << shipID << ".\n";
+//		std::cout << shipsDataBase_[luaThread]->shipName_ << ": There is no block with ID = " << blockID << " at the ship with ID = " << shipID << ".\n";
 		return info;
 	}
 
@@ -264,6 +269,8 @@ void ShipController::Run()
 
 	luabridge::push(luaThread_, WORLD->GetShipsID());
 	lua_setglobal(luaThread_, "shipsID");
+
+	//luabridge::push(luaThread_, )
 
 	lua_pushvalue(luaThread_, -1);
 	int luaStatus = LUA_OK;

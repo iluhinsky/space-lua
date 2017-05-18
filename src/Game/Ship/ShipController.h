@@ -24,6 +24,10 @@ struct ShipInfoForLUA
 	float y;
 	float z;
 
+	float velx;
+	float vely;
+	float velz;
+
 	int team;
 };
 
