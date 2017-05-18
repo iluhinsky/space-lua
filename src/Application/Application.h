@@ -50,7 +50,11 @@ private:
 	sf::Clock     clocks_;
 	sf::Time      prevFrameTime_;
 
+	sf::Font      font_;
+
 	sf::Time UpdateAndCountTime();
+
+	void PrintStatistics();
 
 	World*         world_;
 	Player*        player_;

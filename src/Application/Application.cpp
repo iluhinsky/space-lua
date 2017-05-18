@@ -1,5 +1,7 @@
 #include "Application.h"
 
+#include "SFML\Graphics\Text.hpp"
+
 #include "../Game/World/World.h"
 
 Application* Application::instance_ = nullptr;
@@ -64,7 +66,10 @@ void Application::Init()
 	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(-1.0f, -11.0f, 0.0f)); //! remove
 	world_->CreateBullet(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(3.4f, 12.4f, 1.0f)); //! remove
 
-
+	if (!font_.loadFromFile("../bin/Raleway-Medium.ttf"))
+	{
+		assert(0);
+	}
 }
 
 sf::Time Application::getTime() const
@@ -93,7 +98,43 @@ void Application::MainFunc()
 	world_->Draw(player_->GetCamera());
 	graphicsWorld_->Draw(player_->GetCamera());
 
+	PrintStatistics();
+
 	window_->display();
+}
+
+void Application::PrintStatistics()
+{
+	int position = 40;
+
+	for (auto team : world_->statistics)
+	{
+		sf::Text text;
+
+		std::string stat = std::to_string(team.second.maxShipCount) + " " + \
+			team.first + std::to_string(team.second.shipCount) + "/" + std::to_string(team.second.maxShipCount);
+
+		// select the font
+		text.setFont(font_); // font is a sf::Font
+
+							// set the string to display
+		text.setString(stat);
+
+		// set the character size
+		text.setCharacterSize(24); // in pixels, not points!
+
+								   // set the color
+		text.setColor(sf::Color::White);
+
+		// set the text style
+		text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+
+		text.setPosition(10, position);
+
+		position += 40;
+
+		//window_->draw(text);
+	}
 }
 
 
