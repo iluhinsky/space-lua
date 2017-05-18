@@ -68,3 +68,9 @@ void BlockEngine::Gas()
 
 	ship_->ApplyForce( - currDirection * power_, bt_relCoords);
 }
+
+void BlockEngine::UpdateFire()
+{
+	fire_->SetPosition(relatedCoords_ + currGlobalCoords_);
+	fire_->SetVelocity(target_);
+}
