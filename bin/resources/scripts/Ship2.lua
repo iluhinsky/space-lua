@@ -19,23 +19,26 @@ end
 selfID = GetSelfID()
 size = shipsID:GetSize()
 
-for i = 0, size - 1 do
+--for i = 0, size - 1 do
+	i = math.random(0, size - 1)
 	id = shipsID:at(i)
 	shipInfo = GetShipInfo(id)
 	selfInfo = GetShipInfo(selfID)
 
 	selfTeam = selfInfo.team
 	shipTeam = shipInfo.team
-	print('LUA: velocity = ', shipInfo.vx, shipInfo.vy, shipInfo.vz) --, 'coords = ', selfInfo.x, selfInfo.y, selfInfo.z)
---	vx = selfInfo.vx
---	vy = selfInfo.vy
---	print('LUA test ', selfInfo.x, vx, vy)
 
 	if id ~= selfID and selfTeam ~= shipTeam then
-		--is = IsDirectionAllowed('weapon1', shipInfo.x, shipInfo.y, shipInfo.z)	
-		Shoot('weapon1', shipInfo.x - selfInfo.x, shipInfo.y - selfInfo.y, shipInfo.z - selfInfo.z)
+	--is = IsDirectionAllowed('weapon1', shipInfo.x, shipInfo.y, shipInfo.z)	
+		dt = math.sqrt ((shipInfo.x - selfInfo.x) ^ 2 + (shipInfo.y - selfInfo.y) ^ 2 + (shipInfo.z - selfInfo.z) ^ 2) / 10.0
+		dirx = (shipInfo.x - selfInfo.x) + shipInfo.vx * dt
+		diry = (shipInfo.y - selfInfo.y) + shipInfo.vy * dt
+		dirz = (shipInfo.z - selfInfo.z) + shipInfo.vz * dt
+		
+
+	Shoot('weapon1', dirx, diry, dirz)
 	end
-end
+--end
 
 --print("LUA FINISH: Ship2")
 
