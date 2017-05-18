@@ -90,9 +90,7 @@ void Application::MainFunc()
 	player_->UpdateCamera();
 
 	world_->Draw(player_->GetCamera());
-	
-	for (auto particleSystem : graphicsWorld_->GetParticleSystem())
-		particleSystem->Draw(player_->GetCamera());
+	graphicsWorld_->Draw(player_->GetCamera());
 
 	window_->display();
 }

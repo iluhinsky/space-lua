@@ -4,6 +4,7 @@ GraphicsWorld::GraphicsWorld()
 {
 	manager_ = new GraphicsObjectManager;
 	particleSystemFactory_ = ParticleSystemFactory();
+	skybox_  = new Skybox(manager_);
 }
 
 
@@ -13,6 +14,7 @@ GraphicsWorld::~GraphicsWorld()
 		delete system;
 
 	delete manager_;
+	delete skybox_;
 
 	printf("ENDDDDDD\n\n\n");
 }
@@ -69,4 +71,12 @@ ParticleSystem* GraphicsWorld::GetExplosionParticleSystem(glm::vec3 position)
 	particleSystem_.push_back(explosion);
 
 	return explosion;
+}
+
+void GraphicsWorld::Draw(Camera* camera)
+{
+	for (auto particleSystem : particleSystem_)
+		particleSystem->Draw(camera);
+
+	skybox_->Draw(camera);
 }

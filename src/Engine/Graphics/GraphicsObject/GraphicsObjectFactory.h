@@ -8,6 +8,8 @@ struct GraphicsObjectInfo
 	std::string textureName_;
 
 	ShaderNames shaderNames_;
+
+	bool isInfinite_ = false;
 };
 
 bool operator< (const GraphicsObjectInfo& left, const GraphicsObjectInfo& right);

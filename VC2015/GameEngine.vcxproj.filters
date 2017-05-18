@@ -67,6 +67,9 @@
     <Filter Include="src\Game\World\Effects">
       <UniqueIdentifier>{0381a6b9-78a0-4d95-beef-aefd4d1616f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Engine\Graphics\Skybox">
+      <UniqueIdentifier>{44c162e4-b3e5-49db-a800-b3cc45a37e7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Include.h">
@@ -195,6 +198,9 @@
     <ClInclude Include="..\src\Engine\Graphics\Particles\ParticleSystemFactory.h">
       <Filter>src\Engine\Graphics\Particles</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Skybox\Skybox.h">
+      <Filter>src\Engine\Graphics\Skybox</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -316,6 +322,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Game\Ship\Blocks\BlockEngine.cpp">
       <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Skybox\Skybox.cpp">
+      <Filter>src\Engine\Graphics\Skybox</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
