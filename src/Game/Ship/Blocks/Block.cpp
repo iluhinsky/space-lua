@@ -65,7 +65,7 @@ Block* Block::GetBlockBy(Direction direction)
 
 void Block::Draw(Camera* camera, glm::vec3& color) const
 {
-	graphicsAsset_->Draw(camera, currGlobalCoords_, currRotation_, color);
+	graphicsAsset_->Draw(camera, currGlobalCoords_, currRotation_, color*(hits_/maxHits_));
 }
 
 float Block::GetMass()

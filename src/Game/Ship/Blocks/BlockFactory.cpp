@@ -114,7 +114,8 @@ void ObjectDataBase::Fill(std::string name)
 		newBlock->name_          = "";
 
 		newBlock->blockType_ = blockType;
-		newBlock->hits_      = hits;
+		newBlock->hits_		 = hits;
+		newBlock->maxHits_	 = hits;
 		newBlock->mass_      = mass;
 		newBlock->isLinked_  = true;
 

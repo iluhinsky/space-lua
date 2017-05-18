@@ -4,8 +4,8 @@
 
 const float     BULLET_MASS           = 0.1f;
 const btVector3 BULLET_INERTIA        = btVector3(1.0f, 1.0f, 1.0f);
-const int       BULLET_TIME           = 10000;
-const int       BULLET_VELOCITY       = 10;
+const int       BULLET_TIME           = 25000;
+const int       BULLET_VELOCITY       = 25;
 const float     BULLET_GRAPHICS_SCALE = 0.005f;
 
 
