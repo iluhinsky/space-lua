@@ -43,6 +43,9 @@ public:
 	btVector3 toWorldPosition(const btVector3& localPosition);
 	Block*    getBlockByWorldPosition(const btVector3& position);
 
+	btVector3 getCoords();
+	btVector3 getVelocity();
+
 private:
 	void ConstructShape(btScalar& mass, btVector3& inertia);
 	void RemoveUnlinkedBlocks();

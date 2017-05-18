@@ -230,6 +230,16 @@ btTransform Ship::GetTransform()
 	return transform_;
 }
 
+btVector3 Ship::getCoords()
+{
+	return transform_.getOrigin();
+}
+
+btVector3 Ship::getVelocity()
+{
+	return body_->getVelocityInLocalPoint(principalTransform_.getOrigin());
+}
+
 void Ship::ConstructShape(btScalar& mass, btVector3& inertia)
 {
 	mass = 0.0f;

@@ -1,5 +1,6 @@
 #include "PhysicsWorld.h"
 
+#include <iostream>
 
 
 PhysicsWorld::PhysicsWorld()
@@ -42,7 +43,12 @@ void PhysicsWorld::Destroy()
 
 void PhysicsWorld::proc(int mSeconds)
 {
-	dynamicsWorld_->stepSimulation(mSeconds);
+	try { 
+		dynamicsWorld_->stepSimulation(mSeconds);
+	}
+	catch (...) {
+		std::cout << "Physics error" << std::endl;
+	}
 }
 
 void PhysicsWorld::AddRigidBody(btRigidBody* rigidBody)
