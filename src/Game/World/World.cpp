@@ -113,7 +113,7 @@ void World::BorderCheck()
 			ship.second->ApplyForce(btVector3(0.0f, 0.0f, 1.0f), btVector3(0.0f, 0.0f, 0.0f));
 
 		if (ship.second->getVelocity().length() > 5.0f)
-			ship.second->ReduceVelocity(0.99f);
+			ship.second->ReduceVelocity(0.9f);
 	}
 }
 
