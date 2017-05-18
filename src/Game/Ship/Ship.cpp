@@ -42,8 +42,12 @@ Ship::~Ship()
 
 void Ship::Draw(Camera* camera)
 {
-	for (auto block : blocksDataBase_)
+	for (auto block : blocksDataBase_) {
 		block.second->Draw(camera, color_);
+
+	if (block.second->GetType() == BlockTypeEngine) 
+		((BlockEngine*)block.second)->UpdateFire(); 		
+	}
 }
 
 void Ship::InitRigidBody()

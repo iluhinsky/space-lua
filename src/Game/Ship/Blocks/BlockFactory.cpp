@@ -94,13 +94,16 @@ void ObjectDataBase::Fill(std::string name)
 			break;
 
 		case BlockTypeEngine:
-			newBlock = new BlockWeapon;
+			newBlock = new BlockEngine;
 
 			fscanf(file, " coolDownTime: %d", &integer_param);
 
 			((BlockEngine*)newBlock)->coolDownTime_  = integer_param;
 			((BlockEngine*)newBlock)->estimatedTime_ = integer_param;
-			((BlockEngine*)newBlock)->power_         = 0.0f;
+			((BlockEngine*)newBlock)->power_ = 0.0f;
+
+
+
 
 			break;
 
