@@ -53,6 +53,7 @@ private:
 
 	std::string shipName_;
 	glm::vec3   color_;
+	int         team_;
 
 	btTransform transform_;
 	btTransform	principalTransform_;

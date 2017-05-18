@@ -45,17 +45,21 @@ Ship* ShipFactory::GenerateShip(ShipInfo shipInfo)
 	ship->shipName_      = shipInfo.name_;
 	ship->collisionType_ = CollidingShip;
 
-	auto shipColor = colorDictionary_.find(ship->shipName_);
+	auto shipTeam = teamsDictionary_.find(ship->shipName_);
 
-	if (shipColor != colorDictionary_.end())
-		ship->color_ = shipColor->second;
-
+	if (shipTeam != teamsDictionary_.end())
+	{
+		ship->team_  = shipTeam->second;
+		ship->color_ = colors[shipTeam->second];
+	}
 	else
 	{
-		int colorNumber = colorDictionary_.size();
+		int newTeam = teamsDictionary_.size();
 
-		colorDictionary_[ship->shipName_] = colors[colorNumber];
-		ship->color_                      = colors[colorNumber];
+		teamsDictionary_[ship->shipName_] = newTeam;
+
+		ship->team_  = newTeam;
+		ship->color_ = colors[newTeam];
 	}
 
 	btQuaternion rotation(

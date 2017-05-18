@@ -183,6 +183,8 @@ ShipInfoForLUA ShipController::GetShipInfo(int shipID, lua_State* luaThread)
 	info.y = coords.y();
 	info.z = coords.z();
 
+	info.team = ship->team_;
+
 	return info;
 }
 
