@@ -103,7 +103,7 @@ void Ship::UpdateBlocksIDVector()
 		blocksID_.push_back(elem.first);
 }
 
-void Ship::RemoveUnlinkedBlocks()
+void Ship::FindUnlinkedBlocks()
 {	
 	for (auto block : blocksDataBase_)
 		block.second->UnlinkfromMain();
@@ -128,6 +128,7 @@ void Ship::RemoveUnlinkedBlocks()
 			neighborBlock = currBlock->GetBlockBy(direction);
 
 			if (neighborBlock != nullptr &&
+				neighborBlock->isExist() &&
 				!neighborBlock->isLinkedtoMain())
 			{
 				BFSqueue.push(neighborBlock);
@@ -135,22 +136,6 @@ void Ship::RemoveUnlinkedBlocks()
 			}
 		}
 	}
-
-	std::list<int> deletingBlocks;
-
-	for (auto block : blocksDataBase_)
-		if (!block.second->isLinkedtoMain())
-			deletingBlocks.push_back(block.first);
-
-	for (auto blockID : deletingBlocks)
-	{
-		currBlock = blocksDataBase_[blockID];
-
-		delete currBlock;
-		blocksDataBase_.erase(blockID);
-	}
-
-	UpdateBlocksIDVector();
 }
 
 void Ship::RunLUA()
@@ -210,19 +195,39 @@ void Ship::hit(Bullet* bullet, btVector3& pointA, btVector3& pointB)
 		isExist_  = false;
 		return;
 	}
-
-
-	blocksDataBase_.erase(GetidOf(damagedBlock));
-	delete damagedBlock;
 	
-	RemoveUnlinkedBlocks();
-
-	UpdateRigidBody();
+	FindUnlinkedBlocks();
 }
 
 bool Ship::isExist()
 {
 	return isExist_;
+}
+
+void Ship::CleanUpBlocks()
+{
+	std::list<int> deletingBlocks;
+
+	for (auto block : blocksDataBase_)
+		if (!block.second->isLinkedtoMain() ||
+			!block.second->isExist())
+			deletingBlocks.push_back(block.first);
+
+	if (deletingBlocks.size() == 0)
+		return;
+
+	Block* currBlock = nullptr;
+
+	for (auto blockID : deletingBlocks)
+	{
+		currBlock = blocksDataBase_[blockID];
+
+		delete currBlock;
+		blocksDataBase_.erase(blockID);
+	}
+
+	UpdateBlocksIDVector();
+	UpdateRigidBody();
 }
 
 btTransform Ship::GetTransform()

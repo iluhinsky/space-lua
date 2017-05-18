@@ -157,6 +157,9 @@ void World::ClearUnexisingObjects()
 		shipsDataBase_.erase(shipID);
 
 	UpdateShipsIDVector();
+
+	for (auto ship : shipsDataBase_)
+		ship.second->CleanUpBlocks();
 }
 
 void World::RunLUA()
