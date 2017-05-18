@@ -46,6 +46,21 @@ void Ship::Draw(Camera* camera)
 		block.second->Draw(camera, color_);
 }
 
+std::string Ship::GetName()
+{
+	return shipName_;
+}
+
+int Ship::GetTeam()
+{
+	return team_;
+}
+
+glm::vec3 Ship::GetColor()
+{
+	return color_;
+}
+
 void Ship::InitRigidBody()
 {
 	/*XXX: updateChildTransform is too slow, so we recreate the shape*/

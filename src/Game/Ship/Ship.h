@@ -23,6 +23,10 @@ public:
 
 	void Draw(Camera* camera);
 
+	std::string GetName();
+	int         GetTeam();
+	glm::vec3   GetColor();
+
 	virtual void InitRigidBody();
 	void UpdateRigidBody();
 
