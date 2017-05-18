@@ -36,6 +36,7 @@
     <ClInclude Include="..\src\Engine\Graphics\Particles\ParticleSystemFactory.h" />
     <ClInclude Include="..\src\Engine\Graphics\Shaders\ShaderManager.h" />
     <ClInclude Include="..\src\Engine\Graphics\Shaders\ShaderProg.h" />
+    <ClInclude Include="..\src\Engine\Graphics\Skybox\Skybox.h" />
     <ClInclude Include="..\src\Engine\Graphics\Texture\PngLoader.h" />
     <ClInclude Include="..\src\Engine\Logic\Controllers\Controller.h" />
     <ClInclude Include="..\src\Engine\Logic\Controllers\Players\Player.h" />
@@ -80,6 +81,7 @@
     <ClCompile Include="..\src\Engine\Graphics\Particles\ParticleSystemFactory.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\Shaders\ShaderManager.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\Shaders\ShaderProg.cpp" />
+    <ClCompile Include="..\src\Engine\Graphics\Skybox\Skybox.cpp" />
     <ClCompile Include="..\src\Engine\Graphics\Texture\PngLoader.cpp" />
     <ClCompile Include="..\src\Engine\Logic\Controllers\Controller.cpp" />
     <ClCompile Include="..\src\Engine\Logic\Controllers\Players\Player.cpp" />

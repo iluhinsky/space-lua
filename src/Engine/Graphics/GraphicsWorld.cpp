@@ -1,10 +1,10 @@
 #include "GraphicsWorld.h"
 #include "Particles/ParticleSystemFactory.h"
 
-
 GraphicsWorld::GraphicsWorld()
 {
 	manager_ = new GraphicsObjectManager;
+	skybox_  = new Skybox(manager_);
 }
 
 
@@ -14,6 +14,7 @@ GraphicsWorld::~GraphicsWorld()
 		delete system;
 
 	delete manager_;
+	delete skybox_;
 
 	printf("ENDDDDDD\n\n\n");
 }
@@ -26,7 +27,6 @@ void GraphicsWorld::Init()
 
 std::vector<ParticleSystem*> GraphicsWorld::GetParticleSystem()
 {
-	particleSystem_[1]->SetPosition(glm::vec3(-0.05, 0, 0) + particleSystem_[1]->GetPosition());
 	return particleSystem_;
 }
 
@@ -76,4 +76,12 @@ ParticleSystem* GraphicsWorld::GetExplosionParticleSystem(glm::vec3 position)
 	particleSystem_.push_back(explosion);
 
 	return explosion;
+}
+
+void GraphicsWorld::Draw(Camera* camera)
+{
+	for (auto particleSystem : particleSystem_)
+		particleSystem->Draw(camera);
+
+	skybox_->Draw(camera);
 }

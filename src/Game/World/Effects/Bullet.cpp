@@ -87,7 +87,7 @@ void Bullet::Draw(Camera* camera)
 	transform_ = body_->getWorldTransform();
 
 	glm::vec3 globalCoord = toGLM(transform_.getOrigin());
-	glm::mat3 rotation    = glm::mat3(1.0f);
+	glm::mat3 rotation = glm::mat3(1.0f);
 
 	graphicsAsset_->Draw(camera, globalCoord, rotation);
 }

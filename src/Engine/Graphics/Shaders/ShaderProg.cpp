@@ -22,7 +22,7 @@ int  ShaderProg::GetUniformLocation(const char* name)
 {
 	int location = glGetUniformLocation(_shaderProgram, name);
 	
-	assert(location != -1);
+	//assert(location != -1);
 	return location;
 }
 

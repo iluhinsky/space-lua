@@ -21,6 +21,9 @@ void GraphicsObject::Draw(Camera* camera, glm::vec3 worldPos, glm::mat3 rotation
 {
 	shaderProg_->Use();
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	SetUniforms(camera, worldPos, rotation, color);
 
 	glEnableVertexAttribArray(0);
@@ -45,11 +48,15 @@ void GraphicsObject::Draw(Camera* camera, glm::vec3 worldPos, glm::mat3 rotation
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
 
+	glDisable(GL_BLEND);
+
 	shaderProg_->Detach();
+
+
 }
 
 
-void GraphicsObject::SetUniforms(Camera* camera, glm::vec3& worldPos, glm::mat3& rotation, glm::vec3 color)
+void GraphicsObject::SetUniforms(Camera* camera, glm::vec3 worldPos, glm::mat3& rotation, glm::vec3 color)
 {
 	sf::Vector2u size = APPLICATION->GetWindowSize();
 
@@ -59,7 +66,12 @@ void GraphicsObject::SetUniforms(Camera* camera, glm::vec3& worldPos, glm::mat3&
 
 	float time = APPLICATION->getTime().asSeconds();
 
-	SetTranslation(&p, camera, worldPos);
+	if (isInfinite_) {
+		SetTranslation(&p, camera, camera->GetPos());
+	}
+	else {
+		SetTranslation(&p, camera, worldPos);
+	}
 
 	p.SetPerspectiveProj(60.0f, size.x, size.y, 1.0f, 10000.0f);
 	p.Rotate(rotation);
@@ -74,12 +86,13 @@ void GraphicsObject::SetUniforms(Camera* camera, glm::vec3& worldPos, glm::mat3&
 
 	shaderProg_->UniformInt(shaderProg_->GetUniformLocation("texture"), 0);
 	shaderProg_->UniformFloat(shaderProg_->GetUniformLocation("scale"), scale_);
+	shaderProg_->UniformFloat(shaderProg_->GetUniformLocation("time"), APPLICATION->getTime().asMicroseconds());
 	shaderProg_->UniformVector3D(shaderProg_->GetUniformLocation("lightPos"), 1000.0 * cos(time), 1000.0 * sin(time), 0.0f);
 	shaderProg_->UniformVector3D(shaderProg_->GetUniformLocation("eyePos"), camera->GetPos());
 	shaderProg_->UniformVector3D(shaderProg_->GetUniformLocation("color"),  color);
 }
 
-void GraphicsObject::SetTranslation(Pipeline* p, Camera* camera, glm::vec3& worldPos)
+void GraphicsObject::SetTranslation(Pipeline* p, Camera* camera, glm::vec3 worldPos)
 {
 	p->WorldPos(worldPos.x, worldPos.y, worldPos.z);
 	p->SetCamera(camera->GetPos(), camera->GetTarget(), camera->GetUp());

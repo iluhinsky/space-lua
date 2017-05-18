@@ -30,6 +30,7 @@ GraphicsObject* GraphicsObjectFactory::CreateObject(GraphicsObjectInfo assetName
 	newObject->model_ = modelManager_.Get(assetNames.modelName_);
 	newObject->texture_ = textureManager_.Get(assetNames.textureName_);
 	newObject->shaderProg_ = APPLICATION->shaderManager_.Get(assetNames.shaderNames_);
+	newObject->isInfinite_ = assetNames.isInfinite_;
 
 	return newObject;
 }

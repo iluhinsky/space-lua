@@ -20,10 +20,11 @@ public:
 		glm::vec3 color = glm::vec3(0.0f, 0.0f, 0.0f));
 
 private:
-	void SetUniforms(Camera* camera, glm::vec3& worldPos, glm::mat3& rotation, glm::vec3 color);
-	void SetTranslation(Pipeline* p, Camera* camera, glm::vec3& worldPos);
+	void SetUniforms(Camera* camera, glm::vec3 worldPos, glm::mat3& rotation, glm::vec3 color);
+	void SetTranslation(Pipeline* p, Camera* camera, glm::vec3 worldPos);
 
 	float       scale_;
+	bool		isInfinite_;
 
 	Model*      model_;
 	GLuint      texture_;

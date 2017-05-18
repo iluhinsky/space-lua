@@ -107,7 +107,7 @@ void ParticleSystem::SetTranslation(Pipeline* p, Camera* camera, glm::vec4& worl
 float ParticleSystem::dt()
 {
 	sf::Time currentTime = APPLICATION->getTime();
-	
+
 	float dt = currentTime.asSeconds() - prevTime_.asSeconds();
 
 	prevTime_ = currentTime;

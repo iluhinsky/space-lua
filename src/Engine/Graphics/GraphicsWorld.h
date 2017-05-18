@@ -3,6 +3,7 @@
 
 #include "GraphicsObjectManager.h"
 #include "Particles\ParticleSystem.h"
+#include "Skybox\Skybox.h"
 
 class GraphicsWorld
 {
@@ -17,8 +18,12 @@ public:
 	std::vector<ParticleSystem*> GetParticleSystem();
 	GraphicsObjectManager* GetManager();
 
+	void Draw(Camera* camera);
+
 private:
 	std::vector<ParticleSystem*>	particleSystem_;
 	GraphicsObjectManager*			manager_;
+
+	Skybox*					skybox_;
 };
 
