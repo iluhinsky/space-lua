@@ -16,6 +16,7 @@
 
 #include <SFML\System\Clock.hpp>
 #include <SFML/Window.hpp>
+#include <SFML\Graphics\RenderWindow.hpp>
 #include <GL/glew.h>
 #include <SFML/OpenGL.hpp>
 #include <SFML/System/Vector3.hpp>

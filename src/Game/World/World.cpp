@@ -65,12 +65,39 @@ void World::Init()
 	gContactProcessedCallback = _ContactProcessedCallback;
 }
 
+void World::FillStatistics()
+{
+	for (auto ship : shipsDataBase_)
+	{
+		auto it = statistics.find(ship.second->GetName());
+
+		if (it != statistics.end())
+		{
+			it->second.shipCount++;
+			it->second.maxShipCount++;
+		}
+
+		else
+		{
+			ShipStatistics newStatistics = {};
+
+			newStatistics.shipCount    = 1;
+			newStatistics.maxShipCount = 1;
+			newStatistics.teamNumber   = ship.second->GetTeam();
+			newStatistics.color_       = ship.second->GetColor();
+
+			statistics[ship.second->GetName()] = newStatistics;
+		}
+	}
+}
 
 void World::Load(std::string worldName)
 {
 	worldLoader_->Load(worldName);
 
 	UpdateShipsIDVector();
+
+	FillStatistics();
 }
 
 void World::UpdateShipsIDVector()
@@ -134,6 +161,9 @@ void World::ClearUnexisingObjects()
 	for (auto ship : shipsDataBase_)
 		if (!ship.second->isExist())
 		{
+			std::string name = ship.second->GetName();
+			statistics[name].shipCount--;
+
 			deadShipsIDs.push_back(ship.first);
 			delete ship.second;
 		}

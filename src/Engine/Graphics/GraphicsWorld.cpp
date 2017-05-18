@@ -21,7 +21,6 @@ GraphicsWorld::~GraphicsWorld()
 
 void GraphicsWorld::Init()
 {
-	particleSystem_.push_back(GetFireParticleSystem(glm::vec3(20, -40, 0), glm::vec3(1, 0, 0)));
 }
 
 std::vector<ParticleSystem*> GraphicsWorld::GetParticleSystem()
@@ -41,7 +40,7 @@ ParticleSystem* GraphicsWorld::GetFireParticleSystem(glm::vec3 position, glm::ve
 	assets.initialSpeed_ = 10.0f*glm::normalize(velocity);
 	assets.color_ = glm::vec3{ 1, 0.3f, 0 };
 	assets.lifeTime_ = 1.0f;
-	assets.scale_ = 0.5f;
+	assets.scale_ = 0.25f;
 	assets.numberOfParticles_ = 400;
 	assets.flowPerSecond_ = 400;
 	assets.isRepeat_ = true;
@@ -49,7 +48,10 @@ ParticleSystem* GraphicsWorld::GetFireParticleSystem(glm::vec3 position, glm::ve
 	assets.textureName_ = "face.png";
 	assets.shaderNames_ = ShaderNames{ "particle_vertex.glsl", "particle_fragment.glsl", "" };
 
-	return particleSystemFactory_.CreateParticleSystem(position, assets);
+	ParticleSystem* fire = particleSystemFactory_.CreateParticleSystem(position, assets);
+	particleSystem_.push_back(fire);
+
+	return fire;
 }
 
 ParticleSystem* GraphicsWorld::GetExplosionParticleSystem(glm::vec3 position)

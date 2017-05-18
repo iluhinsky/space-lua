@@ -42,8 +42,27 @@ Ship::~Ship()
 
 void Ship::Draw(Camera* camera)
 {
-	for (auto block : blocksDataBase_)
+	for (auto block : blocksDataBase_) {
 		block.second->Draw(camera, color_);
+
+	if (block.second->GetType() == BlockTypeEngine) 
+		((BlockEngine*)block.second)->UpdateFire(); 		
+	}
+}
+
+std::string Ship::GetName()
+{
+	return shipName_;
+}
+
+int Ship::GetTeam()
+{
+	return team_;
+}
+
+glm::vec3 Ship::GetColor()
+{
+	return color_;
 }
 
 void Ship::InitRigidBody()

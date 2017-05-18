@@ -2,6 +2,7 @@
 #include "ShipController.h"
 
 #include <btBulletDynamicsCommon.h>
+#include "../../Application/Application.h"
 
 extern const int instructionsLimit;
 
@@ -77,6 +78,11 @@ Ship* ShipFactory::GenerateShip(ShipInfo shipInfo)
 
 	ship->InitRigidBody();
 	ship->UpdateBlocksIDVector();
+
+	for (auto block : ship->blocksDataBase_)
+		if (block.second->GetType() == BlockTypeEngine) {
+			((BlockEngine*)block.second)->SetFire(APPLICATION->GetGraphicsWorld()->GetFireParticleSystem(glm::vec3(shipInfo.coord_.x, shipInfo.coord_.y, shipInfo.coord_.z) + block.second->GetRelatedCoords(), glm::vec3(1, 0, 0)));
+		}
 
 	return ship;
 }

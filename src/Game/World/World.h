@@ -6,6 +6,18 @@
 #include "WorldLoader.h"
 
 
+
+struct ShipStatistics
+{
+	int teamNumber;
+
+	int shipCount;
+	int maxShipCount;
+
+	glm::vec3 color_;
+};
+
+
 class World
 {
 	friend class WorldLoader;
@@ -17,6 +29,7 @@ public:
 	~World();
 
 	void Init();
+	void FillStatistics();
 	void Load(std::string worldName);
 	void UpdateShipsIDVector(); //! Call after every death of any ship
 	void UpdateAfterPhysicsStep();
@@ -41,4 +54,6 @@ private:
 	std::vector <int>                     shipsID_;
 
 	WorldLoader* worldLoader_;
+
+	std::map<std::string, ShipStatistics> statistics;
 };

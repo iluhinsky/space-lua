@@ -12,7 +12,7 @@ public:
 	~ParticleSystem();
 
 	void SetPosition(glm::vec3 position) {
-		position_ = position;
+		position_ = position * 0.5f;
 	}
 
 	glm::vec3 GetPosition() {
@@ -21,6 +21,11 @@ public:
 
 	void SetVelocity(glm::vec3 velocity) {
 		initialSpeed_ = glm::length(initialSpeed_) * glm::normalize(velocity);
+		for (int i = 0; i < numberOfParticles_; i++)
+		{
+			particles_[i].SetVelocity(initialSpeed_);
+		}
+
 	}
 
 	glm::vec3 GetVelocity() {
