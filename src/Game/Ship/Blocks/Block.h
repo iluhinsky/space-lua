@@ -68,7 +68,9 @@ protected:
 	glm::vec3   relatedCoords_;
 
 	float       hits_;
+	float       maxHits_;
 	float       mass_;
+
 
 	glm::vec3   currGlobalCoords_;
 	glm::mat3   currRotation_;

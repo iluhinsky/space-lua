@@ -24,7 +24,7 @@ void Application::Init()
 {
 	instance_ = this;
 
-	if (!InitWindow(sf::Vector2u(800, 600), "Space LUA"))
+	if (!InitWindow(sf::Vector2u(1000, 800), "Space LUA"))
 	{
 		fprintf(stderr, "Error: Can't open window\n");
 		exit(-1);

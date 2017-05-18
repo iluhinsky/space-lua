@@ -39,6 +39,10 @@ public:
 	void hit(Bullet* bullet, btVector3& pointA, btVector3& pointB);
 	bool isExist();
 
+	void Destroy() {
+		isExist_ = false;
+	}
+
 	void CleanUpBlocks();
 
 	void      ApplyForce(btVector3& force, btVector3& globalPosition);

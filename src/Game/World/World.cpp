@@ -1,6 +1,6 @@
 #include "World.h"
 
-const int borderSize = 25;
+const int borderSize = 250;
 
 const std::vector<Direction> directions =
 {
@@ -89,28 +89,10 @@ void World::UpdateAfterPhysicsStep()
 
 void World::BorderCheck()
 {
-	//! Bad code!!!
 	for (auto ship : shipsDataBase_)
 	{
-		btVector3 coords = ship.second->getCoords();
-
-		if (coords.x() > borderSize)
-			ship.second->ApplyForce(btVector3(-1.0f, 0.0f, 0.0f), btVector3(0.0f, 0.0f, 0.0f));
-
-		if (coords.x() < -borderSize)
-			ship.second->ApplyForce(btVector3( 1.0f, 0.0f, 0.0f), btVector3(0.0f, 0.0f, 0.0f));
-
-		if (coords.y() > borderSize)
-			ship.second->ApplyForce(btVector3(0.0f, -1.0f, 0.0f), btVector3(0.0f, 0.0f, 0.0f));
-
-		if (coords.y() < -borderSize)
-			ship.second->ApplyForce(btVector3(0.0f, 1.0f, 0.0f), btVector3(0.0f, 0.0f, 0.0f));
-
-		if (coords.z() > borderSize)
-			ship.second->ApplyForce(btVector3(0.0f, 0.0f, -1.0f), btVector3(0.0f, 0.0f, 0.0f));
-
-		if (coords.z() < -borderSize)
-			ship.second->ApplyForce(btVector3(0.0f, 0.0f, 1.0f), btVector3(0.0f, 0.0f, 0.0f));
+		if (ship.second->getCoords().length() > borderSize)
+			ship.second->Destroy();
 
 		if (ship.second->getVelocity().length() > 5.0f)
 			ship.second->ReduceVelocity(0.9f);
