@@ -20,6 +20,7 @@ public:
 	void Load(std::string worldName);
 	void UpdateShipsIDVector(); //! Call after every death of any ship
 	void UpdateAfterPhysicsStep();
+	void BorderCheck();
 
 	void Draw(Camera* camera);
 	void ReduceTime(int dt);

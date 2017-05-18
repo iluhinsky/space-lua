@@ -1,5 +1,18 @@
 #include "World.h"
 
+const int borderSize = 25;
+
+const std::vector<Direction> directions =
+{
+	x_up,
+	y_up,
+	z_up,
+	x_down,
+	y_down,
+	z_down
+};
+
+
 bool _ContactProcessedCallback(btManifoldPoint& cp, void* body0, void* body1)
 {
 	CollisionObject* p1 = (CollisionObject*)((btRigidBody*)body0)->getUserPointer();
@@ -74,6 +87,36 @@ void World::UpdateAfterPhysicsStep()
 		ship.second->UpdateAfterPhysicsStep();
 }
 
+void World::BorderCheck()
+{
+	//! Bad code!!!
+	for (auto ship : shipsDataBase_)
+	{
+		btVector3 coords = ship.second->getCoords();
+
+		if (coords.x() > borderSize)
+			ship.second->ApplyForce(btVector3(-1.0f, 0.0f, 0.0f), btVector3(0.0f, 0.0f, 0.0f));
+
+		if (coords.x() < -borderSize)
+			ship.second->ApplyForce(btVector3( 1.0f, 0.0f, 0.0f), btVector3(0.0f, 0.0f, 0.0f));
+
+		if (coords.y() > borderSize)
+			ship.second->ApplyForce(btVector3(0.0f, -1.0f, 0.0f), btVector3(0.0f, 0.0f, 0.0f));
+
+		if (coords.y() < -borderSize)
+			ship.second->ApplyForce(btVector3(0.0f, 1.0f, 0.0f), btVector3(0.0f, 0.0f, 0.0f));
+
+		if (coords.z() > borderSize)
+			ship.second->ApplyForce(btVector3(0.0f, 0.0f, -1.0f), btVector3(0.0f, 0.0f, 0.0f));
+
+		if (coords.z() < -borderSize)
+			ship.second->ApplyForce(btVector3(0.0f, 0.0f, 1.0f), btVector3(0.0f, 0.0f, 0.0f));
+
+		if (ship.second->getVelocity().length() > 5.0f)
+			ship.second->ReduceVelocity(0.99f);
+	}
+}
+
 void World::ReduceTime(int dt)
 {
 	for (auto bullet : bullets_)
@@ -117,6 +160,9 @@ void World::ClearUnexisingObjects()
 		shipsDataBase_.erase(shipID);
 
 	UpdateShipsIDVector();
+
+	for (auto ship : shipsDataBase_)
+		ship.second->CleanUpBlocks();
 }
 
 void World::RunLUA()

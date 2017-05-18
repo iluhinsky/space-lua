@@ -39,13 +39,19 @@ public:
 	void hit(Bullet* bullet, btVector3& pointA, btVector3& pointB);
 	bool isExist();
 
+	void CleanUpBlocks();
+
 	void      ApplyForce(btVector3& force, btVector3& globalPosition);
+	void      ReduceVelocity(float factor);
 	btVector3 toWorldPosition(const btVector3& localPosition);
 	Block*    getBlockByWorldPosition(const btVector3& position);
 
+	btVector3 getCoords();
+	btVector3 getVelocity();
+
 private:
 	void ConstructShape(btScalar& mass, btVector3& inertia);
-	void RemoveUnlinkedBlocks();
+	void FindUnlinkedBlocks();
 
 	Block* GetNearestBlockTo(const btVector3&  pointA, const btVector3& pointB);
 

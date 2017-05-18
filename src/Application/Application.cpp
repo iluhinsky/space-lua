@@ -86,6 +86,7 @@ void Application::MainFunc()
 
 	physicsWorld_->proc(dt.asMilliseconds());
 	world_->UpdateAfterPhysicsStep();
+	world_->BorderCheck();
 
 	player_->UpdateCamera();
 
