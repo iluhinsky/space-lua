@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{6dbe97a6-629f-40da-b0ea-dc5a92312d9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Application">
+      <UniqueIdentifier>{da78eba4-218f-4156-b185-bf3be9f8db18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine">
+      <UniqueIdentifier>{328fa072-13e9-44c0-9024-683554d97f32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform">
+      <UniqueIdentifier>{e05081a1-922a-4f79-a855-6f5eb20b9907}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\Win">
+      <UniqueIdentifier>{88b7cc02-d396-4d38-a8d4-fe11ff074d9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics">
+      <UniqueIdentifier>{74d2f2eb-949e-443d-b73c-c7a2a61f4a53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics\Management">
+      <UniqueIdentifier>{c722e160-4ae1-481f-bbee-8655ce20feba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics\Model">
+      <UniqueIdentifier>{7f4a8b04-501c-4f20-ba91-6e1c7e48735f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics\Shaders">
+      <UniqueIdentifier>{d2854300-2b07-42fb-aad2-674a8a981bfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics\Texture">
+      <UniqueIdentifier>{58951647-ce77-422d-97eb-448b8b07536a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Logic">
+      <UniqueIdentifier>{2c6a6470-8895-4384-84ba-526a5d0c1466}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Math">
+      <UniqueIdentifier>{6a012691-b484-4ce9-adc4-e39a19f30a7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Logic\Controllers">
+      <UniqueIdentifier>{e564c7ff-843b-4750-b6fb-88c89e87f002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Logic\Controllers\Players">
+      <UniqueIdentifier>{8981c792-61f6-4beb-a21c-248fea2b1b61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics\GraphicsObject">
+      <UniqueIdentifier>{675b4f91-21c7-45d2-957c-cd5a010539bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics\Particles">
+      <UniqueIdentifier>{afbfa428-b2a8-428b-b3d1-8f05ea027e26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Physics">
+      <UniqueIdentifier>{03f01457-3e02-4e77-ad00-9b58192d464f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game">
+      <UniqueIdentifier>{e694b13f-618b-4d2b-91b9-eff9090ed0e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\Ship">
+      <UniqueIdentifier>{04c41362-8edc-449a-89cb-57293684664f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\Ship\Blocks">
+      <UniqueIdentifier>{b050d21e-0728-494d-8cb5-2fcf7f5e0abb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\World">
+      <UniqueIdentifier>{d39e1e7b-1901-4c0f-819a-4f39bc8cc7da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Game\World\Effects">
+      <UniqueIdentifier>{0381a6b9-78a0-4d95-beef-aefd4d1616f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Engine\Graphics\Skybox">
+      <UniqueIdentifier>{44c162e4-b3e5-49db-a800-b3cc45a37e7a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Include.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Application\Application.h">
+      <Filter>src\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Application\Window.h">
+      <Filter>src\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Platform\Win\Platform.h">
+      <Filter>src\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Management\ModelManager.h">
+      <Filter>src\Engine\Graphics\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Management\ShaderProgManager.h">
+      <Filter>src\Engine\Graphics\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Management\TextureManager.h">
+      <Filter>src\Engine\Graphics\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Model\Mesh.h">
+      <Filter>src\Engine\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Model\Model.h">
+      <Filter>src\Engine\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Model\ModelParser.h">
+      <Filter>src\Engine\Graphics\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Texture\PngLoader.h">
+      <Filter>src\Engine\Graphics\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Shaders\ShaderManager.h">
+      <Filter>src\Engine\Graphics\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Shaders\ShaderProg.h">
+      <Filter>src\Engine\Graphics\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Math\Camera.h">
+      <Filter>src\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Math\math_3d.h">
+      <Filter>src\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Math\Pipeline.h">
+      <Filter>src\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Logic\Controllers\Controller.h">
+      <Filter>src\Engine\Logic\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Logic\Controllers\Players\Player.h">
+      <Filter>src\Engine\Logic\Controllers\Players</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObject.h">
+      <Filter>src\Engine\Graphics\GraphicsObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObjectFactory.h">
+      <Filter>src\Engine\Graphics\GraphicsObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\GraphicsObjectManager.h">
+      <Filter>src\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Particles\Particle.h">
+      <Filter>src\Engine\Graphics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Particles\ParticleSystem.h">
+      <Filter>src\Engine\Graphics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Physics\CollisionObject.h">
+      <Filter>src\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\Block.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockMain.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockShield.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockTypes.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Ship.h">
+      <Filter>src\Game\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockFactory.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\ShipController.h">
+      <Filter>src\Game\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\World\World.h">
+      <Filter>src\Game\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\World\WorldLoader.h">
+      <Filter>src\Game\World</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\ShipFactory.h">
+      <Filter>src\Game\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Physics\PhysicsWorld.h">
+      <Filter>src\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\GraphicsWorld.h">
+      <Filter>src\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\CollisionObjectTypes.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\World\Effects\Bullet.h">
+      <Filter>src\Game\World\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockWeapon.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\OrientedBlock.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game\Ship\Blocks\BlockEngine.h">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Particles\ParticleSystemFactory.h">
+      <Filter>src\Engine\Graphics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Engine\Graphics\Skybox\Skybox.h">
+      <Filter>src\Engine\Graphics\Skybox</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Application\Application.cpp">
+      <Filter>src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Application\Window.cpp">
+      <Filter>src\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platform\Win\Platform.cpp">
+      <Filter>src\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Management\ModelManager.cpp">
+      <Filter>src\Engine\Graphics\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Management\ShaderProgManager.cpp">
+      <Filter>src\Engine\Graphics\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Management\TextureManager.cpp">
+      <Filter>src\Engine\Graphics\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Model\Mesh.cpp">
+      <Filter>src\Engine\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Model\Model.cpp">
+      <Filter>src\Engine\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Model\ModelParser.cpp">
+      <Filter>src\Engine\Graphics\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Texture\PngLoader.cpp">
+      <Filter>src\Engine\Graphics\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Shaders\ShaderManager.cpp">
+      <Filter>src\Engine\Graphics\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Shaders\ShaderProg.cpp">
+      <Filter>src\Engine\Graphics\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Math\Camera.cpp">
+      <Filter>src\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Math\math_3d.cpp">
+      <Filter>src\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Math\Pipeline.cpp">
+      <Filter>src\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Logic\Controllers\Controller.cpp">
+      <Filter>src\Engine\Logic\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Logic\Controllers\Players\Player.cpp">
+      <Filter>src\Engine\Logic\Controllers\Players</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObject.cpp">
+      <Filter>src\Engine\Graphics\GraphicsObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\GraphicsObject\GraphicsObjectFactory.cpp">
+      <Filter>src\Engine\Graphics\GraphicsObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\GraphicsObjectManager.cpp">
+      <Filter>src\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Particles\Particle.cpp">
+      <Filter>src\Engine\Graphics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Particles\ParticleSystem.cpp">
+      <Filter>src\Engine\Graphics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Physics\CollisionObject.cpp">
+      <Filter>src\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\Block.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockMain.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockShield.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Ship.cpp">
+      <Filter>src\Game\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockFactory.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\ShipController.cpp">
+      <Filter>src\Game\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\World\World.cpp">
+      <Filter>src\Game\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\World\WorldLoader.cpp">
+      <Filter>src\Game\World</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\ShipFactory.cpp">
+      <Filter>src\Game\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Physics\PhysicsWorld.cpp">
+      <Filter>src\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\GraphicsWorld.cpp">
+      <Filter>src\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\World\Effects\Bullet.cpp">
+      <Filter>src\Game\World\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockWeapon.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\OrientedBlock.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Particles\ParticleSystemFactory.cpp">
+      <Filter>src\Engine\Graphics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Game\Ship\Blocks\BlockEngine.cpp">
+      <Filter>src\Game\Ship\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Engine\Graphics\Skybox\Skybox.cpp">
+      <Filter>src\Engine\Graphics\Skybox</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

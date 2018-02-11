@@ -1,0 +1,33 @@
+BlockTypeMain 
+hits: 50.0 mass: 0.1 
+model: cube.3ds
+texture: main.png
+vertexShader: block_vertex.glsl 
+fragmentShader: block_fragment.glsl
+
+BlockTypeShield 
+hits: 40.0 mass: 0.2 
+model: cube.3ds
+texture: shield.png
+vertexShader: block_vertex.glsl
+fragmentShader: block_fragment.glsl
+shieldPowerMax: 20 
+recoveryRate: 0.25
+
+BlockTypeWeapon 
+hits: 30.0 mass: 0.1 
+model: cube.3ds
+texture: Nekit.png
+vertexShader: block_vertex.glsl 
+fragmentShader: block_fragment.glsl 
+coolDownTime: 2000
+
+BlockTypeEngine 
+hits: 30.0 mass: 0.2 
+model: cube.3ds
+texture: planet.png
+vertexShader: block_vertex.glsl 
+fragmentShader: block_fragment.glsl 
+coolDownTime: 2000
+
+END
