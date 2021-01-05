@@ -24,53 +24,51 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 ///
-/// @ref gtx_string_cast
-/// @file glm/gtx/string_cast.hpp
-/// @date 2008-04-26 / 2014-05-10
+/// @ref gtx_normalize_dot
+/// @file glm/gtx/normalize_dot.hpp
+/// @date 2007-09-28 / 2011-06-07
 /// @author Christophe Riccio
 ///
 /// @see core (dependence)
-/// @see gtc_half_float (dependence)
-/// @see gtx_integer (dependence)
-/// @see gtx_quaternion (dependence)
+/// @see gtx_fast_square_root (dependence)
 ///
-/// @defgroup gtx_string_cast GLM_GTX_string_cast
+/// @defgroup gtx_normalize_dot GLM_GTX_normalize_dot
 /// @ingroup gtx
 /// 
-/// @brief Setup strings for GLM type values
+/// @brief Dot product of vectors that need to be normalize with a single square root.
 /// 
-/// <glm/gtx/string_cast.hpp> need to be included to use these functionalities.
-/// This extension is not supported with CUDA
+/// <glm/gtx/normalized_dot.hpp> need to be included to use these functionalities.
 ///////////////////////////////////////////////////////////////////////////////////
 
 #pragma once
 
 // Dependency:
-#include "../glm.hpp"
-#include "../gtc/type_precision.hpp"
-#include "../gtc/quaternion.hpp"
-#include "../gtx/dual_quaternion.hpp"
-#include <string>
-
-#if(GLM_COMPILER & GLM_COMPILER_CUDA)
-#	error "GLM_GTX_string_cast is not supported on CUDA compiler"
-#endif
+#include "fast_square_root.hpp"
 
 #if(defined(GLM_MESSAGES) && !defined(GLM_EXT_INCLUDED))
-#	pragma message("GLM: GLM_GTX_string_cast extension included")
+#	pragma message("GLM: GLM_GTX_normalize_dot extension included")
 #endif
 
 namespace glm
 {
-	/// @addtogroup gtx_string_cast
+	/// @addtogroup gtx_normalize_dot
 	/// @{
 
-	/// Create a string from a GLM vector or matrix typed variable.
-	/// @see gtx_string_cast extension.
-	template <template <typename, precision> class matType, typename T, precision P>
-	GLM_FUNC_DECL std::string to_string(matType<T, P> const & x);
+	/// Normalize parameters and returns the dot product of x and y.
+	/// It's faster that dot(normalize(x), normalize(y)).
+	///
+	/// @see gtx_normalize_dot extension.
+	template <typename T, precision P, template <typename, precision> class vecType>
+	GLM_FUNC_DECL T normalizeDot(vecType<T, P> const & x, vecType<T, P> const & y);
+
+	/// Normalize parameters and returns the dot product of x and y.
+	/// Faster that dot(fastNormalize(x), fastNormalize(y)).
+	///
+	/// @see gtx_normalize_dot extension.
+	template <typename T, precision P, template <typename, precision> class vecType>
+	GLM_FUNC_DECL T fastNormalizeDot(vecType<T, P> const & x, vecType<T, P> const & y);
 
 	/// @}
 }//namespace glm
 
-#include "string_cast.inl"
+#include "normalize_dot.inl"

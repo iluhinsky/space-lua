@@ -24,45 +24,67 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 ///
-/// @ref gtx_perpendicular
-/// @file glm/gtx/perpendicular.hpp
-/// @date 2005-12-21 / 2011-06-07
+/// @ref gtx_spline
+/// @file glm/gtx/spline.hpp
+/// @date 2007-01-25 / 2011-06-07
 /// @author Christophe Riccio
 ///
 /// @see core (dependence)
-/// @see gtx_projection (dependence)
 ///
-/// @defgroup gtx_perpendicular GLM_GTX_perpendicular
+/// @defgroup gtx_spline GLM_GTX_spline
 /// @ingroup gtx
 /// 
-/// @brief Perpendicular of a vector from other one
+/// @brief Spline functions
 /// 
-/// <glm/gtx/perpendicular.hpp> need to be included to use these functionalities.
+/// <glm/gtx/spline.hpp> need to be included to use these functionalities.
 ///////////////////////////////////////////////////////////////////////////////////
 
 #pragma once
 
 // Dependency:
 #include "../glm.hpp"
-#include "../gtx/projection.hpp"
+#include "optimum_pow.hpp"
 
 #if(defined(GLM_MESSAGES) && !defined(GLM_EXT_INCLUDED))
-#	pragma message("GLM: GLM_GTX_perpendicular extension included")
+#	pragma message("GLM: GLM_GTX_spline extension included")
 #endif
 
 namespace glm
 {
-	/// @addtogroup gtx_perpendicular
+	/// @addtogroup gtx_spline
 	/// @{
 
-	//! Projects x a perpendicular axis of Normal.
-	//! From GLM_GTX_perpendicular extension.
-	template <typename vecType> 
-	GLM_FUNC_DECL vecType perp(
-		vecType const & x, 
-		vecType const & Normal);
+	/// Return a point from a catmull rom curve.
+	/// @see gtx_spline extension.
+	template <typename genType> 
+	GLM_FUNC_DECL genType catmullRom(
+		genType const & v1, 
+		genType const & v2, 
+		genType const & v3, 
+		genType const & v4, 
+		typename genType::value_type const & s);
+		
+	/// Return a point from a hermite curve.
+	/// @see gtx_spline extension.
+	template <typename genType> 
+	GLM_FUNC_DECL genType hermite(
+		genType const & v1, 
+		genType const & t1, 
+		genType const & v2, 
+		genType const & t2, 
+		typename genType::value_type const & s);
+		
+	/// Return a point from a cubic curve. 
+	/// @see gtx_spline extension.
+	template <typename genType> 
+	GLM_FUNC_DECL genType cubic(
+		genType const & v1, 
+		genType const & v2, 
+		genType const & v3, 
+		genType const & v4, 
+		typename genType::value_type const & s);
 
 	/// @}
 }//namespace glm
 
-#include "perpendicular.inl"
+#include "spline.inl"

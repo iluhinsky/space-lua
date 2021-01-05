@@ -54,7 +54,7 @@
 #include "../vec2.hpp"
 #include "../vec3.hpp"
 #include "../vec4.hpp"
-#include "../gtc/constants.hpp"
+#include "constants.hpp"
 
 #if(defined(GLM_MESSAGES) && !defined(GLM_EXT_INCLUDED))
 #	pragma message("GLM: GLM_GTC_matrix_transform extension included")

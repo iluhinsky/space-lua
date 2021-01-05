@@ -24,66 +24,54 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 ///
-/// @ref gtx_vector_angle
-/// @file glm/gtx/vector_angle.hpp
-/// @date 2005-12-30 / 2011-06-07
+/// @ref gtx_gradient_paint
+/// @file glm/gtx/gradient_paint.hpp
+/// @date 2009-03-06 / 2011-06-07
 /// @author Christophe Riccio
 ///
 /// @see core (dependence)
-/// @see gtx_quaternion (dependence)
-/// @see gtx_epsilon (dependence)
+/// @see gtx_optimum_pow (dependence)
 ///
-/// @defgroup gtx_vector_angle GLM_GTX_vector_angle
+/// @defgroup gtx_gradient_paint GLM_GTX_gradient_paint
 /// @ingroup gtx
 /// 
-/// @brief Compute angle between vectors
-/// 
-/// <glm/gtx/vector_angle.hpp> need to be included to use these functionalities.
+/// @brief Functions that return the color of procedural gradient for specific coordinates.
+/// <glm/gtx/gradient_paint.hpp> need to be included to use these functionalities.
 ///////////////////////////////////////////////////////////////////////////////////
 
 #pragma once
 
 // Dependency:
 #include "../glm.hpp"
-#include "../gtc/epsilon.hpp"
-#include "../gtx/quaternion.hpp"
-#include "../gtx/rotate_vector.hpp"
+#include "optimum_pow.hpp"
 
 #if(defined(GLM_MESSAGES) && !defined(GLM_EXT_INCLUDED))
-#	pragma message("GLM: GLM_GTX_vector_angle extension included")
+#	pragma message("GLM: GLM_GTX_gradient_paint extension included")
 #endif
 
 namespace glm
 {
-	/// @addtogroup gtx_vector_angle
+	/// @addtogroup gtx_gradient_paint
 	/// @{
 
-	//! Returns the absolute angle between two vectors.
-	//! Parameters need to be normalized.
-	/// @see gtx_vector_angle extension.
-	template <typename vecType>
-	GLM_FUNC_DECL typename vecType::value_type angle(
-		vecType const & x, 
-		vecType const & y);
-
-	//! Returns the oriented angle between two 2d vectors.
-	//! Parameters need to be normalized.
-	/// @see gtx_vector_angle extension.
+	/// Return a color from a radial gradient.
+	/// @see - gtx_gradient_paint
 	template <typename T, precision P>
-	GLM_FUNC_DECL T orientedAngle(
-		tvec2<T, P> const & x,
-		tvec2<T, P> const & y);
+	GLM_FUNC_DECL T radialGradient(
+		tvec2<T, P> const & Center,
+		T const & Radius,
+		tvec2<T, P> const & Focal,
+		tvec2<T, P> const & Position);
 
-	//! Returns the oriented angle between two 3d vectors based from a reference axis.
-	//! Parameters need to be normalized.
-	/// @see gtx_vector_angle extension.
+	/// Return a color from a linear gradient.
+	/// @see - gtx_gradient_paint
 	template <typename T, precision P>
-	GLM_FUNC_DECL T orientedAngle(
-		tvec3<T, P> const & x,
-		tvec3<T, P> const & y,
-		tvec3<T, P> const & ref);
+	GLM_FUNC_DECL T linearGradient(
+		tvec2<T, P> const & Point0,
+		tvec2<T, P> const & Point1,
+		tvec2<T, P> const & Position);
 
 	/// @}
 }// namespace glm
 
-#include "vector_angle.inl"
+#include "gradient_paint.inl"

@@ -24,67 +24,66 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 ///
-/// @ref gtx_spline
-/// @file glm/gtx/spline.hpp
-/// @date 2007-01-25 / 2011-06-07
+/// @ref gtx_vector_angle
+/// @file glm/gtx/vector_angle.hpp
+/// @date 2005-12-30 / 2011-06-07
 /// @author Christophe Riccio
 ///
 /// @see core (dependence)
+/// @see gtx_quaternion (dependence)
+/// @see gtx_epsilon (dependence)
 ///
-/// @defgroup gtx_spline GLM_GTX_spline
+/// @defgroup gtx_vector_angle GLM_GTX_vector_angle
 /// @ingroup gtx
 /// 
-/// @brief Spline functions
+/// @brief Compute angle between vectors
 /// 
-/// <glm/gtx/spline.hpp> need to be included to use these functionalities.
+/// <glm/gtx/vector_angle.hpp> need to be included to use these functionalities.
 ///////////////////////////////////////////////////////////////////////////////////
 
 #pragma once
 
 // Dependency:
 #include "../glm.hpp"
-#include "../gtx/optimum_pow.hpp"
+#include "../gtc/epsilon.hpp"
+#include "quaternion.hpp"
+#include "rotate_vector.hpp"
 
 #if(defined(GLM_MESSAGES) && !defined(GLM_EXT_INCLUDED))
-#	pragma message("GLM: GLM_GTX_spline extension included")
+#	pragma message("GLM: GLM_GTX_vector_angle extension included")
 #endif
 
 namespace glm
 {
-	/// @addtogroup gtx_spline
+	/// @addtogroup gtx_vector_angle
 	/// @{
 
-	/// Return a point from a catmull rom curve.
-	/// @see gtx_spline extension.
-	template <typename genType> 
-	GLM_FUNC_DECL genType catmullRom(
-		genType const & v1, 
-		genType const & v2, 
-		genType const & v3, 
-		genType const & v4, 
-		typename genType::value_type const & s);
-		
-	/// Return a point from a hermite curve.
-	/// @see gtx_spline extension.
-	template <typename genType> 
-	GLM_FUNC_DECL genType hermite(
-		genType const & v1, 
-		genType const & t1, 
-		genType const & v2, 
-		genType const & t2, 
-		typename genType::value_type const & s);
-		
-	/// Return a point from a cubic curve. 
-	/// @see gtx_spline extension.
-	template <typename genType> 
-	GLM_FUNC_DECL genType cubic(
-		genType const & v1, 
-		genType const & v2, 
-		genType const & v3, 
-		genType const & v4, 
-		typename genType::value_type const & s);
+	//! Returns the absolute angle between two vectors.
+	//! Parameters need to be normalized.
+	/// @see gtx_vector_angle extension.
+	template <typename vecType>
+	GLM_FUNC_DECL typename vecType::value_type angle(
+		vecType const & x, 
+		vecType const & y);
+
+	//! Returns the oriented angle between two 2d vectors.
+	//! Parameters need to be normalized.
+	/// @see gtx_vector_angle extension.
+	template <typename T, precision P>
+	GLM_FUNC_DECL T orientedAngle(
+		tvec2<T, P> const & x,
+		tvec2<T, P> const & y);
+
+	//! Returns the oriented angle between two 3d vectors based from a reference axis.
+	//! Parameters need to be normalized.
+	/// @see gtx_vector_angle extension.
+	template <typename T, precision P>
+	GLM_FUNC_DECL T orientedAngle(
+		tvec3<T, P> const & x,
+		tvec3<T, P> const & y,
+		tvec3<T, P> const & ref);
 
 	/// @}
-}//namespace glm
+}// namespace glm
 
-#include "spline.inl"
+#include "vector_angle.inl"
