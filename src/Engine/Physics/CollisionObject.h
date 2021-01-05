@@ -2,7 +2,7 @@
 
 #include <btBulletDynamicsCommon.h>
 
-#include "..\..\Game\CollisionObjectTypes.h"
+#include "../../Game/CollisionObjectTypes.h"
 
 class CollisionObject
 {

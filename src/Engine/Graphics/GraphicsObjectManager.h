@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GraphicsObject\GraphicsObjectFactory.h"
+#include "GraphicsObject/GraphicsObjectFactory.h"
 
 class GraphicsObjectManager
 {

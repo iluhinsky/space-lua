@@ -1,10 +1,10 @@
 #pragma once
-#include "..\..\Include.h"
+#include "../../Include.h"
 
 #include "GraphicsObjectManager.h"
-#include "Particles\ParticleSystem.h"
-#include "Skybox\Skybox.h"
-#include "Particles\ParticleSystemFactory.h"
+#include "Particles/ParticleSystem.h"
+#include "Skybox/Skybox.h"
+#include "Particles/ParticleSystemFactory.h"
 
 class GraphicsWorld
 {

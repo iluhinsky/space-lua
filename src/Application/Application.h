@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Window.h"
-#include "..\Engine\Graphics\GraphicsWorld.h"
-#include "..\Engine\Physics\PhysicsWorld.h"
-#include "..\Game\World\World.h"
+#include "./../Engine/Graphics/GraphicsWorld.h"
+#include "../Engine/Physics/PhysicsWorld.h"
+#include "../Game/World/World.h"
 //#include "Manager.h"
 
 #include "../Engine/Logic/Controllers/Players/Player.h"

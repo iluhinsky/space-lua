@@ -1,6 +1,6 @@
 #include "Application.h"
 
-#include "SFML\Graphics\Text.hpp"
+#include "SFML/Graphics/Text.hpp"
 
 #include "../Game/World/World.h"
 

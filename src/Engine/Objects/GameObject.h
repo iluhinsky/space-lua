@@ -1,8 +1,8 @@
 #pragma once
 
-#include "..\Graphics\GraphicsObject\GraphicsObject.h"
-#include "..\Physics\CollisionObject.h"
-#include "..\Math\Camera.h"
+#include "../Graphics/GraphicsObject/GraphicsObject.h"
+#include "../Physics/CollisionObject.h"
+#include "../Math/Camera.h"
 
 class GameObject : 
 	public CollisionObject

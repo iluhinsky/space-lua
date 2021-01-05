@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\GraphicsObjectManager.h"
+#include "../GraphicsObjectManager.h"
 
 class Skybox
 {

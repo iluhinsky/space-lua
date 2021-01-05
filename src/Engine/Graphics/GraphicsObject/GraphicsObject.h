@@ -2,9 +2,9 @@
 
 #include "../../Math/Camera.h"
 #include "../../Math/Pipeline.h"
-#include "..\Management\ModelManager.h"
-#include "..\Management\ShaderProgManager.h"
-#include "..\Management\TextureManager.h"
+#include "../Management/ModelManager.h"
+#include "../Management/ShaderProgManager.h"
+#include "../Management/TextureManager.h"
 
 class GraphicsObject
 {
