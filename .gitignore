@@ -245,3 +245,4 @@ ModelManifest.xml
 /bin/GameEngineDebug.exe
 
 .idea
+cmake-build-debug
